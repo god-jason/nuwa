@@ -4,3 +4,5 @@
         {{cell.shape}}
     </p>
 }
+
+<nz-empty *ngIf="canvas.graph.getCells().length==0" nzNotFoundContent="还没有图元"></nz-empty>

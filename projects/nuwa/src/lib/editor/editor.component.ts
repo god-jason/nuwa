@@ -4,7 +4,7 @@ import {CanvasComponent} from "./canvas/canvas.component";
 //import {ComponentService} from "../component.service";
 import {RequestService} from "iot-master-smart";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
-import {NuwaCollection} from "../nuwa";
+import {NuwaCollection, NuwaGallery} from "../nuwa";
 
 @Component({
     selector: 'nuwa-editor',
@@ -29,6 +29,7 @@ export class EditorComponent {
 
     //组件集合
     @Input() components!: NuwaCollection[]
+    @Input() galleries!: NuwaGallery[];
 
     index = 0;
 

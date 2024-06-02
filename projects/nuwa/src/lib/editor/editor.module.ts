@@ -66,6 +66,9 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import {NzListModule} from "ng-zorro-antd/list";
 import {NzFormModule} from "ng-zorro-antd/form";
+import {NzEmptyComponent, NzEmptyModule} from "ng-zorro-antd/empty";
+import {NzTableComponent, NzTableModule} from "ng-zorro-antd/table";
+import {ListenerComponent} from "./listener/listener.component";
 
 
 @NgModule({
@@ -80,6 +83,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
         ElementsComponent,
         GalleriesComponent,
         ListenersComponent,
+        ListenerComponent,
         PageSettingComponent,
         PagesComponent,
         PropertiesComponent,
@@ -131,6 +135,9 @@ import {NzFormModule} from "ng-zorro-antd/form";
             MinusOutline,
             DashOutline,
         ]),
+
+        NzEmptyModule,
+        NzTableModule,
     ],
     providers:[
         //{provide: NZ_ICONS, useValue: []}

@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {RequestService} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseImage} from "../../widgets/base/image";
+import {NuwaGallery} from "../../nuwa";
 
 @Component({
     selector: 'nuwa-galleries',
@@ -9,20 +10,15 @@ import {BaseImage} from "../../widgets/base/image";
     styleUrl: './galleries.component.scss'
 })
 export class GalleriesComponent {
-    images: any = []
+    @Input() galleries!: NuwaGallery[]
+
     @Input() canvas!: CanvasComponent;
 
-    constructor(private rs: RequestService) {
-        this.load()
+    constructor() {
     }
 
-    load() {
-        this.rs.get("nuwa/galleries").subscribe(res => {
-            this.images = res.data;
-        })
-    }
 
-    onDragStart($event: DragEvent, img: string) {
+    onDragStart($event: DragEvent, url: string) {
         //this.renderer?.onDnd($event, BaseImage, {"imageUrl": "/nuwa/gallery/" + img}) //图片没有更换
         // this.canvas?.drawNode($event, {
         //     name: '',
@@ -36,6 +32,6 @@ export class GalleriesComponent {
         //     }
         // })
 
-        this.canvas?.drawNode($event, BaseImage, {"attrs/image/xlink:href": "/nuwa/gallery/" + img})
+        this.canvas?.drawNode($event, BaseImage, {"attrs/image/xlink:href": url})
     }
 }

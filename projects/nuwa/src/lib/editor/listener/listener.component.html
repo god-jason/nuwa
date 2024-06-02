@@ -1,7 +1,55 @@
-<div (click)="edit(click)">
-    点击 : {{cell.data?.listeners?.click}}
-</div>
+<form [formGroup]="group">
+    <nz-form-item>
+        <nz-form-label>
+            事件
+        </nz-form-label>
+        <nz-form-control>
+            <nz-select formControlName="event">
+                <nz-option nzValue="click" nzLabel="点击"></nz-option>
+                <nz-option *ngFor="let c of data.component.events"
+                           [nzValue]="c.name" [nzLabel]="c.label"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
 
-<div *ngFor="let e of component?.events" (click)="edit(e)">
-    {{e.label}} : {{cell.data?.listeners?.[e.name]}}
-</div>
+
+    <nz-form-item>
+        <nz-form-label>
+            响应
+        </nz-form-label>
+        <nz-form-control>
+            <nz-select formControlName="action" [nzOptions]="actions">
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+        <nz-form-label>
+            目标
+        </nz-form-label>
+        <nz-form-control>
+            <input formControlName="target" nz-input>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label>
+            延迟(ms)
+        </nz-form-label>
+        <nz-form-control>
+            <nz-input-number formControlName="delay" [nzStep]="1" [nzMin]="0" [nzMax]="3600000"></nz-input-number>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label>
+            参数绑定
+        </nz-form-label>
+        <nz-form-control>
+            暂未实现
+        </nz-form-control>
+    </nz-form-item>
+
+
+</form>

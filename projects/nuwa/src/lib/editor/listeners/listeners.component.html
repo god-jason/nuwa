@@ -1,10 +1,26 @@
-<button nz-button *ngIf="cell" (click)="add()">添加响应</button>
+<button nz-button *ngIf="cell" (click)="add()">添加事件处理</button>
 
-
-<div *ngFor="let e of cell?.data?.listeners" (click)="edit(e)">
-    {{e.event}} {{e.action}}
-</div>
-
+<nz-table [nzData]="cell?.data?.listeners">
+    <thead>
+    <tr>
+        <th>事件</th>
+        <th>响应</th>
+        <th>目标</th>
+        <th>-</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of cell?.data?.listeners; let i=index">
+        <td>{{ e.event }}</td>
+        <td>{{ getActionName(e.action) }}</td>
+        <td>{{ e.target }}</td>
+        <td>
+            <i nz-icon nzType="edit" title="编辑" (click)="edit(i)"></i>
+            <i nz-icon nzType="delete" title="删除" (click)="delete(i)"></i>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
 
 
 <p>点击、自定义</p>

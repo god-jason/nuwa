@@ -24,6 +24,7 @@ export declare interface NuwaParameter {
 export declare interface NuwaListener {
     event: string
     action: "page" | "link" | "set" | "show" | "hide" | "animate" | "script"// string //page link set
+    delay: number
     target?: string //outlet iframe
     animation?: string //动画
     parameters?: NuwaParameter[]
@@ -80,4 +81,14 @@ export declare interface NuwaComponent {
 export declare interface NuwaCollection {
     name: string
     components: NuwaComponent[]
+}
+
+export declare interface NuwaImage {
+    name?: string
+    url: string
+}
+
+export declare interface NuwaGallery {
+    name: string
+    images: NuwaImage[]
 }
