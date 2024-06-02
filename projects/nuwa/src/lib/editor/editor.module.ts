@@ -4,7 +4,7 @@ import {EditorComponent} from "./editor.component";
 import {AboutComponent} from "./about/about.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AnimationsComponent} from "./animations/animations.component";
-import {BackgroundComponent} from "./background/background.component";
+import {BackgroundSettingComponent} from "./background-setting/background-setting.component";
 import {BindingComponent} from "./binding/binding.component";
 import {BindingSettingComponent} from "./binding-setting/binding-setting.component";
 import {CanvasComponent} from "./canvas/canvas.component";
@@ -12,15 +12,15 @@ import {ComponentsComponent} from "./components/components.component";
 import {ElementsComponent} from "./elements/elements.component";
 import {GalleriesComponent} from "./galleries/galleries.component";
 import {ListenersComponent} from "./listeners/listeners.component";
-import {PageSettingComponent} from "./page/page-setting.component";
+import {PageSettingComponent} from "./page-setting/page-setting.component";
 import {PagesComponent} from "./pages/pages.component";
-import {PropertiesComponent} from "./properties/properties.component";
+import {PropertiesSettingComponent} from "./properties-setting/properties-setting.component";
 import {PropsComponent} from "./props/props.component";
 import {ScriptsComponent} from "./scripts/scripts.component";
 import {SideBarComponent, SideBarItemDirective} from "./side-bar/side-bar.component";
 import {SourcesComponent} from "./sources/sources.component";
 import {ToolbarComponent} from "./toolbar/toolbar.component";
-import {TransformComponent} from "./transform/transform.component";
+import {TransformSettingComponent} from "./transform-setting/transform-setting.component";
 import {WidgetsComponent} from "./widgets/widgets.component";
 import {SmartEditorComponent} from "iot-master-smart";
 import {NzModalModule} from "ng-zorro-antd/modal";
@@ -75,7 +75,7 @@ import {ListenerComponent} from "./listener/listener.component";
     declarations: [
         AboutComponent,
         AnimationsComponent,
-        BackgroundComponent,
+        BackgroundSettingComponent,
         BindingComponent,
         BindingSettingComponent,
         CanvasComponent,
@@ -86,14 +86,14 @@ import {ListenerComponent} from "./listener/listener.component";
         ListenerComponent,
         PageSettingComponent,
         PagesComponent,
-        PropertiesComponent,
+        PropertiesSettingComponent,
         PropsComponent,
         ScriptsComponent,
         SideBarComponent,
         SideBarItemDirective,
         SourcesComponent,
         ToolbarComponent,
-        TransformComponent,
+        TransformSettingComponent,
         WidgetsComponent,
         EditorComponent,
         HtmlPipe,

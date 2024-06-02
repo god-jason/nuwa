@@ -5,11 +5,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
-    selector: 'nuwa-transform',
-    templateUrl: './transform.component.html',
-    styleUrl: './transform.component.scss'
+    selector: 'nuwa-transform-setting',
+    templateUrl: './transform-setting.component.html',
+    styleUrl: './transform-setting.component.scss'
 })
-export class TransformComponent implements OnInit, OnDestroy {
+export class TransformSettingComponent implements OnInit, OnDestroy {
     @Input() canvas!: CanvasComponent;
 
     selected: Cell[] = [];

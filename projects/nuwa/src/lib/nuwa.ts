@@ -85,6 +85,7 @@ export declare interface NuwaCollection {
 
 export declare interface NuwaImage {
     name?: string
+    thumbnail?: string
     url: string
 }
 

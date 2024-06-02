@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {EditorModule} from "../../projects/nuwa/src/lib/editor/editor.module";
+import {NuwaImage} from "../../projects/nuwa/src/lib/nuwa";
 
 @Component({
     selector: 'app-root',
@@ -14,4 +15,17 @@ import {EditorModule} from "../../projects/nuwa/src/lib/editor/editor.module";
 })
 export class AppComponent {
     title = 'Nuwa';
+    backgrounds: NuwaImage[] = [
+        {url: "/assets/backgrounds/bk.jpg"},
+        {url: "/assets/backgrounds/bk1.jpg"},
+        {url: "/assets/backgrounds/bk2.jpg"},
+        {url: "/assets/backgrounds/bk3.png"},
+        {url: "/assets/backgrounds/bk4.jpg"},
+        {url: "/assets/backgrounds/bk5.png"},
+        {url: "/assets/backgrounds/bk7.png"},
+        {url: "/assets/backgrounds/bk9.jpg"},
+        {url: "/assets/backgrounds/bk10.png"},
+        {url: "/assets/backgrounds/bk11.png"},
+        {url: "/assets/backgrounds/bk12.jpg"},
+    ];
 }

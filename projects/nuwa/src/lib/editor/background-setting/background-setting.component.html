@@ -1,0 +1,16 @@
+<im-smart-editor [fields]="fields"
+                 [values]="canvas.page?.background || {}"
+                 (change)="onChange()"
+                 #editor></im-smart-editor>
+
+
+<button nz-button [nzType]="'primary'" (click)="isVisible=true">背景库</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="选择背景" nzFooter=" " (nzOnCancel)="isVisible=false">
+    <ng-container *nzModalContent>
+        <div class="backgrounds">
+            <div class="background" *ngFor="let b of backgrounds" (click)="selectBackground(b)">
+                <img [src]="b.thumbnail || b.url" [alt]="b.name" [title]="b.name">
+            </div>
+        </div>
+    </ng-container>
+</nz-modal>

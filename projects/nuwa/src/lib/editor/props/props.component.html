@@ -3,12 +3,12 @@
         <nuwa-page-setting [page]="canvas.page"></nuwa-page-setting>
     </nz-collapse-panel>
     <nz-collapse-panel nzHeader="背景" nzActive>
-        <nuwa-background [canvas]="canvas"></nuwa-background>
+        <nuwa-background-setting [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-background-setting>
     </nz-collapse-panel>
     <nz-collapse-panel nzHeader="变换" nzActive>
-        <nuwa-transform [canvas]="canvas"></nuwa-transform>
+        <nuwa-transform-setting [canvas]="canvas"></nuwa-transform-setting>
     </nz-collapse-panel>
     <nz-collapse-panel nzHeader="属性" nzActive>
-        <nuwa-properties [canvas]="canvas"></nuwa-properties>
+        <nuwa-properties-setting [canvas]="canvas"></nuwa-properties-setting>
     </nz-collapse-panel>
 </nz-collapse>

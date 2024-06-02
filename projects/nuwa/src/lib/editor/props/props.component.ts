@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
+import {NuwaImage} from "../../nuwa";
 
 @Component({
   selector: 'nuwa-props',
@@ -8,5 +9,6 @@ import {CanvasComponent} from "../canvas/canvas.component";
 })
 export class PropsComponent {
     @Input() canvas!: CanvasComponent;
+    @Input() backgrounds!: NuwaImage[];
 
 }

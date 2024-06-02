@@ -15,7 +15,7 @@
                       [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
     </div>
     <nuwa-side-bar [width]="400" [right]="true">
-        <nuwa-props *sideBarItem="'属性'" [canvas]="canvas"></nuwa-props>
+        <nuwa-props *sideBarItem="'属性'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-props>
 <!--        <nuwa-animations *sideBarItem="'动画'"></nuwa-animations>-->
         <nuwa-listeners *sideBarItem="'事件'" [canvas]="canvas"></nuwa-listeners>
         <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>

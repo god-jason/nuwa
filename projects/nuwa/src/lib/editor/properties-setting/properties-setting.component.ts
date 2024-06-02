@@ -7,11 +7,11 @@ import {NuwaComponent} from "../../nuwa";
 import {ComponentService} from "../../component.service";
 
 @Component({
-    selector: 'nuwa-properties',
-    templateUrl: './properties.component.html',
-    styleUrl: './properties.component.scss'
+    selector: 'nuwa-properties-setting',
+    templateUrl: './properties-setting.component.html',
+    styleUrl: './properties-setting.component.scss'
 })
-export class PropertiesComponent implements OnDestroy, OnInit {
+export class PropertiesSettingComponent implements OnDestroy, OnInit {
     @Input() canvas!: CanvasComponent;
 
     @ViewChild("editor") editor!: SmartEditorComponent;
