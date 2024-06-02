@@ -1,24 +1,61 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {CanvasComponent} from "./canvas/canvas.component";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {ActivatedRoute, Router} from "@angular/router";
 //import {ComponentService} from "../component.service";
 import {RequestService} from "iot-master-smart";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
+import {ToolbarComponent} from "./toolbar/toolbar.component";
+import {SideBarComponent, SideBarItemDirective} from "./side-bar/side-bar.component";
+import {PagesComponent} from "./pages/pages.component";
+import {WidgetsComponent} from "./widgets/widgets.component";
+import {ComponentsComponent} from "./components/components.component";
+import {GalleriesComponent} from "./galleries/galleries.component";
+import {ElementsComponent} from "./elements/elements.component";
+import {SourcesComponent} from "./sources/sources.component";
+import {PropsComponent} from "./props/props.component";
+import {ListenersComponent} from "./listeners/listeners.component";
+import {ScriptsComponent} from "./scripts/scripts.component";
+import {NuwaCollection} from "../nuwa";
 
 @Component({
-  selector: 'nuwa-editor',
-  standalone: true,
-  imports: [],
-  templateUrl: './editor.component.html',
-  styleUrl: './editor.component.scss'
+    selector: 'nuwa-editor',
+    standalone: true,
+    imports: [
+        ToolbarComponent,
+        SideBarComponent,
+        SideBarItemDirective,
+        PagesComponent,
+        WidgetsComponent,
+        ComponentsComponent,
+        GalleriesComponent,
+        ElementsComponent,
+        SourcesComponent,
+        CanvasComponent,
+        PropsComponent,
+        ListenersComponent,
+        ScriptsComponent,
+    ],
+    templateUrl: './editor.component.html',
+    styleUrl: './editor.component.scss'
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent {
     id: any = ''
 
-    project: NuwaProject = projectTemplate()
     page!: NuwaPage
+
+    _project: NuwaProject = projectTemplate()
+
+    @Input() set project(project: NuwaProject) {
+        this.title.setTitle(this._project.name)
+        this.page = project.pages[0]
+    }
+
+    get project() {
+        return this._project
+    }
+
+    //组件集合
+    @Input() components!: NuwaCollection[]
 
     index = 0;
 
@@ -26,51 +63,24 @@ export class EditorComponent implements OnInit {
 
     @ViewChild("canvas") renderer!: CanvasComponent
 
-    constructor(
-        private title: Title,
-        private rs: RequestService,
-        private msg: NzMessageService,
-        private router: Router,
-        private route: ActivatedRoute,
-    ) {
+    @Output() onSave = new EventEmitter<NuwaProject>()
 
-        title.setTitle(this.project.name)
-    }
-
-    ngOnInit(): void {
-        if (this.route.snapshot.paramMap.has('id')) {
-            this.id = this.route.snapshot.paramMap.get('id');
-            this.rs.get(`api/project/${this.id}`).subscribe((res) => {
-                this.project = res.data;
-                //this.content = JSON.stringify(resData, undefined, '\t');
-                this.title.setTitle(this.project.name)
-                //this.renderer.graph.fromJSON(this.project.pages[0].content)
-                //this.renderer.Render(this.project.pages[0])
-                this.page = this.project.pages[0]
-            });
-        }
+    constructor(private title: Title, private rs: RequestService) {
     }
 
     handleSave() {
-        this.project.pages[this.index].content = this.renderer.graph.toJSON()
-
-        let url = this.id ? `api/project/${this.id}` : `api/project/create`
-
-        this.rs.post(url, this.project).subscribe((res) => {
-            //this.project = res.data;
-            //this.content = JSON.stringify(resData, undefined, '\t');
-            this.router.navigateByUrl("/admin/project")
-        });
+        this._project.pages[this.index].content = this.renderer.graph.toJSON()
+        this.onSave.emit(this._project)
     }
 
     handlePageChange($event: number) {
         //保存当前页
-        this.project.pages[this.index].content = this.renderer.graph.toJSON()
+        this._project.pages[this.index].content = this.renderer.graph.toJSON()
         this.index = $event
 
         //渲染新页
-        //this.renderer.Render(this.project.pages[this.index])
-        this.page = this.project.pages[this.index]
+        //this.renderer.Render(this._project.pages[this.index])
+        this.page = this._project.pages[this.index]
     }
 
 }

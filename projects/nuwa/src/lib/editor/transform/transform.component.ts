@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Cell} from "@antv/x6";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ComponentService} from "../../component.service";
+//import {ComponentService} from "../../component.service";
 import {CommonModule} from "@angular/common";
 import {NzInputDirective} from "ng-zorro-antd/input";
 import {NzInputNumberComponent} from "ng-zorro-antd/input-number";
@@ -84,7 +84,7 @@ export class TransformComponent implements OnInit, OnDestroy {
     }
 
 
-    constructor(private fb: FormBuilder, private cs: ComponentService) {
+    constructor(private fb: FormBuilder) {
         this.form = fb.group({
             x: [0, [Validators.required]],
             y: [0, [Validators.required]],

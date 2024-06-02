@@ -1,74 +1,30 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {Title} from "@angular/platform-browser";
-import {RequestService} from "iot-master-smart";
-import {ComponentService} from "../component.service";
-import {ActivatedRoute} from "@angular/router";
-import {NzNotificationService} from "ng-zorro-antd/notification";
-import {MqttService} from "ngx-mqtt";
-import {Subscription} from "rxjs";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {WindowComponent} from "./window/window.component";
-import {NuwaPage, NuwaProject} from "../../nuwa/project";
+import {Component, Input} from '@angular/core';
+import {NuwaPage, NuwaProject} from "../project";
+import {RenderComponent} from "./render/render.component";
+import {NuwaCollection} from "../nuwa";
 
 @Component({
-  selector: 'nuwa-viewer',
-  standalone: true,
-  imports: [],
-  templateUrl: './viewer.component.html',
-  styleUrl: './viewer.component.scss'
+    selector: 'nuwa-viewer',
+    standalone: true,
+    imports: [
+        RenderComponent
+    ],
+    templateUrl: './viewer.component.html',
+    styleUrl: './viewer.component.scss'
 })
-export class ViewerComponent implements OnDestroy {
-    id: any = ''
+export class ViewerComponent {
+    _project!: NuwaProject
 
-    project!: NuwaProject
+    @Input() set project(project: NuwaProject) {
+        this._project = project
+        this.page = project.pages[0] //默认打开第一个
+    }
+
     page!: NuwaPage
 
-    mousewheel = false
-    panning = false
-    full = false
-    padding = 10
+    //组件集合
+    @Input() components!: NuwaCollection[]
 
-    index = 0;
-    subs: Subscription[] = []
-
-    constructor(
-        private title: Title,
-        private element: ElementRef,
-        private rs: RequestService,
-        protected cs: ComponentService,
-        private route: ActivatedRoute,
-        private ns: NzNotificationService,
-        private ms: NzModalService,
-        private mqtt: MqttService,
-    ) {
-        this.load()
-
-        function getSwitch(name: string) {
-            let val = route.snapshot.queryParams[name]
-            return val == "true" || val == "1"
-        }
-
-        this.mousewheel = getSwitch("mousewheel")
-        this.panning = getSwitch("panning")
-        this.full = getSwitch("full")
-    }
-
-
-
-    load(): void {
-        this.id = this.route.snapshot.paramMap.get('id');
-        this.rs.get(`api/project/${this.id}`).subscribe((res) => {
-            this.project = res.data;
-            this.title.setTitle(this.project.name)
-            // if (this.full)
-            //     this.graph.resize(window.innerWidth, window.innerHeight)
-            // else
-            //     this.graph.resize(this.project.width, this.project.height)
-            this.page = this.project.pages[0]
-        });
-    }
-
-    ngOnDestroy(): void {
-        this.subs.forEach(sub => sub.unsubscribe())
+    constructor() {
     }
 }

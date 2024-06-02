@@ -1,7 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
-import {RenderComponent} from "../../../app/render/render.component";
-import {CircleSvg} from "../base/circle_svg";
 import {OutletSvg} from "./outlet_svg";
+import {RenderComponent} from "../../viewer/render/render.component";
 
 export const MiscOutlet: NuwaComponent = {
     name: '子页面', id: ':outlet:',

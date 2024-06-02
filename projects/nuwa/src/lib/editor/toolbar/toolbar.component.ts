@@ -8,12 +8,32 @@ import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseLine} from "../../widgets/base/line";
 import {MiscFlow} from "../../widgets/misc/flow";
+import {NzButtonComponent} from "ng-zorro-antd/button";
+import {NzIconDirective} from "ng-zorro-antd/icon";
+import {NzDividerComponent} from "ng-zorro-antd/divider";
+import {NzDropDownDirective, NzDropdownMenuComponent} from "ng-zorro-antd/dropdown";
+import {NzMenuDirective, NzMenuDividerDirective, NzMenuItemComponent} from "ng-zorro-antd/menu";
+import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'nuwa-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss'],
     standalone: true,
+    imports: [
+        NzButtonComponent,
+        NzIconDirective,
+        NzDividerComponent,
+        NzDropDownDirective,
+        NzDropdownMenuComponent,
+        NzMenuDirective,
+        NzMenuItemComponent,
+        NzMenuDividerDirective,
+        NzSelectComponent,
+        FormsModule,
+        NzOptionComponent
+    ],
     providers: [NzMessageService, NzModalService]
 })
 export class ToolbarComponent {

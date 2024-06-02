@@ -1,17 +1,11 @@
-import {Injectable, Injector} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
-import {Graph, Shape} from "@antv/x6";
+import {NuwaCollection, NuwaComponent} from "./nuwa";
+import {NuwaWidgets} from "./widgets/widgets";
+import {BaseLine} from "./widgets/base/line";
+import {MiscFlow} from "./widgets/misc/flow";
 
-
-import {HttpClient} from '@angular/common/http';
-import {DomSanitizer} from '@angular/platform-browser';
-import {RequestService} from "iot-master-smart";
-import {NuwaCollection, NuwaComponent} from "../nuwa/nuwa";
-import {NuwaWidgets} from "../nuwa/widgets/widgets";
 import {NzNotificationService} from "ng-zorro-antd/notification";
-import {register} from "@antv/x6-angular-shape";
-import {BaseLine} from "../nuwa/widgets/base/line";
-import {MiscFlow} from "../nuwa/widgets/misc/flow";
 
 @Injectable({
     providedIn: 'root'
@@ -28,13 +22,7 @@ export class ComponentService {
 
     public components: { [id: string]: NuwaComponent } = {}
 
-    constructor(
-        private rs: RequestService,
-        private injector: Injector,
-        private httpClient: HttpClient,
-        private sanitizer: DomSanitizer,
-        private ns: NzNotificationService,
-    ) {
+    constructor(private ns: NzNotificationService) {
         this.PutCollections(NuwaWidgets)
         this.PutComponent(BaseLine)
         this.PutComponent(MiscFlow)
@@ -114,69 +102,10 @@ export class ComponentService {
 
     public PutCollection(collection: NuwaCollection) {
         collection.components = collection.components || []
-        collection.components.forEach(c => {
-            this.PutComponent(c)
-        })
-    }
-
-
-    public CheckRegister(component: NuwaComponent) {
-        if (component.registered || component.internal)
-            return
-        component.registered = true
-
-        switch (component.type) {
-            case "line":
-                //注册线
-                if (component.extends) {
-                    Graph.registerEdge(component.id, component.extends)
-                    return true
-                }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
-                break
-            case "shape":
-                //注册衍生组件
-                if (component.extends) {
-                    Graph.registerNode(component.id, component.extends)
-                    return true
-                }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
-                break;
-            case "html":
-                // @ts-ignore
-                Shape.HTML.register({
-                    shape: component.id,
-                    width: component.metadata?.width || 100,
-                    height: component.metadata?.height || 100,
-                    // @ts-ignore
-                    html: component.html,
-                })
-                break;
-            case "angular":
-                if (component.content) {
-                    register({
-                        shape: component.id,
-                        width: component.metadata?.width || 100,
-                        height: component.metadata?.height || 100,
-                        content: component.content,
-                        injector: this.injector,
-                    })
-                    component.registered = true
-                    return true
-                }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少content")
-                break;
-        }
-        return false
+        collection.components.forEach(c => this.PutComponent(c))
     }
 
     public Get(id: string): NuwaComponent {
-        const cmp = this.components[id]
-        if (cmp) {
-            if (this.CheckRegister(cmp)) {
-                return cmp
-            }
-        }
-        return cmp //rect ?
+        return this.components[id]
     }
 }

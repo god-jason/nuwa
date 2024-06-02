@@ -1,10 +1,11 @@
 import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Cell, Timing} from "@antv/x6";
+import {Cell} from "@antv/x6";
 import {SmartEditorComponent, SmartField} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 //import {ComponentService} from "../../component.service";
 import {NuwaComponent} from "../../nuwa";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ComponentService} from "../../component.service";
 
 @Component({
     selector: 'nuwa-properties',
@@ -27,7 +28,7 @@ export class PropertiesComponent implements OnDestroy, OnInit {
     component?: NuwaComponent
     cell?: Cell
 
-    constructor() {
+    constructor(private cs: ComponentService) {
     }
 
     ngOnInit() {
@@ -64,7 +65,7 @@ export class PropertiesComponent implements OnDestroy, OnInit {
         //console.log("onCellSelected", event.cell);
         let id = event.cell.shape
 
-        //TODO this.component = this.cs.Get(id)
+        this.component = this.cs.Get(id)
 
         //表单
         // @ts-ignore

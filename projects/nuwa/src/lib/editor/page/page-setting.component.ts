@@ -10,8 +10,8 @@ import {NuwaPage} from "../../project";
         SmartEditorComponent,
         ReactiveFormsModule
     ],
-    templateUrl: './page.component.html',
-    styleUrl: './page.component.scss'
+    templateUrl: './page-setting.component.html',
+    styleUrl: './page-setting.component.scss'
 })
 export class PageSettingComponent {
     @Input() page!: NuwaPage;

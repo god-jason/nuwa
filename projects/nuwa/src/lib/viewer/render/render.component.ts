@@ -1,12 +1,12 @@
 import {Component, ElementRef, HostListener, Input} from '@angular/core';
 import {Graph} from "@antv/x6";
 import {Subscription} from "rxjs";
-import {WindowComponent} from "../viewer/window/window.component";
+//import {WindowComponent} from "../viewer/window/window.component";
 import {RequestService} from "iot-master-smart";
-import {ComponentService} from "../component.service";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {NuwaPage} from "../../nuwa/project";
+import {NuwaPage, NuwaProject} from "../../project";
+import {ComponentService} from "../../component.service";
 
 @Component({
   selector: 'nuwa-render',
@@ -49,6 +49,8 @@ export class RenderComponent {
         return this._page
     }
 
+    @Input() project!: NuwaProject
+
     graph!: Graph;
 
     subs: Subscription[] = []
@@ -67,7 +69,7 @@ export class RenderComponent {
         },
         window: (url: string, width = 400, height = 300, title = '窗口') => {
             this.ms.create({
-                nzContent: WindowComponent,
+                //nzContent: WindowComponent,
                 nzData: {url, width, height, title},
                 nzWidth: width + 48,
                 nzFooter: null,
@@ -101,9 +103,9 @@ export class RenderComponent {
 
     constructor(
         private rs: RequestService,
-        protected cs: ComponentService,
         private ns: NzNotificationService,
         private ms: NzModalService,
+        private cs: ComponentService,
         //private mqtt: MqttService,
         element: ElementRef
     ) {

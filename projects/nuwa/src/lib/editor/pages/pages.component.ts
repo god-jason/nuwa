@@ -1,14 +1,32 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Graph} from "@antv/x6";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {NzContextMenuService} from "ng-zorro-antd/dropdown";
+import {NzContextMenuService, NzDropdownMenuComponent} from "ng-zorro-antd/dropdown";
 import {NuwaProject, pageTemplate} from "../../project";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
+import {NzListComponent, NzListItemComponent} from "ng-zorro-antd/list";
+import {NgClass} from "@angular/common";
+import {NzIconDirective} from "ng-zorro-antd/icon";
+import {NzMenuDirective, NzMenuItemComponent} from "ng-zorro-antd/menu";
+import {NzButtonComponent} from "ng-zorro-antd/button";
 
 @Component({
     selector: 'nuwa-pages',
     templateUrl: './pages.component.html',
     standalone: true,
+    imports: [
+        NzListComponent,
+        CdkDropList,
+        NzListItemComponent,
+        NgClass,
+        CdkDrag,
+        NzIconDirective,
+        CdkDragHandle,
+        NzDropdownMenuComponent,
+        NzMenuDirective,
+        NzMenuItemComponent,
+        NzButtonComponent
+    ],
     styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent {
