@@ -1,0 +1,14 @@
+<nz-collapse>
+    <nz-collapse-panel nzHeader="画布" nzActive>
+        <app-page [page]="canvas.page"></app-page>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="背景" nzActive>
+        <app-background [canvas]="canvas"></app-background>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="变换" nzActive>
+        <app-transform [canvas]="canvas"></app-transform>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="属性" nzActive>
+        <app-properties [canvas]="canvas"></app-properties>
+    </nz-collapse-panel>
+</nz-collapse>

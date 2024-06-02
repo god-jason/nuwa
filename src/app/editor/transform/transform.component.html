@@ -1,0 +1,18 @@
+<form [formGroup]="form" (change)="onChange($event)" *ngIf="cell">
+
+    X
+    <nz-input-number formControlName="x"/>
+
+    Y
+    <nz-input-number formControlName="y"/>
+
+    宽度
+    <nz-input-number formControlName="width"/>
+
+    高度
+    <nz-input-number formControlName="height"/>
+
+    角度
+    <nz-input-number formControlName="angle"/>
+
+</form>

@@ -1,0 +1,19 @@
+<button nz-button *ngIf="cell" (click)="add()">添加响应</button>
+
+
+<div *ngFor="let e of cell?.data?.listeners" (click)="edit(e)">
+    {{e.event}} {{e.action}}
+</div>
+
+
+
+<p>点击、自定义</p>
+<p>
+    打开（页面、链接）（参数绑定），显示隐藏元素，操作变量，执行脚本
+</p>
+<p>
+    页面目标：当前页面，子页面（需要容器），父页面
+</p>
+<p>
+    链接目标：当前窗口，子窗口（iframe），父窗口
+</p>

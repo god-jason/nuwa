@@ -1,0 +1,10 @@
+<nz-collapse>
+    <nz-collapse-panel *ngFor="let w of collections; let f = first" [nzHeader]="w.name" [nzActive]="f">
+        <div class="component" *ngFor="let c of w.components">
+            <div class="icon">
+                <img [src]="'/nuwa/component/'+c.id+'/'+c.icon" alt="c.name" loading="lazy"/>
+            </div>
+            <div class="name">{{c.name}}</div>
+        </div>
+    </nz-collapse-panel>
+</nz-collapse>

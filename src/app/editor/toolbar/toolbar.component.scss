@@ -1,0 +1,37 @@
+:host {
+    height: 50px;
+    //line-height: 40px;
+
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+
+    padding: 0 20px;
+
+    //font-size: 20px;
+    //font-weight: bold;
+    //overflow: hidden;
+
+    border-bottom: 1px solid #a8a8a8;
+
+    background-color: #f0f0f0;
+    //background: linear-gradient(0deg, #999999, #ffffff 15%, #ffffff 85%, #999999);
+}
+
+a {
+    padding: 5px;
+    margin: 1px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    &.disabled{
+        color: grey;
+        cursor: default;
+    }
+
+    //&:hover {
+    //    transform: scale(1.2);
+    //    //transition: all 0.5s;
+    //}
+}

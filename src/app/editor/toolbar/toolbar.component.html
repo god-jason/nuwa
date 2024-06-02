@@ -1,0 +1,122 @@
+
+<a nz-button (click)="about()">
+    <i nz-icon nzType="question-circle" title="关于"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a nz-button nz-dropdown [nzDropdownMenu]="exportDropDownMenu" title="导出">
+    <i nz-icon nzType="profile"></i>
+</a>
+<nz-dropdown-menu #exportDropDownMenu="nzDropdownMenu">
+    <ul nz-menu>
+        <li nz-menu-item (click)="handleExport('SVG')">导出SVG</li>
+        <li nz-menu-item (click)="handleExport('PNG')">导出PNG</li>
+        <li nz-menu-item (click)="handleExport('JPEG')">导出JPEG</li>
+        <li nz-menu-divider></li>
+        <li nz-menu-item (click)="handleExport('file')">导出JSON</li>
+        <li nz-menu-item (click)="handleImport()">导入JSON</li>
+    </ul>
+</nz-dropdown-menu>
+
+<a nz-button (click)="handleSave()" title="保存">
+    <i nz-icon nzType="save"></i>
+</a>
+
+<a nz-button (click)="handleGrid()">
+    <i nz-icon nzType="table" title="显示网格"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a nz-button (click)="drawLine()" title="线条">
+    <i nz-icon nzType="minus"></i>
+</a>
+
+<a nz-button (click)="drawFlow()" title="流动线条">
+    <i nz-icon nzType="dash"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleUndo()" nz-button [disabled]="!graph.canUndo()" title="撤销(ctrl+z)">
+    <i nz-icon nzType="undo"></i>
+</a>
+<a (click)="handleRedo()" nz-button [disabled]="!graph.canRedo()" title="重做(ctrl+y)">
+    <i nz-icon nzType="redo"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleCut()" nz-button [disabled]="!graph.getSelectedCellCount()" title="剪切(ctrl+x)">
+    <i nz-icon nzType="scissor"></i>
+</a>
+<a (click)="handleCopy()" nz-button [disabled]="!graph.getSelectedCellCount()" title="复制(ctrl+c)">
+    <i nz-icon nzType="copy"></i>
+</a>
+<a (click)="handlePaste()" nz-button [disabled]="!graph.getCellsInClipboard().length" title="粘贴(ctrl+v)">
+    <i nz-icon nzType="snippets"></i>
+</a>
+<a (click)="handleDelete()" nz-button [disabled]="!graph.getSelectedCellCount()" title="删除">
+    <i nz-icon nzType="delete"></i></a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleAlignLeft()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="align-left" title="左对齐"></i>
+</a>
+<a (click)="handleAlignCenter()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="align-center" title="居中对齐"></i>
+</a>
+<a (click)="handleAlignRight()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="align-right" title="右对齐"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleValignTop()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="vertical-align-top" title="上对齐"></i>
+</a>
+<a (click)="handleValignMiddle()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="vertical-align-middle" title="居中对齐"></i>
+</a>
+<a (click)="handleValignBottom()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="vertical-align-bottom" title="下对齐"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleMoveTop()" nz-button [disabled]="!graph.getSelectedCellCount()">
+    <i nz-icon nzType="vertical-right" title="置顶" [nzRotate]="90"></i>
+</a>
+<a (click)="handleMoveUp()" nz-button [disabled]="graph.getSelectedCellCount()!=1">
+    <i nz-icon nzType="up" title="上移一层"></i>
+</a>
+<a (click)="handleMoveDown()" nz-button [disabled]="graph.getSelectedCellCount()!=1">
+    <i nz-icon nzType="down" title="下移一层"></i>
+</a>
+<a (click)="handleMoveBottom()" nz-button [disabled]="!graph.getSelectedCellCount()">
+    <i nz-icon nzType="vertical-left" title="置底" [nzRotate]="90"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="handleGroup()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+    <i nz-icon nzType="group" title="组合"></i>
+</a>
+<a (click)="handleUngroup()" nz-button [disabled]="!isGroup()">
+    <i nz-icon nzType="ungroup" title="解除组合"></i>
+</a>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<nz-select [ngModel]="scale" (ngModelChange)="handleScale($event)"
+           [ngModelOptions]="{standalone: true}">
+    <nz-option nzLabel="25%" [nzValue]="0.25"></nz-option>
+    <nz-option nzLabel="50%" [nzValue]="0.5"></nz-option>
+    <nz-option nzLabel="75%" [nzValue]="0.75"></nz-option>
+    <nz-option nzLabel="100%" [nzValue]="1"></nz-option>
+    <nz-option nzLabel="200%" [nzValue]="2"></nz-option>
+    <nz-option nzLabel="500%" [nzValue]="5"></nz-option>
+</nz-select>
+

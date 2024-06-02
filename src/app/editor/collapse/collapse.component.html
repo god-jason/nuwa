@@ -1,0 +1,12 @@
+<div class="header" (click)="open = !open">
+    <span nz-icon nzType="caret-right" [nzRotate]="open ? 90 : 0" nzTheme="outline"></span>
+    <span class="title">{{title}}</span>
+    <span>
+        <ng-content select="[more]"></ng-content>
+    </span>
+</div>
+<div class="content" [ngClass]="{close:!open}">
+    <div class="inner">
+        <ng-content></ng-content>
+    </div>
+</div>
