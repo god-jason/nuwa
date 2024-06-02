@@ -1,0 +1,23 @@
+<nuwa-toolbar [canvas]="canvas"  [graph]="canvas.graph" [project]="project" (onSave)="handleSave()" [(scale)]="scale"></nuwa-toolbar>
+<div class="body">
+    <nuwa-side-bar [width]="300">
+        <nuwa-pages *sideBarItem="'页面'" [project]="project"[graph]="canvas.graph" (onPageChange)="handlePageChange($event)"></nuwa-pages>
+        <nuwa-widgets *sideBarItem="'控件'" [canvas]="canvas"></nuwa-widgets>
+        <nuwa-components *sideBarItem="'组件'" [canvas]="canvas"></nuwa-components>
+        <nuwa-galleries *sideBarItem="'相册'" [canvas]="canvas"></nuwa-galleries>
+        <nuwa-elements *sideBarItem="'图元'" [canvas]="canvas"></nuwa-elements>
+        <!--        <nuwa-layers *sideBarItem="'图层'" [renderer]="renderer"></nuwa-layers>-->
+        <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>
+    </nuwa-side-bar>
+    <div class="content">
+        <nuwa-canvas #canvas [page]="project.pages[index]"
+                      [style.width]="project.pages[index].width*scale+'px'"
+                      [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
+    </div>
+    <nuwa-side-bar [width]="400" [right]="true">
+        <nuwa-props *sideBarItem="'属性'" [canvas]="canvas"></nuwa-props>
+<!--        <nuwa-animations *sideBarItem="'动画'"></nuwa-animations>-->
+        <nuwa-listeners *sideBarItem="'事件'" [canvas]="canvas"></nuwa-listeners>
+        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>
+    </nuwa-side-bar>
+</div>

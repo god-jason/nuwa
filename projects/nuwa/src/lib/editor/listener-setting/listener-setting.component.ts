@@ -1,0 +1,29 @@
+import {Component, Input} from '@angular/core';
+import {CodemirrorModule} from "@ctrl/ngx-codemirror";
+import {FormsModule} from "@angular/forms";
+
+@Component({
+    selector: 'nuwa-listener-setting',
+    templateUrl: './listener-setting.component.html',
+    standalone: true,
+    imports: [
+        CodemirrorModule,
+        FormsModule
+    ],
+    styleUrls: ['./listener-setting.component.scss']
+})
+export class ListenerSettingComponent {
+    @Input() content = '';
+
+    codeMirrorOptions: any = {
+        theme: 'material',
+        mode: 'javascript',
+        //lineNumbers: true, //有问题
+        lineWrapping: true,
+        foldGutter: true,
+        autoCloseBrackets: true,
+        autoFocus: true,
+        matchBrackets: true,
+        lint: true
+    };
+}

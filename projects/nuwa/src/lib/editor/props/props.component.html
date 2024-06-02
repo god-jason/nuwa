@@ -1,0 +1,14 @@
+<nz-collapse>
+    <nz-collapse-panel nzHeader="画布" nzActive>
+        <nuwa-page-setting [page]="canvas.page"></nuwa-page-setting>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="背景" nzActive>
+        <nuwa-background [canvas]="canvas"></nuwa-background>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="变换" nzActive>
+        <nuwa-transform [canvas]="canvas"></nuwa-transform>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="属性" nzActive>
+        <nuwa-properties [canvas]="canvas"></nuwa-properties>
+    </nz-collapse-panel>
+</nz-collapse>
