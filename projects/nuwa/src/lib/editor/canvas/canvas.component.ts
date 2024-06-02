@@ -254,7 +254,7 @@ export class CanvasComponent {
             case "line":
                 //注册线
                 if (component.extends) {
-                    Graph.registerEdge(component.id, component.extends)
+                    Graph.registerEdge(component.id, component.extends, true)
                     return true
                 }
                 this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
@@ -262,7 +262,7 @@ export class CanvasComponent {
             case "shape":
                 //注册衍生组件
                 if (component.extends) {
-                    Graph.registerNode(component.id, component.extends)
+                    Graph.registerNode(component.id, component.extends, true)
                     return true
                 }
                 this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
