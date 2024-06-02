@@ -23,7 +23,7 @@ const fontStyles: SmartSelectOption[] = [
 ]
 
 export var DefaultEvents: NuwaEvent[] = [
-    {name: "click", label: "点击"},
+    //{name: "click", label: "点击"},
 ]
 
 export function RadiusProperties(id: string): SmartField[] {

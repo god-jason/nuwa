@@ -22,7 +22,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
     ACTIONS: any = {
         "page": "打开页面",
         "link": "打开链接",
-        "set": "设置值",
+        "set": "设置变量",
         "show": "显示元素",
         "hide": "隐藏元素",
         "animate": "执行动画",
@@ -31,6 +31,17 @@ export class ListenersComponent implements OnInit, OnDestroy {
 
     getActionName(key: any) {
         return this.ACTIONS[key]
+    }
+
+    getEventName(key: any) {
+        if (key == "click")
+            return "点击"
+        if (this.component.events)
+            for (let i = 0; i < this.component.events.length; i++) {
+                if (this.component.events[i].name == key)
+                    return this.component.events[i].label
+            }
+        return '[' + key + ']'
     }
 
     constructor(private ms: NzModalService, private cs: ComponentService) {

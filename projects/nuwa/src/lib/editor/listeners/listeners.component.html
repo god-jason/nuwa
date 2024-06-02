@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let e of cell?.data?.listeners; let i=index">
-        <td>{{ e.event }}</td>
+        <td>{{ getEventName(e.event) }}</td>
         <td>{{ getActionName(e.action) }}</td>
         <td>{{ e.target }}</td>
         <td>
