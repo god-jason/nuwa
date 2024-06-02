@@ -1,15 +1,9 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {SmartEditorComponent, SmartField} from "iot-master-smart";
-import {ReactiveFormsModule} from "@angular/forms";
 import {NuwaPage} from "../../project";
 
 @Component({
     selector: 'nuwa-page-setting',
-    standalone: true,
-    imports: [
-        SmartEditorComponent,
-        ReactiveFormsModule
-    ],
     templateUrl: './page-setting.component.html',
     styleUrl: './page-setting.component.scss'
 })

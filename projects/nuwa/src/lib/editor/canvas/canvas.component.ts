@@ -1,6 +1,6 @@
 import {Component, ElementRef, Injector, Input} from '@angular/core';
 
-import {Cell, Edge, FunctionExt, Graph, Node, Shape} from '@antv/x6';
+import {Edge, FunctionExt, Graph, Node, Shape} from '@antv/x6';
 
 import {Transform} from "@antv/x6-plugin-transform";
 import {Snapline} from "@antv/x6-plugin-snapline";
@@ -23,7 +23,6 @@ import {NuwaPage} from "../../project";
     selector: 'nuwa-canvas',
     templateUrl: './canvas.component.html',
     styleUrls: ['./canvas.component.scss'],
-    standalone: true
 })
 export class CanvasComponent {
 

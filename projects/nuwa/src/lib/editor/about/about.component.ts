@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'nuwa-about',
     templateUrl: './about.component.html',
-    standalone: true,
-    imports: [
-        NgForOf
-    ],
     styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {

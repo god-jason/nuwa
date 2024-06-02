@@ -3,8 +3,6 @@ import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
   selector: 'nuwa-elements',
-  standalone: true,
-  imports: [],
   templateUrl: './elements.component.html',
   styleUrl: './elements.component.scss'
 })

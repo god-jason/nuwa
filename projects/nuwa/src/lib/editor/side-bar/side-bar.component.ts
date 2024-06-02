@@ -2,15 +2,17 @@ import {
     AfterContentInit,
     AfterViewInit,
     Component,
-    ContentChildren, Directive,
+    ContentChildren,
+    Directive,
     HostBinding,
     HostListener,
-    Input, OnInit,
-    QueryList, TemplateRef, ViewContainerRef,
+    Input,
+    QueryList,
+    TemplateRef,
+    ViewContainerRef,
 } from '@angular/core';
-import {CommonModule} from "@angular/common";
 
-@Directive({standalone: true, selector: '[sideBarItem]'})
+@Directive({selector: '[sideBarItem]'})
 export class SideBarItemDirective {
     @Input("sideBarItem") title = 'tab'
 
@@ -31,8 +33,6 @@ export class SideBarItemDirective {
 @Component({
     selector: 'nuwa-side-bar',
     templateUrl: './side-bar.component.html',
-    imports: [CommonModule],
-    standalone: true,
     styleUrl: './side-bar.component.scss'
 })
 export class SideBarComponent implements AfterViewInit, AfterContentInit{

@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'nuwa-scripts',
-  standalone: true,
-  imports: [],
   templateUrl: './scripts.component.html',
   styleUrl: './scripts.component.scss'
 })

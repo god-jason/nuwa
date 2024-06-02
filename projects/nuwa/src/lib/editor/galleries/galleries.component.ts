@@ -1,17 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {RequestService} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseImage} from "../../widgets/base/image";
 
 @Component({
     selector: 'nuwa-galleries',
-    standalone: true,
-    imports: [
-        CommonModule,
-        NzCollapseModule,
-    ],
     templateUrl: './galleries.component.html',
     styleUrl: './galleries.component.scss'
 })

@@ -1,40 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {CanvasComponent} from "./canvas/canvas.component";
 //import {ComponentService} from "../component.service";
 import {RequestService} from "iot-master-smart";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
-import {ToolbarComponent} from "./toolbar/toolbar.component";
-import {SideBarComponent, SideBarItemDirective} from "./side-bar/side-bar.component";
-import {PagesComponent} from "./pages/pages.component";
-import {WidgetsComponent} from "./widgets/widgets.component";
-import {ComponentsComponent} from "./components/components.component";
-import {GalleriesComponent} from "./galleries/galleries.component";
-import {ElementsComponent} from "./elements/elements.component";
-import {SourcesComponent} from "./sources/sources.component";
-import {PropsComponent} from "./props/props.component";
-import {ListenersComponent} from "./listeners/listeners.component";
-import {ScriptsComponent} from "./scripts/scripts.component";
 import {NuwaCollection} from "../nuwa";
 
 @Component({
     selector: 'nuwa-editor',
-    standalone: true,
-    imports: [
-        ToolbarComponent,
-        SideBarComponent,
-        SideBarItemDirective,
-        PagesComponent,
-        WidgetsComponent,
-        ComponentsComponent,
-        GalleriesComponent,
-        ElementsComponent,
-        SourcesComponent,
-        CanvasComponent,
-        PropsComponent,
-        ListenersComponent,
-        ScriptsComponent,
-    ],
     templateUrl: './editor.component.html',
     styleUrl: './editor.component.scss'
 })

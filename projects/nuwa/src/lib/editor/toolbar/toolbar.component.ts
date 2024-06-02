@@ -1,40 +1,18 @@
 import {Component, EventEmitter, Input, Output, ViewContainerRef} from '@angular/core';
 import {Graph, Node} from "@antv/x6";
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {NzModalService} from 'ng-zorro-antd/modal';
 //import {ComponentService} from "../../component.service";
 import {AboutComponent} from "../about/about.component";
 import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseLine} from "../../widgets/base/line";
 import {MiscFlow} from "../../widgets/misc/flow";
-import {NzButtonComponent} from "ng-zorro-antd/button";
-import {NzIconDirective} from "ng-zorro-antd/icon";
-import {NzDividerComponent} from "ng-zorro-antd/divider";
-import {NzDropDownDirective, NzDropdownMenuComponent} from "ng-zorro-antd/dropdown";
-import {NzMenuDirective, NzMenuDividerDirective, NzMenuItemComponent} from "ng-zorro-antd/menu";
-import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
-import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'nuwa-toolbar',
     templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss'],
-    standalone: true,
-    imports: [
-        NzButtonComponent,
-        NzIconDirective,
-        NzDividerComponent,
-        NzDropDownDirective,
-        NzDropdownMenuComponent,
-        NzMenuDirective,
-        NzMenuItemComponent,
-        NzMenuDividerDirective,
-        NzSelectComponent,
-        FormsModule,
-        NzOptionComponent
-    ],
-    providers: [NzMessageService, NzModalService]
+    styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
     @Input() project!: NuwaProject;

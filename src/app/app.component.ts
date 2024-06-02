@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
-import {EditorComponent} from "../../projects/nuwa/src/lib/editor/editor.component";
+import {EditorModule} from "../../projects/nuwa/src/lib/editor/editor.module";
 
 @Component({
     selector: 'app-root',
@@ -8,7 +8,7 @@ import {EditorComponent} from "../../projects/nuwa/src/lib/editor/editor.compone
     standalone: true,
     imports: [
         RouterOutlet,
-        EditorComponent,
+        EditorModule,
     ],
     styleUrls: ['./app.component.scss']
 })

@@ -4,16 +4,10 @@ import {SmartEditorComponent, SmartField} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 //import {ComponentService} from "../../component.service";
 import {NuwaComponent} from "../../nuwa";
-import {ReactiveFormsModule} from "@angular/forms";
 import {ComponentService} from "../../component.service";
 
 @Component({
     selector: 'nuwa-properties',
-    standalone: true,
-    imports: [
-        SmartEditorComponent,
-        ReactiveFormsModule
-    ],
     templateUrl: './properties.component.html',
     styleUrl: './properties.component.scss'
 })

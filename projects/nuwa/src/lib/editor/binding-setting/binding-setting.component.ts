@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { RequestService } from "iot-master-smart";
+import {Component, Input} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RequestService} from "iot-master-smart";
 
 @Component({
     selector: 'nuwa-binding-setting',

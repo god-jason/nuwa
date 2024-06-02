@@ -89,7 +89,7 @@ export const appConfig: ApplicationConfig = {
         importProvidersFrom(HttpClientModule),
         provideAnimations(),
         provideEcharts(),
-        {provide: NZ_ICONS, useValue: icons},
+        //{provide: NZ_ICONS, useValue: icons},
         {provide: LOCALE_ID, useValue: "zh_CN"},
         //{provide: API_BASE, useValue: "/$camera/api/"},
     ]

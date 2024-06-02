@@ -1,13 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { Cell } from "@antv/x6";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { BindingSettingComponent } from "../binding-setting/binding-setting.component";
+import {Component, Input} from '@angular/core';
+import {Cell} from "@antv/x6";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {BindingSettingComponent} from "../binding-setting/binding-setting.component";
 import {NuwaComponent} from "../../nuwa";
 
 @Component({
     selector: 'nuwa-binding',
     templateUrl: './binding.component.html',
-    standalone: true,
     styleUrls: ['./binding.component.scss']
 })
 export class BindingComponent {

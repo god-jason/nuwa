@@ -1,15 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {CodemirrorModule} from "@ctrl/ngx-codemirror";
-import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'nuwa-listener-setting',
     templateUrl: './listener-setting.component.html',
-    standalone: true,
-    imports: [
-        CodemirrorModule,
-        FormsModule
-    ],
     styleUrls: ['./listener-setting.component.scss']
 })
 export class ListenerSettingComponent {

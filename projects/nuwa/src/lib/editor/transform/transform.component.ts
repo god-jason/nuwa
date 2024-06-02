@@ -1,22 +1,11 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Cell} from "@antv/x6";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 //import {ComponentService} from "../../component.service";
-import {CommonModule} from "@angular/common";
-import {NzInputDirective} from "ng-zorro-antd/input";
-import {NzInputNumberComponent} from "ng-zorro-antd/input-number";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
     selector: 'nuwa-transform',
-    standalone: true,
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NzInputDirective,
-        NzInputNumberComponent
-    ],
     templateUrl: './transform.component.html',
     styleUrl: './transform.component.scss'
 })

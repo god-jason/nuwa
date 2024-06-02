@@ -1,17 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { Cell } from "@antv/x6";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { ListenerSettingComponent } from "../listener-setting/listener-setting.component";
+import {Component, Input} from '@angular/core';
+import {Cell} from "@antv/x6";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {ListenerSettingComponent} from "../listener-setting/listener-setting.component";
 import {NuwaComponent} from "../../nuwa";
-import {NgForOf} from "@angular/common";
 
 @Component({
     selector: 'nuwa-listener',
     templateUrl: './listener.component.html',
-    standalone: true,
-    imports: [
-        NgForOf
-    ],
     styleUrls: ['./listener.component.scss']
 })
 export class ListenerComponent {

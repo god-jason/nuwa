@@ -2,8 +2,7 @@ import {Directive, ElementRef, Input} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Directive({
-  selector: '[html]',
-  standalone: true
+  selector: '[html]'
 })
 export class HtmlDirective {
 

@@ -1,17 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NuwaCollection} from "../../nuwa";
 import {RequestService} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
     selector: 'nuwa-components',
-    standalone: true,
-    imports: [
-        CommonModule,
-        NzCollapseModule,
-    ],
     templateUrl: './components.component.html',
     styleUrl: './components.component.scss'
 })

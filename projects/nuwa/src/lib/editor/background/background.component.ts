@@ -1,16 +1,9 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SmartEditorComponent, SmartField} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
   selector: 'nuwa-background',
-  standalone: true,
-    imports: [
-        FormsModule,
-        SmartEditorComponent,
-        ReactiveFormsModule
-    ],
   templateUrl: './background.component.html',
   styleUrl: './background.component.scss'
 })
