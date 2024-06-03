@@ -1,2 +1,13 @@
 <im-smart-editor [fields]="fields" [values]="page" (change)="onChange()" #editor></im-smart-editor>
 <!--<p>参数列表</p>-->
+<button nz-button [nzType]="'primary'" (click)="isVisible=true">常见尺寸</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="选择尺寸" nzFooter=" " (nzOnCancel)="isVisible=false">
+    <ng-container *nzModalContent>
+        <nz-list>
+            <nz-list-item *ngFor="let b of sizes" (click)="selectSize(b)">
+                <span>{{ b.name || '' }} </span>
+                {{ b.width }} x {{ b.height }}
+            </nz-list-item>
+        </nz-list>
+    </ng-container>
+</nz-modal>

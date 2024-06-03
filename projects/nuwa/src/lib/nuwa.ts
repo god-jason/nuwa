@@ -93,3 +93,9 @@ export declare interface NuwaGallery {
     name: string
     images: NuwaImage[]
 }
+
+export declare interface NuwaPageSize {
+    name?: string
+    width: number
+    height: number
+}
