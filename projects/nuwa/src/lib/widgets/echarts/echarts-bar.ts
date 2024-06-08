@@ -43,16 +43,22 @@ class EchartsBarComponent implements AfterViewInit {
         {name: "六", value: 100},
         {name: "日", value: 125},
     ]
-
-    option: any = this.getOption()
-
     @Input() set values(v: ChartValue[]) {
         this._values = v
         this.option = this.getOption()
     }
 
+    _darkMode: boolean = false;
+    @Input() set darkMode(value: boolean) {
+        this._darkMode = value;
+        this.option = this.getOption()
+    }
+
+    option: any = this.getOption()
+
     getOption(): EChartsOption {
         return {
+            darkMode: this.darkMode,
             tooltip: {
                 trigger: 'axis'
             },
@@ -98,6 +104,7 @@ export const EchartsBar: NuwaComponent = {
     metadata: {width: 400, height: 300},
     content: EchartsBarComponent,
     properties: [
+        {key: "data/ngArguments/darkMode", label: "暗色", type: "switch"},
         {
             key: "data/ngArguments/values", label: "数据", type: "table", children: [
                 {key: 'name', label: 'X轴', type: 'text'},

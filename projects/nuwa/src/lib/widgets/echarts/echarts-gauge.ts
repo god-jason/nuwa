@@ -33,15 +33,22 @@ class EchartsGaugeComponent {
     @Input() name = ''
 
     _value = 30
-
     @Input() set value(v:number){
         this._value = v;
         this.option = this.getOption()
     }
+
+    _darkMode: boolean = false;
+    @Input() set darkMode(value: boolean) {
+        this._darkMode = value;
+        this.option = this.getOption()
+    }
+
     option: any = this.getOption()
 
     getOption(): any {
         return {
+            darkMode: this._darkMode,
             series: [
                 {
                     type: 'gauge',
@@ -78,6 +85,7 @@ export const EchartsGauge: NuwaComponent = {
     metadata: {width: 300, height: 300},
     content: EchartsGaugeComponent,
     properties: [
+        {key: "data/ngArguments/darkMode", label: "暗色", type: "switch"},
         {key: "data/ngArguments/value", label: "值", type: "number"},
     ],
     bindings: [],
