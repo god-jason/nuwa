@@ -1,9 +1,14 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, ElementRef, Input} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
 import {EchartsPieSvg} from "./echarts-pie_svg";
+
+interface ChartValue {
+    name: string
+    value: number
+}
 
 @Component({
     selector: 'app-echarts-bar',
@@ -26,20 +31,22 @@ import {EchartsPieSvg} from "./echarts-pie_svg";
                  [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
-class EchartsPieComponent {
+class EchartsPieComponent implements AfterViewInit {
     chart: any;
 
+    _values: ChartValue[] = [
+        {name: "一", value: 100},
+        {name: "二", value: 110},
+        {name: "三", value: 120},
+        {name: "四", value: 130},
+        {name: "五", value: 120},
+        {name: "六", value: 100},
+        {name: "日", value: 125},
+    ]
 
-    _keys: string[] = ['A', 'B', 'C'];
-    _values: number[] = [10, 20, 15]
     option: any = this.getOption()
 
-    @Input() set keys(v: string[]) {
-        this._keys = v
-        this.option = this.getOption()
-    }
-
-    @Input() set values(v: number[]) {
+    @Input() set values(v: ChartValue[]) {
         this._values = v
         this.option = this.getOption()
     }
@@ -54,9 +61,7 @@ class EchartsPieComponent {
                     name: '',
                     type: 'pie',
                     radius: '50%',
-                    data: this._keys.map((k,i)=>{
-                        return {name:k, value: this._values[i]}
-                    }),
+                    data: this._values,
                 }
             ]
         }
@@ -85,8 +90,12 @@ export const EchartsPie: NuwaComponent = {
     metadata: {width: 400, height: 400},
     content: EchartsPieComponent,
     properties: [
-        {key: "data/ngArguments/keys", label: "项目", type: "text", array: true},
-        {key: "data/ngArguments/values", label: "值", type: "number", array: true},
+        {
+            key: "data/ngArguments/values", label: "数据", type: "table", children: [
+                {key: 'name', label: '项目', type: 'text'},
+                {key: 'value', label: '值', type: 'number'},
+            ]
+        },
     ],
     bindings: [],
     hooks: {},

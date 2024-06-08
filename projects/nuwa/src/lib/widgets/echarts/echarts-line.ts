@@ -1,9 +1,14 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, ElementRef, Input} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
 import {EchartsLineSvg} from "./echarts-line_svg";
+
+interface ChartValue {
+    name: string
+    value: number
+}
 
 @Component({
     selector: 'app-echarts-bar',
@@ -26,21 +31,23 @@ import {EchartsLineSvg} from "./echarts-line_svg";
                  [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
-class EchartsLineComponent {
+class EchartsLineComponent implements AfterViewInit {
     chart: any;
 
+    _values: ChartValue[] = [
+        {name: "一", value: 100},
+        {name: "二", value: 110},
+        {name: "三", value: 120},
+        {name: "四", value: 130},
+        {name: "五", value: 120},
+        {name: "六", value: 100},
+        {name: "日", value: 125},
+    ]
 
-    _xAxis: string[] = ['一', '二', '三', '四', '五', '六', '七']
-    _yAxis: number[] = [100, 110, 120, 130, 120, 110, 100]
     option: any = this.getOption()
 
-    @Input() set xAxis(v: string[]) {
-        this._xAxis = v
-        this.option = this.getOption()
-    }
-
-    @Input() set yAxis(v: number[]) {
-        this._yAxis = v
+    @Input() set values(v: ChartValue[]) {
+        this._values = v
         this.option = this.getOption()
     }
 
@@ -51,17 +58,17 @@ class EchartsLineComponent {
             },
             xAxis: {
                 type: 'category',
-                data: this._xAxis
+                data: this._values.map(v => v.name),
             },
             yAxis: {
                 type: 'value',
-                splitLine: {show:false},
-                axisLine:{show:true},
-                axisTick:{show:true},
+                splitLine: {show: false},
+                axisLine: {show: true},
+                axisTick: {show: true},
             },
             series: [
                 {
-                    data: this._yAxis,
+                    data: this._values.map(v => v.value),
                     type: 'line',
                     smooth: true
                 }
@@ -92,8 +99,12 @@ export const EchartsLine: NuwaComponent = {
     metadata: {width: 400, height: 300},
     content: EchartsLineComponent,
     properties: [
-        {key: "data/ngArguments/xAxis", label: "X轴", type: "text", array: true},
-        {key: "data/ngArguments/yAxis", label: "Y轴", type: "number", array: true},
+        {
+            key: "data/ngArguments/values", label: "数据", type: "table", children: [
+                {key: 'name', label: 'X轴', type: 'text'},
+                {key: 'value', label: 'Y轴', type: 'number'},
+            ]
+        },
     ],
     bindings: [],
     hooks: {},
