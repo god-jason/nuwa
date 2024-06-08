@@ -1,5 +1,5 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, ElementRef, Input} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
@@ -26,7 +26,7 @@ import {EchartsBarSvg} from "./echarts-bar_svg";
                  [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
-class EchartsBarComponent {
+class EchartsBarComponent implements AfterViewInit {
     chart: any;
 
 
@@ -55,7 +55,9 @@ class EchartsBarComponent {
             },
             yAxis: {
                 type: 'value',
-                splitLine: {show:false}
+                splitLine: {show: false},
+                axisLine:{show:true},
+                axisTick:{show:true},
             },
             series: [
                 {
@@ -75,6 +77,10 @@ class EchartsBarComponent {
     }
 
     constructor(protected elementRef: ElementRef) {
+    }
+
+    ngAfterViewInit() {
+        new ResizeObserver(entries => this.resize()).observe(this.elementRef.nativeElement);
     }
 }
 

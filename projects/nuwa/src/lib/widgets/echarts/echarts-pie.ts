@@ -72,6 +72,10 @@ class EchartsPieComponent {
 
     constructor(protected elementRef: ElementRef) {
     }
+
+    ngAfterViewInit() {
+        new ResizeObserver(entries => this.resize()).observe(this.elementRef.nativeElement);
+    }
 }
 
 export const EchartsPie: NuwaComponent = {

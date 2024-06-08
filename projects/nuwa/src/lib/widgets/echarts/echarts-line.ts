@@ -55,7 +55,9 @@ class EchartsLineComponent {
             },
             yAxis: {
                 type: 'value',
-                splitLine: {show:false}
+                splitLine: {show:false},
+                axisLine:{show:true},
+                axisTick:{show:true},
             },
             series: [
                 {
@@ -76,6 +78,10 @@ class EchartsLineComponent {
     }
 
     constructor(protected elementRef: ElementRef) {
+    }
+
+    ngAfterViewInit() {
+        new ResizeObserver(entries => this.resize()).observe(this.elementRef.nativeElement);
     }
 }
 
