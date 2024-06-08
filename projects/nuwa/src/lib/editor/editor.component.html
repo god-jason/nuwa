@@ -15,6 +15,10 @@
             <nuwa-galleries *sideBarItem="'相册'" [canvas]="canvas" [galleries]="galleries"></nuwa-galleries>
         }
 
+        @if (ninePatches) {
+            <nuwa-nine-patch *sideBarItem="'点九图'" [canvas]="canvas" [galleries]="ninePatches"></nuwa-nine-patch>
+        }
+
         @if (canvas.graph?.getCellCount()) {
             <nuwa-elements *sideBarItem="'图元'" [canvas]="canvas"></nuwa-elements>
         }
@@ -23,7 +27,7 @@
         <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>
     </nuwa-side-bar>
     <div class="content">
-        <nuwa-canvas [page]="project.pages[index]"
+        <nuwa-canvas #canvas [page]="project.pages[index]"
                      [style.width]="project.pages[index].width*scale+'px'"
                      [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
     </div>

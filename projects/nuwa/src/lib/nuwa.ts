@@ -89,7 +89,7 @@ export declare interface NuwaImage {
     url: string
 }
 
-export declare interface NuwaGallery {
+export declare interface NuwaImageGallery {
     name: string
     images: NuwaImage[]
 }
@@ -98,4 +98,20 @@ export declare interface NuwaPageSize {
     name?: string
     width: number
     height: number
+}
+
+export declare interface NuwaNinePatchImage {
+    name?: string
+    thumbnail?: string
+    url: string
+    //边距
+    top: number
+    left: number
+    right: number
+    bottom: number
+}
+
+export declare interface NuwaNinePatchGallery {
+    name: string
+    images: NuwaNinePatchImage[]
 }

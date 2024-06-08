@@ -1,0 +1,8 @@
+<nz-collapse>
+    <nz-collapse-panel *ngFor="let w of galleries; let f = first" [nzHeader]="w.name" [nzActive]="f">
+        <div class="component" *ngFor="let c of w.images" draggable="true" (dragstart)="onDragStart($event, c)">
+            <img [src]="c.url" [alt]="c.name" [title]="c.name || c.url" loading="lazy"/>
+        </div>
+    </nz-collapse-panel>
+</nz-collapse>
+<nz-empty *ngIf="!galleries" nzNotFoundContent="相册为空"></nz-empty>

@@ -70,6 +70,7 @@ import {NzEmptyComponent, NzEmptyModule} from "ng-zorro-antd/empty";
 import {NzTableComponent, NzTableModule} from "ng-zorro-antd/table";
 import {ListenerComponent} from "./listener/listener.component";
 import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component";
+import {NinePatchComponent} from "./nine-patch/nine-patch.component";
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component"
         EditorComponent,
         HtmlPipe,
         HtmlDirective,
+        NinePatchComponent,
     ],
     exports: [
         EditorComponent,

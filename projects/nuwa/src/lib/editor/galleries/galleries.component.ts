@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {RequestService} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseImage} from "../../widgets/base/image";
-import {NuwaGallery} from "../../nuwa";
+import {NuwaImageGallery} from "../../nuwa";
 
 @Component({
     selector: 'nuwa-galleries',
@@ -10,7 +10,7 @@ import {NuwaGallery} from "../../nuwa";
     styleUrl: './galleries.component.scss'
 })
 export class GalleriesComponent {
-    @Input() galleries!: NuwaGallery[]
+    @Input() galleries!: NuwaImageGallery[]
 
     @Input() canvas!: CanvasComponent;
 
