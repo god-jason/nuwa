@@ -1,4 +1,4 @@
-import {SmartField, SmartSelectOption} from "iot-master-smart";
+import {SmartField, SmartSelectOption} from "@god-jason/smart";
 import {NuwaEvent} from "../nuwa";
 
 const fontFamilies: SmartSelectOption[] = [

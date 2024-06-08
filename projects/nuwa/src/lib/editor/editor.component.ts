@@ -1,10 +1,8 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {CanvasComponent} from "./canvas/canvas.component";
-//import {ComponentService} from "../component.service";
-import {RequestService} from "iot-master-smart";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
-import {NuwaCollection, NuwaImageGallery, NuwaImage, NuwaNinePatchGallery} from "../nuwa";
+import {NuwaCollection, NuwaImageGallery, NuwaImage, NuwaImageBorderGallery} from "../nuwa";
 
 @Component({
     selector: 'nuwa-editor',
@@ -30,7 +28,7 @@ export class EditorComponent {
     //组件集合
     @Input() components!: NuwaCollection[]
     @Input() galleries!: NuwaImageGallery[];
-    @Input() ninePatches!: NuwaNinePatchGallery[];
+    @Input() imageBorders!: NuwaImageBorderGallery[];
     @Input() backgrounds!: NuwaImage[];
 
     index = 0;
@@ -41,7 +39,7 @@ export class EditorComponent {
 
     @Output() onSave = new EventEmitter<NuwaProject>()
 
-    constructor(private title: Title, private rs: RequestService) {
+    constructor(private title: Title) {
     }
 
     handleSave() {

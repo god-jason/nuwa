@@ -2,7 +2,7 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {SmartSelectOption} from "iot-master-smart";
+import {SmartSelectOption} from "@god-jason/smart";
 import {WeatherSvg} from "./weather_svg";
 
 @Component({

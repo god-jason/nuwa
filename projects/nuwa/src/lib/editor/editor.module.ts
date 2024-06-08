@@ -22,40 +22,44 @@ import {SourcesComponent} from "./sources/sources.component";
 import {ToolbarComponent} from "./toolbar/toolbar.component";
 import {TransformSettingComponent} from "./transform-setting/transform-setting.component";
 import {WidgetsComponent} from "./widgets/widgets.component";
-import {SmartEditorComponent} from "iot-master-smart";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzNotificationModule} from "ng-zorro-antd/notification";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
-import {NZ_ICONS, NzIconModule} from "ng-zorro-antd/icon";
+import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {
-    SaveOutline,
-    ExportOutline,
-    UndoOutline,
-    RedoOutline,
-    ScissorOutline,
-    CopyOutline,
-    SnippetsOutline,
-    DeleteOutline,
-    AlignLeftOutline,
     AlignCenterOutline,
+    AlignLeftOutline,
     AlignRightOutline,
-    VerticalAlignTopOutline,
-    VerticalAlignMiddleOutline,
-    VerticalAlignBottomOutline,
-    VerticalLeftOutline,
-    VerticalRightOutline,
-    UpOutline,
-    DownOutline,
-    GroupOutline,
-    UngroupOutline, DownloadOutline, UploadOutline,
-    TableOutline, ProfileOutline,
     CaretRightOutline,
+    CopyOutline,
+    DashOutline,
+    DeleteOutline,
+    DownloadOutline,
+    DownOutline,
+    ExportOutline,
+    GroupOutline,
     HolderOutline,
     MinusOutline,
-    DashOutline,
+    ProfileOutline,
+    RedoOutline,
+    SaveOutline,
+    ScissorOutline,
+    SnippetsOutline,
+    TableOutline,
+    UndoOutline,
+    UngroupOutline,
+    UploadOutline,
+    UpOutline,
+    VerticalAlignBottomOutline,
+    VerticalAlignMiddleOutline,
+    VerticalAlignTopOutline,
+    VerticalLeftOutline,
+    VerticalRightOutline,
+    PlusOutline,
+    DragOutline,
 } from '@ant-design/icons-angular/icons';
 import {HtmlPipe} from "./html.pipe";
 import {HtmlDirective} from "./html.directive";
@@ -66,11 +70,12 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import {NzListModule} from "ng-zorro-antd/list";
 import {NzFormModule} from "ng-zorro-antd/form";
-import {NzEmptyComponent, NzEmptyModule} from "ng-zorro-antd/empty";
-import {NzTableComponent, NzTableModule} from "ng-zorro-antd/table";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
+import {NzTableModule} from "ng-zorro-antd/table";
 import {ListenerComponent} from "./listener/listener.component";
 import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component";
-import {NinePatchComponent} from "./nine-patch/nine-patch.component";
+import {ImageBordersComponent} from "./image-borders/image-borders.component";
+import {SmartEditorComponent} from "@god-jason/smart";
 
 
 @NgModule({
@@ -101,7 +106,7 @@ import {NinePatchComponent} from "./nine-patch/nine-patch.component";
         EditorComponent,
         HtmlPipe,
         HtmlDirective,
-        NinePatchComponent,
+        ImageBordersComponent,
     ],
     exports: [
         EditorComponent,
@@ -138,12 +143,14 @@ import {NinePatchComponent} from "./nine-patch/nine-patch.component";
             CaretRightOutline, HolderOutline,
             MinusOutline,
             DashOutline,
+            PlusOutline,
+            DragOutline,
         ]),
 
         NzEmptyModule,
         NzTableModule,
     ],
-    providers:[
+    providers: [
         //{provide: NZ_ICONS, useValue: []}
     ]
 })

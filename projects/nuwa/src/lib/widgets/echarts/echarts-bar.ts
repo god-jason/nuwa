@@ -3,7 +3,6 @@ import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsBarSvg} from "./echarts-bar_svg";
 
 @Component({
@@ -13,7 +12,12 @@ import {EchartsBarSvg} from "./echarts-bar_svg";
         CommonModule,
         NgxEchartsModule,
     ],
-    styles: `:host{width: 100%; height: 100%; display: block; overflow: hidden;}`,
+    styles: `:host {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: hidden;
+    }`,
     template: `
         <echarts class="chart"
                  [autoResize]="true"
@@ -32,7 +36,7 @@ class EchartsBarComponent {
         return {
             xAxis: {
                 type: 'category',
-                    data: this.xAxis
+                data: this.xAxis
             },
             yAxis: {
                 type: 'value'
@@ -50,7 +54,7 @@ class EchartsBarComponent {
         this.chart = ec
     }
 
-    resize(){
+    resize() {
         this.chart.resize()
     }
 
@@ -64,7 +68,10 @@ export const EchartsBar: NuwaComponent = {
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsBarComponent,
-    properties: [],
+    properties: [
+        {key: "data/ngArguments/xAxis", label: "X轴", type: "text", array: true},
+        {key: "data/ngArguments/yAxis", label: "Y轴", type: "number", array: true},
+    ],
     bindings: [],
     hooks: {},
 }

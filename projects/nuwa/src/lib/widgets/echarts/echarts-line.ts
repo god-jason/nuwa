@@ -68,7 +68,10 @@ export const EchartsLine: NuwaComponent = {
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsLineComponent,
-    properties: [],
+    properties: [
+        {key: "data/ngArguments/xAxis", label: "X轴", type: "text", array: true},
+        {key: "data/ngArguments/yAxis", label: "Y轴", type: "number", array: true},
+    ],
     bindings: [],
     hooks: {},
 }

@@ -6,7 +6,7 @@ import {BaseLine} from "./widgets/base/line";
 import {MiscFlow} from "./widgets/misc/flow";
 
 import {NzNotificationService} from "ng-zorro-antd/notification";
-import {NinePatchImage} from "./widgets/misc/9.patch";
+import {ImageBorder} from "./widgets/misc/image-border";
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +27,7 @@ export class ComponentService {
         this.PutCollections(NuwaWidgets)
         this.PutComponent(BaseLine)
         this.PutComponent(MiscFlow)
-        this.PutComponent(NinePatchImage)
+        this.PutComponent(ImageBorder)
 
         //this.PutComponent(BaseGroup)
     }

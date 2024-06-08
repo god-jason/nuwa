@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RequestService} from "iot-master-smart";
 
 @Component({
     selector: 'nuwa-binding-setting',
@@ -24,9 +23,7 @@ export class BindingSettingComponent {
         this.group.patchValue(data);
     }
 
-    constructor(private fb: FormBuilder,
-        private rs: RequestService,
-    ) {
+    constructor(private fb: FormBuilder) {
         this.build()
     }
 
@@ -40,18 +37,6 @@ export class BindingSettingComponent {
     }
     onSearch(value: string) {
         this.isLoading = true;
-        this.rs.post('/api/device/search', {
-            keyword: {
-                name: value,
-                id: value
-            },
-            limit: 20,
-            skip: 0
-        }).subscribe((res) => {
-            this.optionList = res.data || [];
-        }).add(() => {
-            this.isLoading = false;
-        });
     }
     handleChange(value: string) {
         this.variableList = [];
@@ -61,9 +46,9 @@ export class BindingSettingComponent {
     }
     getVariableList(product_id: string) {
         if (product_id) {
-            this.rs.get(`/api/product/${product_id}`).subscribe(res => {
-                this.variableList = res && res.data && res.data.properties || [];
-            })
+            // this.rs.get(`/api/product/${product_id}`).subscribe(res => {
+            //     this.variableList = res && res.data && res.data.properties || [];
+            // })
         }
     }
 }

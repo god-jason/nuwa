@@ -31,11 +31,8 @@ import {EchartsPieSvg} from "./echarts-pie_svg";
 class EchartsPieComponent {
     chart: any;
 
-    @Input() data = [
-        {value: 1048, name: 'Search'},
-        {value: 735, name: 'Direct'},
-        {value: 580, name: 'Email'},
-    ]
+    @Input() keys = ['A', 'B', 'C'];
+    @Input() values = [10, 20, 15]
 
     option(): EChartsOption {
         return {
@@ -47,7 +44,9 @@ class EchartsPieComponent {
                     name: 'Name',
                     type: 'pie',
                     radius: '50%',
-                    data: this.data,
+                    data: this.keys.map((k,i)=>{
+                        return {name:k, value: this.values[i]}
+                    }),
                 }
             ]
         }
@@ -71,7 +70,10 @@ export const EchartsPie: NuwaComponent = {
     type: "angular",
     metadata: {width: 400, height: 400},
     content: EchartsPieComponent,
-    properties: [],
+    properties: [
+        {key: "data/ngArguments/keys", label: "项目", type: "text", array: true},
+        {key: "data/ngArguments/values", label: "值", type: "number", array: true},
+    ],
     bindings: [],
     hooks: {},
 }

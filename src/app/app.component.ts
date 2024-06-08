@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {EditorModule} from "../../projects/nuwa/src/lib/editor/editor.module";
-import {NuwaImage, NuwaNinePatchGallery} from "../../projects/nuwa/src/lib/nuwa";
+import {NuwaImage, NuwaImageBorderGallery} from "../../projects/nuwa/src/lib/nuwa";
 
 @Component({
     selector: 'app-root',
@@ -29,9 +29,9 @@ export class AppComponent {
         {url: "/assets/backgrounds/bk12.jpg"},
     ];
 
-    ninePatches: NuwaNinePatchGallery[] = [{
-        name: "点9图",
-        images: [
+    ninePatches: NuwaImageBorderGallery[] = [{
+        name: "测试用图",
+        borders: [
             {
                 url: "/assets/widgets/.9.png",
                 top: 58,

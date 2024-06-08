@@ -46,7 +46,6 @@ import {
     DashOutline,
 } from '@ant-design/icons-angular/icons';
 
-import {API_BASE} from "iot-master-smart";
 import {provideEcharts} from "ngx-echarts";
 
 const icons: IconDefinition[] = [

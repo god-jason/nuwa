@@ -1,5 +1,4 @@
 import {NuwaCollection} from "../nuwa";
-import {BaseLine} from "./base/line";
 import {ControlButton} from "./control/button";
 import {BaseText} from "./base/text";
 import {BaseRect} from "./base/rect";
@@ -20,9 +19,7 @@ import {ControlSlider} from "./control/slider";
 import {MiscWeb} from "./misc/web";
 import {MiscOutlet} from "./misc/outlet";
 import {MiscWeather} from "./misc/weather";
-import {MiscFlow} from "./misc/flow";
 import {MiscAMap} from "./misc/amap";
-import {NinePatchImage} from "./misc/9.patch";
 import {MiscVideo} from "./misc/video";
 
 export const NuwaWidgets: NuwaCollection[] = [
@@ -45,7 +42,8 @@ export const NuwaWidgets: NuwaCollection[] = [
     {
         name: "图表组件",
         components: [
-            Echarts, EchartsBar, EchartsGauge, EchartsLine, EchartsPie
+            //Echarts,
+            EchartsBar, EchartsGauge, EchartsLine, EchartsPie
         ]
     },
     {

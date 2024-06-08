@@ -2,7 +2,6 @@ import {Component, ElementRef, HostListener, Input} from '@angular/core';
 import {Graph} from "@antv/x6";
 import {Subscription} from "rxjs";
 //import {WindowComponent} from "../viewer/window/window.component";
-import {RequestService} from "iot-master-smart";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NuwaPage, NuwaProject} from "../../project";
@@ -81,14 +80,6 @@ export class RenderComponent {
             else
                 location.href = url
         },
-        get: (url: string, args: Object) => {
-            this.rs.get(url, args).subscribe(() => {
-            })
-        },
-        post: (url: string, body: Object) => {
-            this.rs.post(url, body).subscribe(() => {
-            })
-        },
         auth: (cb: () => {}) => {
             // this.ms.create({
             //     nzContent: AuthComponent,
@@ -102,7 +93,6 @@ export class RenderComponent {
     }
 
     constructor(
-        private rs: RequestService,
         private ns: NzNotificationService,
         private ms: NzModalService,
         private cs: ComponentService,

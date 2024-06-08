@@ -1,4 +1,4 @@
-<im-smart-editor [fields]="fields" [values]="page" (change)="onChange()" #editor></im-smart-editor>
+<smart-editor [fields]="fields" [values]="page" (change)="onChange()" #editor></smart-editor>
 <!--<p>参数列表</p>-->
 <button nz-button [nzType]="'primary'" (click)="isVisible=true">常见尺寸</button>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="选择尺寸" nzFooter=" " (nzOnCancel)="isVisible=false">

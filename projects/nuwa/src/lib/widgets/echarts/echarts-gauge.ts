@@ -66,7 +66,9 @@ export const EchartsGauge: NuwaComponent = {
     type: "angular",
     metadata: {width: 300, height: 300},
     content: EchartsGaugeComponent,
-    properties: [],
+    properties: [
+        {key: "data/ngArguments/value", label: "值", type: "number"},
+    ],
     bindings: [],
     hooks: {},
 }

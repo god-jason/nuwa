@@ -23,17 +23,18 @@ import {CommonModule} from "@angular/common";
             //border-image-slice: 27 27 27 27;
             //border-image-width:27 27 27 27;
             //border-image-outset:27 27 27 27;
+            border-image-width: auto;
             border-image-repeat: repeat; //stretch
         }
     `,
     template: ``,
     host: {
-        '[style.border-width]': `top + 'px ' + right + 'px ' + bottom + 'px ' + left + 'px'`,
+        //'[style.border-width]': `top + 'px ' + right + 'px ' + bottom + 'px ' + left + 'px'`,
         '[style.border-image-slice]': `top + ' ' + right + ' ' + bottom + ' ' + left + ' fill'`, //填充内容
         '[style.border-image-source]': `'url('+this.url+')'`,
     }
 })
-class NinePatchImageComponent {
+class ImageBorderComponent {
     @Input() url = 'assets/widgets/.9.png'
     @Input() top = 58
     @Input() right = 58
@@ -42,12 +43,12 @@ class NinePatchImageComponent {
 
 }
 
-export const NinePatchImage: NuwaComponent = {
-    name: '点九图', id: ':.9:',
+export const ImageBorder: NuwaComponent = {
+    name: '图片边框', id: ':image-border:',
     icon: "assets/widgets/rect.svg",
     type: "angular",
     metadata: {width: 200, height: 200},
-    content: NinePatchImageComponent,
+    content: ImageBorderComponent,
     properties: [
         {key: "data/ngArguments/url", label: "URL", type: "text", default: "assets/widgets/.9.png"},
         {key: "data/ngArguments/top", label: "上边距", type: "number", min:0, max:999999, default: 58},

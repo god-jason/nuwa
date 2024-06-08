@@ -1,0 +1,8 @@
+<nz-collapse>
+    <nz-collapse-panel *ngFor="let w of borders; let f = first" [nzHeader]="w.name" [nzActive]="f">
+        <div class="component" *ngFor="let c of w.borders" draggable="true" (dragstart)="onDragStart($event, c)">
+            <img [src]="c.url" [alt]="c.name" [title]="c.name || c.url" loading="lazy"/>
+        </div>
+    </nz-collapse-panel>
+</nz-collapse>
+<nz-empty *ngIf="!borders" nzNotFoundContent="相册为空"></nz-empty>

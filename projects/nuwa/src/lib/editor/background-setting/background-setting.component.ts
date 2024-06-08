@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {SmartEditorComponent, SmartField} from "iot-master-smart";
+import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {NuwaImage} from "../../nuwa";
 

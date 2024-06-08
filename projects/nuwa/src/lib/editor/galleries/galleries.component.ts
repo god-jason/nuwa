@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {RequestService} from "iot-master-smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseImage} from "../../widgets/base/image";
 import {NuwaImageGallery} from "../../nuwa";

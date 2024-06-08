@@ -1,5 +1,5 @@
 import {Cell, Edge, Node} from "@antv/x6";
-import {SmartField} from "iot-master-smart";
+import {SmartField} from "@god-jason/smart";
 import {TemplateRef, Type} from "@angular/core";
 
 
@@ -100,7 +100,7 @@ export declare interface NuwaPageSize {
     height: number
 }
 
-export declare interface NuwaNinePatchImage {
+export declare interface NuwaImageBorder {
     name?: string
     thumbnail?: string
     url: string
@@ -111,7 +111,7 @@ export declare interface NuwaNinePatchImage {
     bottom: number
 }
 
-export declare interface NuwaNinePatchGallery {
+export declare interface NuwaImageBorderGallery {
     name: string
-    images: NuwaNinePatchImage[]
+    borders: NuwaImageBorder[]
 }

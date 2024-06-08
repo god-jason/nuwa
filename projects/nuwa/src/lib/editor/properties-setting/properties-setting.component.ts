@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Cell} from "@antv/x6";
-import {SmartEditorComponent, SmartField} from "iot-master-smart";
+import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 //import {ComponentService} from "../../component.service";
 import {NuwaComponent} from "../../nuwa";
