@@ -69,6 +69,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzEmptyComponent, NzEmptyModule} from "ng-zorro-antd/empty";
 import {NzTableComponent, NzTableModule} from "ng-zorro-antd/table";
 import {ListenerComponent} from "./listener/listener.component";
+import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component";
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import {ListenerComponent} from "./listener/listener.component";
         BindingComponent,
         BindingSettingComponent,
         CanvasComponent,
+        CanvasSettingComponent,
         ComponentsComponent,
         ElementsComponent,
         GalleriesComponent,
@@ -110,7 +112,6 @@ import {ListenerComponent} from "./listener/listener.component";
         NzInputModule,
         NzInputNumberModule,
         NzSelectModule,
-        SmartEditorComponent,
         NzModalModule,
         NzNotificationModule,
         NzCollapseModule,
@@ -122,6 +123,7 @@ import {ListenerComponent} from "./listener/listener.component";
         CdkDropList,
         CdkDrag,
         CdkDragHandle,
+        SmartEditorComponent,
 
         NzIconModule.forChild([
             SaveOutline, ExportOutline, UndoOutline, RedoOutline, ScissorOutline,

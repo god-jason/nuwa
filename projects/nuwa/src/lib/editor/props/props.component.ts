@@ -9,6 +9,4 @@ import {NuwaImage} from "../../nuwa";
 })
 export class PropsComponent {
     @Input() canvas!: CanvasComponent;
-    @Input() backgrounds!: NuwaImage[];
-
 }

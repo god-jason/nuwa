@@ -4,6 +4,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {NzContextMenuService} from "ng-zorro-antd/dropdown";
 import {NuwaProject, pageTemplate} from "../../project";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
     selector: 'nuwa-pages',
@@ -13,8 +14,8 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 export class PagesComponent {
     @Input() project!: NuwaProject;
 
-    @Input() graph!: Graph;
-
+    //@Input() graph!: Graph;
+    //@Input() canvas!: CanvasComponent;
 
     @Output() onPageChange = new EventEmitter<number>();
 

@@ -19,7 +19,7 @@ export class ToolbarComponent {
     @Input() canvas!: CanvasComponent;
 
     // 1200X340
-    @Input() graph!: Graph;
+    //@Input() graph!: Graph;
 
     @Output() onSave = new EventEmitter()
 
@@ -35,57 +35,57 @@ export class ToolbarComponent {
 
     handleSave() {
         this.onSave.emit();
-        //console.log("save", this.graph.toJSON())
+        //console.log("save", this.canvas.graph.toJSON())
     }
 
     handleExport(type: string) {
-        console.log(this.graph);
+        console.log(this.canvas.graph);
         switch (type) {
             case 'SVG':
-                this.graph.exportSVG();
+                this.canvas.graph.exportSVG();
                 break;
             case 'PNG':
-                this.graph.exportPNG();
+                this.canvas.graph.exportPNG();
                 break;
             case 'JPEG':
                 // 有点问题
-                this.graph.exportJPEG();
+                this.canvas.graph.exportJPEG();
                 break;
             case 'file':
-                this.savefiles(this.graph.toJSON(), Date.now() + '');
+                this.savefiles(this.canvas.graph.toJSON(), Date.now() + '');
                 break;
         }
     }
 
     handleUndo() {
-        this.graph.undo()
+        this.canvas.graph.undo()
     }
 
     handleRedo() {
-        this.graph.redo()
+        this.canvas.graph.redo()
     }
 
     handleCut() {
-        this.graph.getSelectedCells().forEach(c => c.removeTools())
-        this.graph.cut(this.graph.getSelectedCells(), {deep: true})
+        this.canvas.graph.getSelectedCells().forEach(c => c.removeTools())
+        this.canvas.graph.cut(this.canvas.graph.getSelectedCells(), {deep: true})
     }
 
     handleCopy() {
-        this.graph.getSelectedCells().forEach(c => c.removeTools())
-        this.graph.copy(this.graph.getSelectedCells(), {deep: true})
+        this.canvas.graph.getSelectedCells().forEach(c => c.removeTools())
+        this.canvas.graph.copy(this.canvas.graph.getSelectedCells(), {deep: true})
     }
 
     handlePaste() {
-        this.graph.paste()
+        this.canvas.graph.paste()
     }
 
     handleDelete() {
-        this.graph.getSelectedCells().forEach(cell => cell.remove())
+        this.canvas.graph.getSelectedCells().forEach(cell => cell.remove())
     }
 
     handleAlignLeft() {
         let left: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -100,7 +100,7 @@ export class ToolbarComponent {
 
     handleAlignCenter() {
         let center: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -116,7 +116,7 @@ export class ToolbarComponent {
 
     handleAlignRight() {
         let right: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -132,7 +132,7 @@ export class ToolbarComponent {
 
     handleValignTop() {
         let top: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -147,7 +147,7 @@ export class ToolbarComponent {
 
     handleValignMiddle() {
         let middle: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -163,7 +163,7 @@ export class ToolbarComponent {
 
     handleValignBottom() {
         let bottom: any = undefined
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             if (!cell.isNode()) return
             let node = cell as Node
             let pos = node.position()
@@ -178,30 +178,30 @@ export class ToolbarComponent {
     }
 
     handleMoveTop() {
-        this.graph.getSelectedCells().forEach((cell) => {
+        this.canvas.graph.getSelectedCells().forEach((cell) => {
             cell.toFront();
         })
     }
 
     handleMoveUp() {
-        const cell = this.graph.getSelectedCells()[0];
+        const cell = this.canvas.graph.getSelectedCells()[0];
         cell.setZIndex(Number(cell.getZIndex() || 0) + 1);
     }
 
     handleMoveDown() {
-        const cell = this.graph.getSelectedCells()[0];
+        const cell = this.canvas.graph.getSelectedCells()[0];
         cell.setZIndex(Number(cell.getZIndex() || 0) - 1);
     }
 
     handleMoveBottom() {
-        this.graph.getSelectedCells().forEach((cell) => {
+        this.canvas.graph.getSelectedCells().forEach((cell) => {
             cell.toBack();
         })
     }
 
     handleGroup() {
-        let boxes = this.graph.getSelectedCells().map(n => n.getBBox())
-        //let zIndex = this.graph.getSelectedCells().reduce((p,n) => p.zIndex < n.zIndex ? p.zIndex : n.zIndex)
+        let boxes = this.canvas.graph.getSelectedCells().map(n => n.getBBox())
+        //let zIndex = this.canvas.graph.getSelectedCells().reduce((p,n) => p.zIndex < n.zIndex ? p.zIndex : n.zIndex)
         let meta = {
             x: boxes.reduce((p, n) => p.x < n.x ? p : n).x - 10,
             y: boxes.reduce((p, n) => p.y < n.y ? p : n).y - 10,
@@ -211,7 +211,7 @@ export class ToolbarComponent {
         console.log("group", meta)
 
         //this.cs.Get("group")
-        let parent = this.graph.addNode({
+        let parent = this.canvas.graph.addNode({
             shape: "group",
             x: meta.x,
             y: meta.y,
@@ -220,8 +220,8 @@ export class ToolbarComponent {
         })
         //parent.setVisible(false)
 
-        //this.graph.getSelectedCells().forEach(cell => cell.setParent(parent))
-        this.graph.getSelectedCells().forEach(cell => {
+        //this.canvas.graph.getSelectedCells().forEach(cell => cell.setParent(parent))
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             //if (cell.shape == "group" || cell.getChildCount() > 0)
             // @ts-ignore
             cell.setZIndex(parent.zIndex + cell.zIndex)
@@ -230,7 +230,7 @@ export class ToolbarComponent {
     }
 
     handleUngroup() {
-        this.graph.getSelectedCells().forEach(cell => {
+        this.canvas.graph.getSelectedCells().forEach(cell => {
             //if (cell.hasParent()) return;
             if (cell.shape == "group") {
                 cell.getChildren()?.forEach(c => {
@@ -246,8 +246,8 @@ export class ToolbarComponent {
 
 
     isGroup(): boolean {
-        if (this.graph.getSelectedCellCount() !== 1) return false;
-        let current = this.graph.getSelectedCells()[0];
+        if (this.canvas.graph.getSelectedCellCount() !== 1) return false;
+        let current = this.canvas.graph.getSelectedCells()[0];
         //if (!current) return false;
         return current.getChildCount() > 0;
     }
@@ -255,8 +255,8 @@ export class ToolbarComponent {
     showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
     handleGrid() {
-        if (this.showGrid) this.graph.hideGrid()
-        else this.graph.showGrid()
+        if (this.showGrid) this.canvas.graph.hideGrid()
+        else this.canvas.graph.showGrid()
         this.showGrid = !this.showGrid
         localStorage.setItem("nuwa-editor-grid", JSON.stringify(this.showGrid));
     }
@@ -273,8 +273,8 @@ export class ToolbarComponent {
     handleScale($event: number) {
         //console.log("handleScale", $event)
         this.scaleChange.emit($event)
-        this.graph.zoomTo($event)
-        //this.graph.resize()
+        this.canvas.graph.zoomTo($event)
+        //this.canvas.graph.resize()
     }
 
     about() {
@@ -286,8 +286,8 @@ export class ToolbarComponent {
     }
 
     handleImport() {
-        //this.graph.toJSON()
-        //this.graph.fromJSON()
+        //this.canvas.graph.toJSON()
+        //this.canvas.graph.fromJSON()
     }
 
     drawLine() {

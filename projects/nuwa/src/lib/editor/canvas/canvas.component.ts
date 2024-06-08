@@ -56,7 +56,7 @@ export class CanvasComponent {
                 //color: "#F20FF0"
             },
             grid: {
-                size: 10,      // 网格大小 10px
+                size: 10,      // 默认网格大小 10px TODO 需要做成动态调整的，不然会影响绘制精度
                 visible: JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true'), // 渲染网格背景
                 //type: "mesh",
                 type: "fixedDot"
@@ -79,7 +79,6 @@ export class CanvasComponent {
             strict: true,
             showNodeSelectionBox: true
         }));
-
 
         // this.graph.use(new Scroller({
         //     enabled: true,
@@ -143,18 +142,22 @@ export class CanvasComponent {
 
         //线段编辑
         this.graph.on('edge:selected', FunctionExt.debounce(({edge}) => {
-            edge.addTools([{name: 'source-arrowhead'}, {name: 'target-arrowhead'}, {name: 'vertices'}, {name: 'segments'}])
+            edge.addTools([
+                {name: 'source-arrowhead'},// args:{attrs:{fill:'#0000ff'}}},
+                {name: 'target-arrowhead'},
+                {name: 'vertices'},
+                {name: 'segments'}])
         }))
 
         this.graph.on('edge:unselected', ({cell}) => {
             cell.removeTools();
         })
 
-        this.graph.on('cell:selected', ({cell})=>{
+        this.graph.on('cell:selected', ({cell}) => {
             this.currentCell = cell
         })
 
-        this.graph.on('cell:selected', ({cell})=>{
+        this.graph.on('cell:selected', ({cell}) => {
             this.currentCell = cell
         })
     }

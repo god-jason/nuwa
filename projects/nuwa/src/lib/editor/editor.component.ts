@@ -36,7 +36,7 @@ export class EditorComponent {
 
     scale = 1;
 
-    @ViewChild("canvas") renderer!: CanvasComponent
+    @ViewChild(CanvasComponent) canvas!: CanvasComponent
 
     @Output() onSave = new EventEmitter<NuwaProject>()
 
@@ -44,13 +44,13 @@ export class EditorComponent {
     }
 
     handleSave() {
-        this._project.pages[this.index].content = this.renderer.graph.toJSON()
+        this._project.pages[this.index].content = this.canvas.graph.toJSON()
         this.onSave.emit(this._project)
     }
 
     handlePageChange($event: number) {
         //保存当前页
-        this._project.pages[this.index].content = this.renderer.graph.toJSON()
+        this._project.pages[this.index].content = this.canvas.graph.toJSON()
         this.index = $event
 
         //渲染新页

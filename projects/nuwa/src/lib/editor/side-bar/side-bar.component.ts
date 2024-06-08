@@ -11,6 +11,7 @@ import {
     TemplateRef,
     ViewContainerRef,
 } from '@angular/core';
+import {BooleanInput} from "ng-zorro-antd/core/types";
 
 @Directive({selector: '[sideBarItem]'})
 export class SideBarItemDirective {
@@ -35,7 +36,7 @@ export class SideBarItemDirective {
     templateUrl: './side-bar.component.html',
     styleUrl: './side-bar.component.scss'
 })
-export class SideBarComponent implements AfterViewInit, AfterContentInit{
+export class SideBarComponent implements AfterViewInit, AfterContentInit {
     @ContentChildren(SideBarItemDirective, {descendants: true}) components = new QueryList<SideBarItemDirective>();
 
     @HostBinding("style.width") styleWidth = "200px";
@@ -58,7 +59,7 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit{
         this.styleWidth = w + "px"
     }
 
-    index = 0;
+    @Input() index = 0;
 
     onClick(i: number) {
         if (this.index > -1)
@@ -74,11 +75,12 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit{
     }
 
     ngAfterViewInit() {
-        setTimeout(()=>{
+        setTimeout(() => {
             if (this.components.length > 0) {
-                this.components.get(0)?.show()
+                let index = (this.index < this.components.length) ? this.index : 0
+                this.components.get(index)?.show()
             }
-        },10)
+        }, 10)
     }
 
     ngAfterContentInit() {

@@ -39,69 +39,69 @@
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleUndo()" nz-button [disabled]="!graph.canUndo()" title="撤销(ctrl+z)">
+<a (click)="handleUndo()" nz-button [disabled]="!canvas.graph.canUndo()" title="撤销(ctrl+z)">
     <i nz-icon nzType="undo"></i>
 </a>
-<a (click)="handleRedo()" nz-button [disabled]="!graph.canRedo()" title="重做(ctrl+y)">
+<a (click)="handleRedo()" nz-button [disabled]="!canvas.graph.canRedo()" title="重做(ctrl+y)">
     <i nz-icon nzType="redo"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleCut()" nz-button [disabled]="!graph.getSelectedCellCount()" title="剪切(ctrl+x)">
+<a (click)="handleCut()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="剪切(ctrl+x)">
     <i nz-icon nzType="scissor"></i>
 </a>
-<a (click)="handleCopy()" nz-button [disabled]="!graph.getSelectedCellCount()" title="复制(ctrl+c)">
+<a (click)="handleCopy()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="复制(ctrl+c)">
     <i nz-icon nzType="copy"></i>
 </a>
-<a (click)="handlePaste()" nz-button [disabled]="!graph.getCellsInClipboard().length" title="粘贴(ctrl+v)">
+<a (click)="handlePaste()" nz-button [disabled]="!canvas.graph.getCellsInClipboard().length" title="粘贴(ctrl+v)">
     <i nz-icon nzType="snippets"></i>
 </a>
-<a (click)="handleDelete()" nz-button [disabled]="!graph.getSelectedCellCount()" title="删除">
+<a (click)="handleDelete()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="删除">
     <i nz-icon nzType="delete"></i></a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleAlignLeft()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleAlignLeft()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="align-left" title="左对齐"></i>
 </a>
-<a (click)="handleAlignCenter()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleAlignCenter()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="align-center" title="居中对齐"></i>
 </a>
-<a (click)="handleAlignRight()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleAlignRight()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="align-right" title="右对齐"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleValignTop()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleValignTop()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="vertical-align-top" title="上对齐"></i>
 </a>
-<a (click)="handleValignMiddle()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleValignMiddle()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="vertical-align-middle" title="居中对齐"></i>
 </a>
-<a (click)="handleValignBottom()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleValignBottom()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="vertical-align-bottom" title="下对齐"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleMoveTop()" nz-button [disabled]="!graph.getSelectedCellCount()">
+<a (click)="handleMoveTop()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()">
     <i nz-icon nzType="vertical-right" title="置顶" [nzRotate]="90"></i>
 </a>
-<a (click)="handleMoveUp()" nz-button [disabled]="graph.getSelectedCellCount()!=1">
+<a (click)="handleMoveUp()" nz-button [disabled]="canvas.graph.getSelectedCellCount()!=1">
     <i nz-icon nzType="up" title="上移一层"></i>
 </a>
-<a (click)="handleMoveDown()" nz-button [disabled]="graph.getSelectedCellCount()!=1">
+<a (click)="handleMoveDown()" nz-button [disabled]="canvas.graph.getSelectedCellCount()!=1">
     <i nz-icon nzType="down" title="下移一层"></i>
 </a>
-<a (click)="handleMoveBottom()" nz-button [disabled]="!graph.getSelectedCellCount()">
+<a (click)="handleMoveBottom()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()">
     <i nz-icon nzType="vertical-left" title="置底" [nzRotate]="90"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleGroup()" nz-button [disabled]="graph.getSelectedCellCount()<2">
+<a (click)="handleGroup()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
     <i nz-icon nzType="group" title="组合"></i>
 </a>
 <a (click)="handleUngroup()" nz-button [disabled]="!isGroup()">
