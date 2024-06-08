@@ -46,12 +46,16 @@ class EchartsBarComponent {
 
     getOption(): EChartsOption {
         return {
+            tooltip: {
+                trigger: 'axis'
+            },
             xAxis: {
                 type: 'category',
                 data: this._xAxis
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
+                splitLine: {show:false}
             },
             series: [
                 {
