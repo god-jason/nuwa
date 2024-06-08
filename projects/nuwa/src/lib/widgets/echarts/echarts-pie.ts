@@ -3,9 +3,7 @@ import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsPieSvg} from "./echarts-pie_svg";
-
 
 @Component({
     selector: 'app-echarts-bar',
@@ -25,27 +23,39 @@ import {EchartsPieSvg} from "./echarts-pie_svg";
                  [autoResize]="true"
                  [style.width]="elementRef.nativeElement.clientWidth+'px'"
                  [style.height]="elementRef.nativeElement.clientHeight+'px'"
-                 [options]="option()" (chartInit)="chartInit($event)"></echarts>`
+                 [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
 class EchartsPieComponent {
     chart: any;
 
-    @Input() keys = ['A', 'B', 'C'];
-    @Input() values = [10, 20, 15]
 
-    option(): EChartsOption {
+    _keys: string[] = ['A', 'B', 'C'];
+    _values: number[] = [10, 20, 15]
+    option: any = this.getOption()
+
+    @Input() set keys(v: string[]) {
+        this._keys = v
+        this.option = this.getOption()
+    }
+
+    @Input() set values(v: number[]) {
+        this._values = v
+        this.option = this.getOption()
+    }
+
+    getOption(): EChartsOption {
         return {
             tooltip: {
                 trigger: 'item'
             },
             series: [
                 {
-                    name: 'Name',
+                    name: '',
                     type: 'pie',
                     radius: '50%',
-                    data: this.keys.map((k,i)=>{
-                        return {name:k, value: this.values[i]}
+                    data: this._keys.map((k,i)=>{
+                        return {name:k, value: this._values[i]}
                     }),
                 }
             ]

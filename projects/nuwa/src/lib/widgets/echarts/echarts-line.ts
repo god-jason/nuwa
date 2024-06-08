@@ -3,7 +3,6 @@ import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsLineSvg} from "./echarts-line_svg";
 
 @Component({
@@ -16,34 +15,47 @@ import {EchartsLineSvg} from "./echarts-line_svg";
     styles: `:host {
         width: 100%;
         height: 100%;
-        display: block; overflow: hidden;
+        display: block;
+        overflow: hidden;
     }`,
     template: `
         <echarts class="chart"
                  [autoResize]="true"
                  [style.width]="elementRef.nativeElement.clientWidth+'px'"
                  [style.height]="elementRef.nativeElement.clientHeight+'px'"
-                 [options]="option()" (chartInit)="chartInit($event)"></echarts>`
+                 [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
 class EchartsLineComponent {
     chart: any;
 
-    @Input() xAxis: string[] = ['一', '二', '三', '四', '五', '六', '七']
-    @Input() yAxis: number[] = [100, 110, 120, 130, 120, 110, 100]
 
-    option(): EChartsOption {
+    _xAxis: string[] = ['一', '二', '三', '四', '五', '六', '七']
+    _yAxis: number[] = [100, 110, 120, 130, 120, 110, 100]
+    option: any = this.getOption()
+
+    @Input() set xAxis(v: string[]) {
+        this._xAxis = v
+        this.option = this.getOption()
+    }
+
+    @Input() set yAxis(v: number[]) {
+        this._yAxis = v
+        this.option = this.getOption()
+    }
+
+    getOption(): EChartsOption {
         return {
             xAxis: {
                 type: 'category',
-                data: this.xAxis
+                data: this._xAxis
             },
             yAxis: {
                 type: 'value'
             },
             series: [
                 {
-                    data: this.yAxis,
+                    data: this._yAxis,
                     type: 'line'
                 }
             ]

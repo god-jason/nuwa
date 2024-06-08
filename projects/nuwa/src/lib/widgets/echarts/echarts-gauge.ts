@@ -24,16 +24,23 @@ import {EchartsGaugeSvg} from "./echarts-gauge_svg";
                  [autoResize]="true"
                  [style.width]="elementRef.nativeElement.clientWidth+'px'"
                  [style.height]="elementRef.nativeElement.clientHeight+'px'"
-                 [options]="option()" (chartInit)="chartInit($event)"></echarts>`
+                 [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
 class EchartsGaugeComponent {
     chart: any;
 
     @Input() name = ''
-    @Input() value = 30
 
-    option(): EChartsOption {
+    _value = 30
+
+    @Input() set value(v:number){
+        this._value = v;
+        this.option = this.getOption()
+    }
+    option: any = this.getOption()
+
+    getOption(): any {
         return {
             series: [
                 {
@@ -41,7 +48,7 @@ class EchartsGaugeComponent {
                     progress: {show: true},
                     axisTick: {show: false}, //小刻度
                     data: [
-                        {value: this.value}
+                        {value: this._value}
                     ]
                 }
             ]

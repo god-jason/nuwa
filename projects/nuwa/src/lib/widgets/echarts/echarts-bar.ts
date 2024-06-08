@@ -23,27 +23,39 @@ import {EchartsBarSvg} from "./echarts-bar_svg";
                  [autoResize]="true"
                  [style.width]="elementRef.nativeElement.clientWidth+'px'"
                  [style.height]="elementRef.nativeElement.clientHeight+'px'"
-                 [options]="option()" (chartInit)="chartInit($event)"></echarts>`
+                 [options]="option" (chartInit)="chartInit($event)"></echarts>`
 
 })
 class EchartsBarComponent {
     chart: any;
 
-    @Input() xAxis: string[] = ['一', '二', '三', '四', '五', '六', '七']
-    @Input() yAxis: number[] = [100, 110, 120, 130, 120, 110, 100]
 
-    option(): EChartsOption {
+    _xAxis: string[] = ['一', '二', '三', '四', '五', '六', '七']
+    _yAxis: number[] = [100, 110, 120, 130, 120, 110, 100]
+    option: any = this.getOption()
+
+    @Input() set xAxis(v: string[]) {
+        this._xAxis = v
+        this.option = this.getOption()
+    }
+
+    @Input() set yAxis(v: number[]) {
+        this._yAxis = v
+        this.option = this.getOption()
+    }
+
+    getOption(): EChartsOption {
         return {
             xAxis: {
                 type: 'category',
-                data: this.xAxis
+                data: this._xAxis
             },
             yAxis: {
                 type: 'value'
             },
             series: [
                 {
-                    data: this.yAxis,
+                    data: this._yAxis,
                     type: 'bar'
                 }
             ]
