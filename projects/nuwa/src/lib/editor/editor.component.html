@@ -16,7 +16,8 @@
         }
 
         @if (imageBorders) {
-            <nuwa-image-borders *sideBarItem="'图片边框'" [canvas]="canvas" [borders]="imageBorders"></nuwa-image-borders>
+            <nuwa-image-borders *sideBarItem="'图片边框'" [canvas]="canvas"
+                                [borders]="imageBorders"></nuwa-image-borders>
         }
 
         @if (canvas.graph?.getCellCount()) {
@@ -24,7 +25,9 @@
         }
 
         <!--        <nuwa-layers *sideBarItem="'图层'" [renderer]="renderer"></nuwa-layers>-->
-        <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>
+        <!--        <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>-->
+        <nuwa-variables *sideBarItem="'变量表'" [project]="project"></nuwa-variables>
+
     </nuwa-side-bar>
     <div class="content">
         <nuwa-canvas #canvas [page]="project.pages[index]"

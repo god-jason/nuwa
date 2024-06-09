@@ -25,9 +25,24 @@ export declare interface NuwaListener {
     event: string
     action: "page" | "link" | "set" | "show" | "hide" | "animate" | "script"// string //page link set
     delay: number
-    target?: string //outlet iframe
     animation?: string //动画
+
+    //元素，show hide animate
+    cell?: string //元素
+
+    //路由页面
+    outlet?: string
+    page?: string //参数
+
+    //链接
+    iframe?: string
+    url?: string
+
+    //参数列表：页面
     parameters?: NuwaParameter[]
+
+    //脚本
+    script?: string
 }
 
 export declare interface NuwaComponent {

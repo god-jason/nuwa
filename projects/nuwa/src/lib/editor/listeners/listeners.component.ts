@@ -2,9 +2,10 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
 import {Cell} from "@antv/x6";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {ListenerComponent} from "../listener/listener.component";
+import {ListenerSettingComponent} from "../listener-setting/listener-setting.component";
 import {NuwaComponent, NuwaListener} from "../../nuwa";
 import {ComponentService} from "../../component.service";
+import {NuwaProject} from "../../project";
 
 @Component({
     selector: 'nuwa-listeners',
@@ -13,6 +14,7 @@ import {ComponentService} from "../../component.service";
 })
 export class ListenersComponent implements OnInit, OnDestroy {
 
+    project!:NuwaProject
     component!: NuwaComponent
 
     @Input() canvas!: CanvasComponent;
@@ -27,6 +29,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
         "hide": "隐藏元素",
         "animate": "执行动画",
         "script": "执行脚本",
+        //"event": "发送事件",
     }
 
     getActionName(key: any) {
@@ -73,13 +76,14 @@ export class ListenersComponent implements OnInit, OnDestroy {
         if (!this.cell.data.listeners) this.cell.data.listeners = []
 
         this.ms.create({
-            nzContent: ListenerComponent,
+            nzContent: ListenerSettingComponent,
             nzTitle: "创建事件处理",
             nzData: {
+                project: this.project,
                 component: this.component
             },
             nzOnOk: ref => {
-                this.cell.data.listeners.push(ref.group.value)
+                this.cell.data.listeners.push(ref.editor.value)
             }
         })
     }
@@ -88,14 +92,15 @@ export class ListenersComponent implements OnInit, OnDestroy {
         let listener: NuwaListener = this.cell.data.listeners[i]
 
         this.ms.create({
-            nzContent: ListenerComponent,
+            nzContent: ListenerSettingComponent,
             nzTitle: "编辑事件处理",
             nzData: {
+                project: this.project,
                 component: this.component,
                 listener: listener,
             },
             nzOnOk: ref => {
-                this.cell.data.listeners[i] = ref.group.value
+                this.cell.data.listeners[i] = ref.editor.value
             }
         })
     }

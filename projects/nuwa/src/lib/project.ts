@@ -1,10 +1,16 @@
-
+export declare interface NuwaVariable {
+    name: string;
+    label: string;
+    type: string;
+    value: string;
+}
 
 export declare interface NuwaProject {
     id: string
     name: string
     description?: string
     pages: NuwaPage[]
+    variables: NuwaVariable[];
 }
 
 export declare interface NuwaBackground {
@@ -30,12 +36,13 @@ export function pageTemplate(name: string = "新建页面"): NuwaPage {
     }
 }
 
-export function projectTemplate(name:string = '新建组态工程'): NuwaProject {
+export function projectTemplate(name: string = '新建组态工程'): NuwaProject {
     return {
         id: '',
         name,
         pages: [
             pageTemplate("首页")
-        ]
+        ],
+        variables: []
     }
 }

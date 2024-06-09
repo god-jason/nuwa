@@ -72,10 +72,11 @@ import {NzListModule} from "ng-zorro-antd/list";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzEmptyModule} from "ng-zorro-antd/empty";
 import {NzTableModule} from "ng-zorro-antd/table";
-import {ListenerComponent} from "./listener/listener.component";
+import {ListenerSettingComponent} from "./listener-setting/listener-setting.component";
 import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component";
 import {ImageBordersComponent} from "./image-borders/image-borders.component";
 import {SmartEditorComponent} from "@god-jason/smart";
+import {VariablesComponent} from "./variables/variables.component";
 
 
 @NgModule({
@@ -91,7 +92,7 @@ import {SmartEditorComponent} from "@god-jason/smart";
         ElementsComponent,
         GalleriesComponent,
         ListenersComponent,
-        ListenerComponent,
+        ListenerSettingComponent,
         PageSettingComponent,
         PagesComponent,
         PropertiesSettingComponent,
@@ -107,6 +108,7 @@ import {SmartEditorComponent} from "@god-jason/smart";
         HtmlPipe,
         HtmlDirective,
         ImageBordersComponent,
+        VariablesComponent,
     ],
     exports: [
         EditorComponent,
