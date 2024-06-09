@@ -45,21 +45,16 @@ export class BindingsComponent {
     }
 
     onCellSelected(event: { cell: Cell }) {
+        //console.log('onCellSelected', event.cell)
+
         this.cell = event.cell
         let id = event.cell.shape
         this.component = this.cs.Get(id)
 
-        //变量表
-        this.options = this.project.variables.map(v=>{
-            return {label: v.label, value: v.name}
-        })
+        //console.log('onCellSelected', event.cell, this.component)
 
         //表单
-        // @ts-ignore
-        //this.fields = this.component.bindings || []
         this.fields = []
-        this.data = this.cell.data?.bindings || {}
-
         this.component.bindings?.forEach(b=>{
             this.fields.push({
                 key: b.name,
@@ -69,6 +64,21 @@ export class BindingsComponent {
                 options: this.options,
             })
         })
+
+        console.log('onCellSelected', this.fields)
+
+        if (this.fields.length == 0)
+            return
+
+        //绑定的数据
+        this.data = this.cell.data?.bindings || {}
+
+        //变量表
+        this.options = this.project.variables.map(v=>{
+            return {label: v.label, value: v.name}
+        })
+        this.options.unshift({label: '无', value: ''})
+
     }
 
     onChange() {

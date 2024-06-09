@@ -1,6 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
@@ -31,11 +31,12 @@ import {SwitchSvg} from "./switch_svg";
                    (change)="onChange($event)"></nz-switch>`
 })
 class ControlSwitchComponent {
+    @Input() listener = new EventEmitter();
+
     @Input() value = 60
 
-    //TODO 事件
     onChange($event: Event) {
-
+        this.listener.emit(this.value)
     }
 }
 export const ControlSwitch: NuwaComponent = {

@@ -1,5 +1,3 @@
-<button nz-button *ngIf="cell" (click)="add()">添加事件处理</button>
-
 <nz-table [nzData]="cell?.data?.listeners">
     <thead>
     <tr>
@@ -21,3 +19,5 @@
     </tr>
     </tbody>
 </nz-table>
+
+<button nz-button nzType="primary" *ngIf="cell" (click)="add()">添加事件处理</button>

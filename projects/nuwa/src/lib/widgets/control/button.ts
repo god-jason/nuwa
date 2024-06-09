@@ -1,6 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
 import {NzButtonComponent} from "ng-zorro-antd/button";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents} from "../properties";
 import {CircleSvg} from "../base/circle_svg";
@@ -23,12 +23,13 @@ import {ButtonSvg} from "./button_svg";
                 (click)="onClick($event)">{{ text }}</button>`
 })
 class ControlButtonComponent {
+    @Input() listener = new EventEmitter();
+
     @Input() text = "按钮"
     @Input() fontSize = 16
 
-    //TODO 事件
     onClick($event: MouseEvent) {
-
+        this.listener.emit($event)
     }
 }
 

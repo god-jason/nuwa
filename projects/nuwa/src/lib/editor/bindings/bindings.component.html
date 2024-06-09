@@ -1,2 +1,6 @@
+@if (fields.length) {
+    <smart-editor [fields]="fields" [values]="data" (change)="onChange()" #editor></smart-editor>
+} @else {
+    <nz-empty nzNotFoundContent="元素不支持绑定"></nz-empty>
+}
 
-<smart-editor [fields]="fields" [values]="data" (change)="onChange()" #editor></smart-editor>

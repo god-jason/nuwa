@@ -1,6 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
 import {NzSliderComponent} from "ng-zorro-antd/slider";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
@@ -27,15 +27,16 @@ import {SliderSvg} from "./slider_svg";
                    (change)="onChange($event)"></nz-slider>`
 })
 class ControlSliderComponent {
+    @Input() listener = new EventEmitter();
+
     @Input() value = 60
     @Input() min = 0
     @Input() max = 100
     @Input() step = 1
     @Input() vertical = false
 
-    //TODO 事件
     onChange($event: Event) {
-
+        this.listener.emit(this.value)
     }
 }
 

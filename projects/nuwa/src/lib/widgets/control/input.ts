@@ -1,5 +1,5 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NzInputDirective} from "ng-zorro-antd/input";
 import {FormsModule} from "@angular/forms";
@@ -20,16 +20,17 @@ import {InputSvg} from "./input_svg";
         height: 100%
     }`,
     template: `<input nz-input [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [type]="type"
-                      [placeholder]="placeholder" (change)="onChange($event)">`
+                      [placeholder]="placeholder" (change)="onChange(box.value)" #box>`
 })
 class ControlInputComponent {
+    @Input() listener = new EventEmitter();
+
     @Input() value: any
     @Input() type = ""
     @Input() placeholder = ""
 
-    //TODO 事件
-    onChange($event: Event) {
-
+    onChange(value: any) {
+        this.listener.emit(this.value)
     }
 }
 

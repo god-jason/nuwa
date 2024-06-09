@@ -1,6 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
 import {NzSelectComponent} from "ng-zorro-antd/select";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
@@ -21,15 +21,16 @@ import {SelectSvg} from "./select_svg";
     }`,
     template: `
         <nz-select [(ngModel)]="value" [ngModelOptions]="{standalone:true}" [nzOptions]="options"
-                   (change)="onChange($event)"></nz-select>    `
+                   (change)="onChange()"></nz-select>    `
 })
 class ControlSelectComponent {
+    @Input() listener = new EventEmitter();
+
     @Input() value: any
     @Input() options: any = []
 
-    //TODO 事件
-    onChange($event: Event) {
-
+    onChange() {
+        this.listener.emit(this.value)
     }
 }
 
