@@ -24,12 +24,13 @@ import {ProgressSvg} from "./progress_svg";
             width: 100%;
             height: 100%;
         }`,
-    template: `<nz-progress [nzPercent]="percent" [nzShowInfo]="false" [nzStrokeColor]="color"
-                            [nzStrokeWidth]="elementRef.nativeElement.clientHeight || 10"
-                            nzStrokeLinecap="square"></nz-progress>`
+    template: `
+        <nz-progress [nzPercent]="value" [nzShowInfo]="false" [nzStrokeColor]="color"
+                     [nzStrokeWidth]="elementRef.nativeElement.clientHeight || 10"
+                     nzStrokeLinecap="square"></nz-progress>`
 })
 class ControlProgressComponent {
-    @Input() percent = 60
+    @Input() value = 60
     @Input() color = "#6992ff"
     constructor(protected elementRef: ElementRef) {
     }
@@ -45,7 +46,15 @@ export const ControlProgress: NuwaComponent = {
     events: [
         ...DefaultEvents,
     ],
-    properties: [],
-    bindings: [],
-    hooks: {},
+    properties: [
+        {key:'data/ngArguments/value',label:'进度', type:'number', min: 0, max: 100},
+    ],
+    bindings: [
+        {name: 'value', label: "进度", default: ''},
+    ],
+    hooks: {
+        value(cell, value) {
+            cell.setPropByPath("data/ngArguments/value", value);
+        }
+    },
 }

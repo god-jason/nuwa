@@ -4,7 +4,6 @@ import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {SelectSvg} from "./select_svg";
 
 
@@ -43,9 +42,23 @@ export const ControlSelect: NuwaComponent = {
     content: ControlSelectComponent,
     events: [
         ...DefaultEvents,
-        {name:"change", label: "变化"},
+        {name: "change", label: "变化"},
     ],
-    properties: [],
-    bindings: [],
-    hooks: {},
+    properties: [
+        {key: 'data/ngArguments/value', label: '值', type: 'text',},
+        {
+            key: 'data/ngArguments/options', label: '选项', type: 'table', children: [
+                {key: 'label', label: '显示', type: 'text'},
+                {key: 'value', label: '值', type: 'text'},
+            ]
+        },
+    ],
+    bindings: [
+        {name: 'value', label: "选择", default: ''},
+    ],
+    hooks: {
+        value(cell, value) {
+            cell.setPropByPath("data/ngArguments/value", value);
+        }
+    },
 }

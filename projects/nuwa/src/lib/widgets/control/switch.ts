@@ -49,7 +49,15 @@ export const ControlSwitch: NuwaComponent = {
         ...DefaultEvents,
         {name:"change", label: "变化"},
     ],
-    properties: [],
-    bindings: [],
-    hooks: {},
+    properties: [
+        {key:'data/ngArguments/value',label:'开关', type:'switch'},
+    ],
+    bindings: [
+        {name: 'value', label: "开关", default: ''},
+    ],
+    hooks: {
+        value(cell, value) {
+            cell.setPropByPath("data/ngArguments/value", value);
+        }
+    },
 }

@@ -46,6 +46,12 @@ export const ControlInput: NuwaComponent = {
         {name:"change", label: "变化"},
     ],
     properties: [],
-    bindings: [],
-    hooks: {},
+    bindings: [
+        {name: 'value', label: "输入", default: ''},
+    ],
+    hooks: {
+        value(cell, value) {
+            cell.setPropByPath("data/ngArguments/value", value);
+        }
+    },
 }
