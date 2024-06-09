@@ -19,6 +19,8 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
     fields: SmartField[] = [];
     data: any = {}
 
+    name = ''
+
     component?: NuwaComponent
     cell?: Cell
 
@@ -74,6 +76,8 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
                 data[f.key] = val
         })
         this.data = data
+
+        this.name = event.cell.getPropByPath("data/name")
     }
 
     // ngAfterViewInit() {
@@ -95,4 +99,9 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
             this.cell?.setPropByPath(key, value[key])
         })
     }
+
+    onNameChange() {
+        this.cell?.setPropByPath("data/name", this.name)
+    }
+
 }

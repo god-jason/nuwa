@@ -1,8 +1,7 @@
-@for (cell of canvas.graph.getCells(); track cell.id){
-    <p>
-        {{cell.id}}
-        {{cell.shape}}
-    </p>
-}
-
-<nz-empty *ngIf="canvas.graph.getCells().length==0" nzNotFoundContent="还没有图元"></nz-empty>
+<nz-list nzSize="small" nzBordered>
+    @for (cell of canvas.graph.getCells(); track cell.id) {
+        <nz-list-item class="page" [title]="cell.id + ' ' + cell.shape" (click)="open(cell)">
+            {{ cell.data.name || '[未命名]' }}
+        </nz-list-item>
+    }
+</nz-list>

@@ -14,7 +14,7 @@ import {NuwaProject} from "../../project";
 })
 export class ListenersComponent implements OnInit, OnDestroy {
 
-    project!:NuwaProject
+    @Input() project!:NuwaProject
     component!: NuwaComponent
 
     @Input() canvas!: CanvasComponent;

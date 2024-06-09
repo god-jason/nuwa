@@ -35,9 +35,10 @@
                      [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
     </div>
     <nuwa-side-bar [width]="400" [right]="true">
-        <nuwa-canvas-setting *sideBarItem="'画布'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-canvas-setting>
-        <nuwa-props *sideBarItem="'属性'" [canvas]="canvas"></nuwa-props>
-        <nuwa-listeners *sideBarItem="'事件'" [canvas]="canvas"></nuwa-listeners>
-        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>
+        <nuwa-canvas-setting *sideBarItem="'页面属性'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-canvas-setting>
+        <nuwa-props *sideBarItem="'元素属性'" [canvas]="canvas"></nuwa-props>
+        <nuwa-bindings *sideBarItem="'数据绑定'" [canvas]="canvas" [project]="project"></nuwa-bindings>
+        <nuwa-listeners *sideBarItem="'事件响应'" [canvas]="canvas" [project]="project"></nuwa-listeners>
+<!--        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>-->
     </nuwa-side-bar>
 </div>

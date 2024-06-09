@@ -125,8 +125,10 @@ export class CanvasComponent {
                     shape: this.drawingEdgeComponent.id,
                     source: [event.offsetX, event.offsetY],
                     target: [event.offsetX + 10, event.offsetY + 10],
-                    ...this.drawingEdgeComponent.metadata
+                    ...this.drawingEdgeComponent.metadata,
                 });
+                //设置名称
+                this.drawingEdge.setPropByPath("data/name", this.drawingEdgeComponent.name + (this.graph.getCellCount() + 1))
                 this.drawingEdgeComponent = undefined;
             } else {
                 this.drawingEdge = undefined
@@ -243,6 +245,9 @@ export class CanvasComponent {
         Object.keys(inputs).forEach(k => {
             node.setPropByPath(k, inputs[k])
         })
+
+        //设置名称
+        node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
 
         this.dnd.start(node, $event);
     }

@@ -5,8 +5,6 @@ import {AboutComponent} from "./about/about.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AnimationsComponent} from "./animations/animations.component";
 import {BackgroundSettingComponent} from "./background-setting/background-setting.component";
-import {BindingComponent} from "./binding/binding.component";
-import {BindingSettingComponent} from "./binding-setting/binding-setting.component";
 import {CanvasComponent} from "./canvas/canvas.component";
 import {ComponentsComponent} from "./components/components.component";
 import {ElementsComponent} from "./elements/elements.component";
@@ -77,6 +75,7 @@ import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component"
 import {ImageBordersComponent} from "./image-borders/image-borders.component";
 import {SmartEditorComponent} from "@god-jason/smart";
 import {VariablesComponent} from "./variables/variables.component";
+import {BindingsComponent} from "./bindings/bindings.component";
 
 
 @NgModule({
@@ -84,8 +83,6 @@ import {VariablesComponent} from "./variables/variables.component";
         AboutComponent,
         AnimationsComponent,
         BackgroundSettingComponent,
-        BindingComponent,
-        BindingSettingComponent,
         CanvasComponent,
         CanvasSettingComponent,
         ComponentsComponent,
@@ -109,6 +106,7 @@ import {VariablesComponent} from "./variables/variables.component";
         HtmlDirective,
         ImageBordersComponent,
         VariablesComponent,
+        BindingsComponent
     ],
     exports: [
         EditorComponent,
