@@ -29,7 +29,6 @@ class EchartsGaugeComponent {
     chart: any;
 
     @Input() name = ''
-    option: any = this.getOption()
 
     constructor(protected elementRef: ElementRef) {
     }
@@ -47,6 +46,8 @@ class EchartsGaugeComponent {
         this._darkMode = value;
         this.option = this.getOption()
     }
+
+    option: any = this.getOption()
 
     getOption(): any {
         return {
@@ -69,7 +70,7 @@ class EchartsGaugeComponent {
     }
 
     resize() {
-        this.chart.resize()
+        this.chart?.resize()
     }
 
     ngAfterViewInit() {

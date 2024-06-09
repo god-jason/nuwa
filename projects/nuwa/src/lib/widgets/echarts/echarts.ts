@@ -56,7 +56,7 @@ class EchartsComponent {
     }
 
     resize() {
-        this.chart.resize()
+        this.chart?.resize()
     }
 
     ngAfterViewInit() {
