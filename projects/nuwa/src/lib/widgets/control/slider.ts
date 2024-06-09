@@ -4,7 +4,6 @@ import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {SliderSvg} from "./slider_svg";
 
 

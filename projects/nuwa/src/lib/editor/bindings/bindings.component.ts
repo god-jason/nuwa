@@ -59,9 +59,10 @@ export class BindingsComponent {
             this.fields.push({
                 key: b.name,
                 label: b.label,
-                type: 'select',
+                type: 'text',
                 default: b.default,
                 options: this.options,
+                auto: this.options,
             })
         })
 

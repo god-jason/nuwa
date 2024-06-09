@@ -24,7 +24,7 @@ export const ControlNumber: NuwaComponent = {
         {label: "小数位数", key: `data/fixed`, type: "number", default: 0},
     ],
     bindings: [
-        {name: 'value', label: "数值", default: 12.06},
+        {name: 'value', label: "数值", default: ''},
     ],
     hooks: {
         value(cell, value) {
