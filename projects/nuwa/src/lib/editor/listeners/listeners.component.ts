@@ -79,6 +79,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
             nzContent: ListenerSettingComponent,
             nzTitle: "创建事件处理",
             nzData: {
+                canvas: this.canvas,
                 project: this.project,
                 component: this.component
             },
@@ -95,6 +96,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
             nzContent: ListenerSettingComponent,
             nzTitle: "编辑事件处理",
             nzData: {
+                canvas: this.canvas,
                 project: this.project,
                 component: this.component,
                 listener: listener,

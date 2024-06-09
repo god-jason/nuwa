@@ -3,9 +3,11 @@ import {NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {NuwaComponent, NuwaListener} from "../../nuwa";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {NuwaProject} from "../../project";
+import {CanvasComponent} from "../canvas/canvas.component";
 
 
 export declare interface ListenerData {
+    canvas: CanvasComponent,
     project: NuwaProject,
     component: NuwaComponent,
     listener: NuwaListener,
@@ -22,12 +24,12 @@ export class ListenerSettingComponent implements AfterViewInit {
 
     event: SmartField = {key: "event", label: "事件", type: "select", default: "click"}
 
-    cell: SmartField = {key: "cell", label: "目标", type: "text", hidden: true}
+    cell: SmartField = {key: "cell", label: "目标", type: "select", hidden: true, options: []}
 
-    outlet: SmartField = {key: "outlet", label: "入口", type: "text", hidden: true}
+    outlet: SmartField = {key: "outlet", label: "入口", type: "select", hidden: true, options: []}
     page: SmartField = {key: "page", label: "页面", type: "select", hidden: true, options: []}
 
-    iframe: SmartField = {key: "iframe", label: "web入口", type: "text", hidden: true}
+    iframe: SmartField = {key: "iframe", label: "web入口", type: "select", hidden: true, options:[]}
     url: SmartField = {key: "url", label: "链接", type: "text", hidden: true}
 
     parameters: SmartField = {
@@ -91,6 +93,15 @@ export class ListenerSettingComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
+        this.cell.options = this.data.canvas.graph.getCells().map(p => {
+            return {value: p.id, label: p.data.name}
+        })
+        this.outlet.options = this.data.canvas.graph.getCells().filter(p=>p.shape==":outlet:").map(p => {
+            return {value: p.id, label: p.data.name}
+        })
+        this.iframe.options = this.data.canvas.graph.getCells().filter(p=>p.shape==":iframe:").map(p => {
+            return {value: p.id, label: p.data.name}
+        })
         this.page.options = this.data.project.pages.map(p => {
             return {value: p.name, label: p.name}
         })
