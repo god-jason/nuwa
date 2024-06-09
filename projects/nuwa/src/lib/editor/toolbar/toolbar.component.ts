@@ -8,6 +8,7 @@ import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseLine} from "../../widgets/base/line";
 import {MiscFlow} from "../../widgets/misc/flow";
+import {NzDrawerService} from "ng-zorro-antd/drawer";
 
 @Component({
     selector: 'nuwa-toolbar',
@@ -28,8 +29,8 @@ export class ToolbarComponent {
     showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
     constructor(
-        private modal: NzModalService,
-        private msg: NzMessageService,
+        private ms: NzModalService,
+        private ds: NzDrawerService,
         private viewContainerRef: ViewContainerRef,
     ) {
     }
@@ -257,7 +258,7 @@ export class ToolbarComponent {
     }
 
     about() {
-        this.modal.create({
+        this.ms.create({
             nzTitle: '关于',
             nzContent: AboutComponent,
             nzFooter: null,
@@ -278,6 +279,12 @@ export class ToolbarComponent {
     }
 
     preview() {
-
+        this.ds.create({
+            nzTitle: '预览',
+            nzPlacement: 'top',
+            nzContent: AboutComponent,
+            nzWidth: '100%',
+            nzHeight: '100%',
+        })
     }
 }

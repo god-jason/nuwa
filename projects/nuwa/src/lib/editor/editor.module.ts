@@ -76,6 +76,7 @@ import {SmartEditorComponent} from "@god-jason/smart";
 import {VariablesComponent} from "./variables/variables.component";
 import {BindingsComponent} from "./bindings/bindings.component";
 import {CodemirrorModule} from "@ctrl/ngx-codemirror";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import {CodemirrorModule} from "@ctrl/ngx-codemirror";
         NzInputNumberModule,
         NzSelectModule,
         NzModalModule,
+        NzDrawerModule,
         NzNotificationModule,
         NzCollapseModule,
         NzDropDownModule,
