@@ -33,6 +33,10 @@ interface ChartValue {
 })
 class EchartsLineComponent implements AfterViewInit {
     chart: any;
+    option: any = this.getOption()
+
+    constructor(protected elementRef: ElementRef) {
+    }
 
     _values: ChartValue[] = [
         {name: "一", value: 100},
@@ -43,18 +47,18 @@ class EchartsLineComponent implements AfterViewInit {
         {name: "六", value: 100},
         {name: "日", value: 125},
     ]
+
     @Input() set values(v: ChartValue[]) {
         this._values = v
         this.option = this.getOption()
     }
 
     _darkMode: boolean = false;
+
     @Input() set darkMode(value: boolean) {
         this._darkMode = value;
         this.option = this.getOption()
     }
-
-    option: any = this.getOption()
 
     getOption(): EChartsOption {
         return {
@@ -88,9 +92,6 @@ class EchartsLineComponent implements AfterViewInit {
 
     resize() {
         this.chart.resize()
-    }
-
-    constructor(protected elementRef: ElementRef) {
     }
 
     ngAfterViewInit() {

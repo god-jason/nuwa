@@ -1,122 +1,121 @@
-
-<a nz-button (click)="about()">
+<a (click)="about()" nz-button>
     <i nz-icon nzType="question-circle" title="关于"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a nz-button nz-dropdown [nzDropdownMenu]="exportDropDownMenu" title="导出">
+<a [nzDropdownMenu]="exportDropDownMenu" nz-button nz-dropdown title="导出">
     <i nz-icon nzType="profile"></i>
 </a>
 <nz-dropdown-menu #exportDropDownMenu="nzDropdownMenu">
     <ul nz-menu>
-        <li nz-menu-item (click)="handleExport('SVG')">导出SVG</li>
-        <li nz-menu-item (click)="handleExport('PNG')">导出PNG</li>
-        <li nz-menu-item (click)="handleExport('JPEG')">导出JPEG</li>
+        <li (click)="handleExport('SVG')" nz-menu-item>导出SVG</li>
+        <li (click)="handleExport('PNG')" nz-menu-item>导出PNG</li>
+        <li (click)="handleExport('JPEG')" nz-menu-item>导出JPEG</li>
         <li nz-menu-divider></li>
-        <li nz-menu-item (click)="handleExport('file')">导出JSON</li>
-        <li nz-menu-item (click)="handleImport()">导入JSON</li>
+        <li (click)="handleExport('file')" nz-menu-item>导出JSON</li>
+        <li (click)="handleImport()" nz-menu-item>导入JSON</li>
     </ul>
 </nz-dropdown-menu>
 
-<a nz-button (click)="handleSave()" title="保存">
+<a (click)="handleSave()" nz-button title="保存">
     <i nz-icon nzType="save"></i>
 </a>
 
-<a nz-button (click)="handleGrid()">
+<a (click)="handleGrid()" nz-button>
     <i nz-icon nzType="table" title="显示网格"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a nz-button (click)="drawLine()" title="线条">
+<a (click)="drawLine()" nz-button title="线条">
     <i nz-icon nzType="minus"></i>
 </a>
 
-<a nz-button (click)="drawFlow()" title="流动线条">
+<a (click)="drawFlow()" nz-button title="流动线条">
     <i nz-icon nzType="dash"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleUndo()" nz-button [disabled]="!canvas.graph.canUndo()" title="撤销(ctrl+z)">
+<a (click)="handleUndo()" [disabled]="!canvas.graph.canUndo()" nz-button title="撤销(ctrl+z)">
     <i nz-icon nzType="undo"></i>
 </a>
-<a (click)="handleRedo()" nz-button [disabled]="!canvas.graph.canRedo()" title="重做(ctrl+y)">
+<a (click)="handleRedo()" [disabled]="!canvas.graph.canRedo()" nz-button title="重做(ctrl+y)">
     <i nz-icon nzType="redo"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleCut()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="剪切(ctrl+x)">
+<a (click)="handleCut()" [disabled]="!canvas.graph.getSelectedCellCount()" nz-button title="剪切(ctrl+x)">
     <i nz-icon nzType="scissor"></i>
 </a>
-<a (click)="handleCopy()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="复制(ctrl+c)">
+<a (click)="handleCopy()" [disabled]="!canvas.graph.getSelectedCellCount()" nz-button title="复制(ctrl+c)">
     <i nz-icon nzType="copy"></i>
 </a>
-<a (click)="handlePaste()" nz-button [disabled]="!canvas.graph.getCellsInClipboard().length" title="粘贴(ctrl+v)">
+<a (click)="handlePaste()" [disabled]="!canvas.graph.getCellsInClipboard().length" nz-button title="粘贴(ctrl+v)">
     <i nz-icon nzType="snippets"></i>
 </a>
-<a (click)="handleDelete()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()" title="删除">
+<a (click)="handleDelete()" [disabled]="!canvas.graph.getSelectedCellCount()" nz-button title="删除">
     <i nz-icon nzType="delete"></i></a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleAlignLeft()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleAlignLeft()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="align-left" title="左对齐"></i>
 </a>
-<a (click)="handleAlignCenter()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleAlignCenter()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="align-center" title="居中对齐"></i>
 </a>
-<a (click)="handleAlignRight()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleAlignRight()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="align-right" title="右对齐"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleValignTop()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleValignTop()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="vertical-align-top" title="上对齐"></i>
 </a>
-<a (click)="handleValignMiddle()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleValignMiddle()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="vertical-align-middle" title="居中对齐"></i>
 </a>
-<a (click)="handleValignBottom()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleValignBottom()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="vertical-align-bottom" title="下对齐"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleMoveTop()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()">
-    <i nz-icon nzType="vertical-right" title="置顶" [nzRotate]="90"></i>
+<a (click)="handleMoveTop()" [disabled]="!canvas.graph.getSelectedCellCount()" nz-button>
+    <i [nzRotate]="90" nz-icon nzType="vertical-right" title="置顶"></i>
 </a>
-<a (click)="handleMoveUp()" nz-button [disabled]="canvas.graph.getSelectedCellCount()!=1">
+<a (click)="handleMoveUp()" [disabled]="canvas.graph.getSelectedCellCount()!=1" nz-button>
     <i nz-icon nzType="up" title="上移一层"></i>
 </a>
-<a (click)="handleMoveDown()" nz-button [disabled]="canvas.graph.getSelectedCellCount()!=1">
+<a (click)="handleMoveDown()" [disabled]="canvas.graph.getSelectedCellCount()!=1" nz-button>
     <i nz-icon nzType="down" title="下移一层"></i>
 </a>
-<a (click)="handleMoveBottom()" nz-button [disabled]="!canvas.graph.getSelectedCellCount()">
-    <i nz-icon nzType="vertical-left" title="置底" [nzRotate]="90"></i>
+<a (click)="handleMoveBottom()" [disabled]="!canvas.graph.getSelectedCellCount()" nz-button>
+    <i [nzRotate]="90" nz-icon nzType="vertical-left" title="置底"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<a (click)="handleGroup()" nz-button [disabled]="canvas.graph.getSelectedCellCount()<2">
+<a (click)="handleGroup()" [disabled]="canvas.graph.getSelectedCellCount()<2" nz-button>
     <i nz-icon nzType="group" title="组合"></i>
 </a>
-<a (click)="handleUngroup()" nz-button [disabled]="!isGroup()">
+<a (click)="handleUngroup()" [disabled]="!isGroup()" nz-button>
     <i nz-icon nzType="ungroup" title="解除组合"></i>
 </a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<nz-select [ngModel]="scale" (ngModelChange)="handleScale($event)"
-           [ngModelOptions]="{standalone: true}">
-    <nz-option nzLabel="25%" [nzValue]="0.25"></nz-option>
-    <nz-option nzLabel="50%" [nzValue]="0.5"></nz-option>
-    <nz-option nzLabel="75%" [nzValue]="0.75"></nz-option>
-    <nz-option nzLabel="100%" [nzValue]="1"></nz-option>
-    <nz-option nzLabel="200%" [nzValue]="2"></nz-option>
-    <nz-option nzLabel="500%" [nzValue]="5"></nz-option>
+<nz-select (ngModelChange)="handleScale($event)" [ngModelOptions]="{standalone: true}"
+           [ngModel]="scale">
+    <nz-option [nzValue]="0.25" nzLabel="25%"></nz-option>
+    <nz-option [nzValue]="0.5" nzLabel="50%"></nz-option>
+    <nz-option [nzValue]="0.75" nzLabel="75%"></nz-option>
+    <nz-option [nzValue]="1" nzLabel="100%"></nz-option>
+    <nz-option [nzValue]="2" nzLabel="200%"></nz-option>
+    <nz-option [nzValue]="5" nzLabel="500%"></nz-option>
 </nz-select>
 

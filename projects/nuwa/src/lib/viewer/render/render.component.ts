@@ -8,57 +8,21 @@ import {NuwaPage, NuwaProject} from "../../project";
 import {ComponentService} from "../../component.service";
 
 @Component({
-  selector: 'nuwa-render',
-  standalone: true,
-  imports: [],
-  templateUrl: './render.component.html',
-  styleUrl: './render.component.scss'
+    selector: 'nuwa-render',
+    standalone: true,
+    imports: [],
+    templateUrl: './render.component.html',
+    styleUrl: './render.component.scss'
 })
 export class RenderComponent {
 
-    //页面名称
-    _name = ''
-    @Input() set name(name: string) {
-        this._name = name
-
-        //清空
-        this.graph.clearCells()
-
-        //显示名称
-        this.graph.addNode({
-            shape: "rect", x: 0, y: 0, width: 30, height: 30,
-            attrs: {
-                rect: {fill: 'none', strokeWidth: 0},
-                text: {
-                    text: '子页面：'+name,
-                    textAnchor: "start"
-                },
-            }
-        })
-    }
-
-    _page!: NuwaPage
-
-    @Input() set page(page: NuwaPage) {
-        this._page = page
-        this.render(page) //渲染
-    }
-
-    get page(): NuwaPage {
-        return this._page
-    }
-
     @Input() project!: NuwaProject
-
     graph!: Graph;
-
     subs: Subscription[] = []
-
     @Input() mousewheel = false
     @Input() panning = false
     @Input() full = false
     @Input() padding = 10
-
     tools: any = {
         go: (page: string) => {
             // this.project.pages.forEach(value => {
@@ -161,6 +125,39 @@ export class RenderComponent {
         //         text: {text: '页面'},
         //     }
         // })
+    }
+
+    //页面名称
+    _name = ''
+
+    @Input() set name(name: string) {
+        this._name = name
+
+        //清空
+        this.graph.clearCells()
+
+        //显示名称
+        this.graph.addNode({
+            shape: "rect", x: 0, y: 0, width: 30, height: 30,
+            attrs: {
+                rect: {fill: 'none', strokeWidth: 0},
+                text: {
+                    text: '子页面：' + name,
+                    textAnchor: "start"
+                },
+            }
+        })
+    }
+
+    _page!: NuwaPage
+
+    get page(): NuwaPage {
+        return this._page
+    }
+
+    @Input() set page(page: NuwaPage) {
+        this._page = page
+        this.render(page) //渲染
     }
 
     evaluate(expr: string, params: any) {

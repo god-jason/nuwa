@@ -13,18 +13,17 @@ import {NuwaCollection} from "../nuwa";
     styleUrl: './viewer.component.scss'
 })
 export class ViewerComponent {
+    page!: NuwaPage
+    //组件集合
+    @Input() components!: NuwaCollection[]
+
+    constructor() {
+    }
+
     _project!: NuwaProject
 
     @Input() set project(project: NuwaProject) {
         this._project = project
         this.page = project.pages[0] //默认打开第一个
-    }
-
-    page!: NuwaPage
-
-    //组件集合
-    @Input() components!: NuwaCollection[]
-
-    constructor() {
     }
 }

@@ -4,7 +4,6 @@ import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {SwitchSvg} from "./switch_svg";
 
 
@@ -17,15 +16,16 @@ import {SwitchSvg} from "./switch_svg";
         NzSwitchComponent,
     ],
     styles: `
-        :host{
+        :host {
             display: block;
             width: 100%;
             height: 100%;
         }
+
         nz-switch {
-        width: 100%;
-        height: 100%;
-    }`,
+            width: 100%;
+            height: 100%;
+        }`,
     template: `
         <nz-switch [(ngModel)]="value" [ngModelOptions]="{standalone:true}"
                    (change)="onChange($event)"></nz-switch>`
@@ -39,6 +39,7 @@ class ControlSwitchComponent {
         this.listener.emit(this.value)
     }
 }
+
 export const ControlSwitch: NuwaComponent = {
     name: '开关', id: ':switch:',
     svg: SwitchSvg, //icon: "assets/widgets/switch.svg",
@@ -47,10 +48,10 @@ export const ControlSwitch: NuwaComponent = {
     content: ControlSwitchComponent,
     events: [
         ...DefaultEvents,
-        {name:"change", label: "变化"},
+        {name: "change", label: "变化"},
     ],
     properties: [
-        {key:'data/ngArguments/value',label:'开关', type:'switch'},
+        {key: 'data/ngArguments/value', label: '开关', type: 'switch'},
     ],
     bindings: [
         {name: 'value', label: "开关", default: ''},

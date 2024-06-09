@@ -1,10 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Graph} from "@antv/x6";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzContextMenuService} from "ng-zorro-antd/dropdown";
 import {NuwaProject, pageTemplate} from "../../project";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
     selector: 'nuwa-pages',

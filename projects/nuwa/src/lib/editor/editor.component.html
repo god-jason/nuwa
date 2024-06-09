@@ -1,9 +1,9 @@
-<nuwa-toolbar [canvas]="canvas" [project]="project" (onSave)="handleSave()"
-              [(scale)]="scale"></nuwa-toolbar>
+<nuwa-toolbar (onSave)="handleSave()" [(scale)]="scale" [canvas]="canvas"
+              [project]="project"></nuwa-toolbar>
 <div class="body">
-    <nuwa-side-bar [width]="300" [index]="1">
+    <nuwa-side-bar [index]="1" [width]="300">
 
-        <nuwa-pages *sideBarItem="'页面'" [project]="project" (onPageChange)="handlePageChange($event)"></nuwa-pages>
+        <nuwa-pages (onPageChange)="handlePageChange($event)" *sideBarItem="'页面'" [project]="project"></nuwa-pages>
 
         <nuwa-widgets *sideBarItem="'控件'" [canvas]="canvas"></nuwa-widgets>
 
@@ -31,14 +31,14 @@
     </nuwa-side-bar>
     <div class="content">
         <nuwa-canvas #canvas [page]="project.pages[index]"
-                     [style.width]="project.pages[index].width*scale+'px'"
-                     [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
+                     [style.height]="project.pages[index].height*scale+'px'"
+                     [style.width]="project.pages[index].width*scale+'px'"></nuwa-canvas>
     </div>
-    <nuwa-side-bar [width]="400" [right]="true">
-        <nuwa-page-setting *sideBarItem="'页面属性'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-page-setting>
+    <nuwa-side-bar [right]="true" [width]="400">
+        <nuwa-page-setting *sideBarItem="'页面属性'" [backgrounds]="backgrounds" [canvas]="canvas"></nuwa-page-setting>
         <nuwa-cell-setting *sideBarItem="'元素属性'" [canvas]="canvas"></nuwa-cell-setting>
         <nuwa-bindings *sideBarItem="'数据绑定'" [canvas]="canvas" [project]="project"></nuwa-bindings>
         <nuwa-listeners *sideBarItem="'事件响应'" [canvas]="canvas" [project]="project"></nuwa-listeners>
-<!--        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>-->
+        <!--        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>-->
     </nuwa-side-bar>
 </div>

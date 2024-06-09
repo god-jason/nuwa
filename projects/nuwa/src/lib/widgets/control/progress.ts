@@ -2,9 +2,7 @@ import {NuwaComponent} from "../../nuwa";
 import {NzProgressComponent} from "ng-zorro-antd/progress";
 import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {NzButtonComponent} from "ng-zorro-antd/button";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {ProgressSvg} from "./progress_svg";
 
 @Component({
@@ -20,6 +18,7 @@ import {ProgressSvg} from "./progress_svg";
             width: 100%;
             height: 100%;
         }
+
         nz-progress {
             width: 100%;
             height: 100%;
@@ -32,6 +31,7 @@ import {ProgressSvg} from "./progress_svg";
 class ControlProgressComponent {
     @Input() value = 60
     @Input() color = "#6992ff"
+
     constructor(protected elementRef: ElementRef) {
     }
 }
@@ -47,7 +47,7 @@ export const ControlProgress: NuwaComponent = {
         ...DefaultEvents,
     ],
     properties: [
-        {key:'data/ngArguments/value',label:'进度', type:'number', min: 0, max: 100},
+        {key: 'data/ngArguments/value', label: '进度', type: 'number', min: 0, max: 100},
     ],
     bindings: [
         {name: 'value', label: "进度", default: ''},

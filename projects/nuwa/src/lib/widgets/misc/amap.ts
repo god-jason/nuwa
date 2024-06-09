@@ -1,7 +1,6 @@
 import {Component, ElementRef, Input, OnInit} from "@angular/core";
 import {load} from '@amap/amap-jsapi-loader';
 import {NuwaComponent} from "../../nuwa";
-import {CircleSvg} from "../base/circle_svg";
 import {AmapSvg} from "./amap_svg";
 
 @Component({
@@ -28,29 +27,31 @@ class MiscAMapComponent implements OnInit {
 
     @Input() key = "eb6a831c04b6dfedda190d6254febb58"
     @Input() secret = "55de9923dc16159e4750b7c743117e0d"
+    map: any //AMap.Map;
+
+    constructor(protected element: ElementRef) {
+
+    }
 
     @Input() _zoom = 12
+
     @Input() set zoom(s: number) {
         this._zoom = s
         this.map?.setZoom(s)
     }
 
     _style = "amap://styles/normal"
+
     @Input() set style(s: string) {
         this._style = s
         this.map?.setMapStyle(s)
     }
 
     _city = "无锡"
+
     @Input() set city(s: string) {
         this._city = s
         this.map?.setCity(s)
-    }
-
-    map: any //AMap.Map;
-
-    constructor(protected element: ElementRef) {
-
     }
 
     ngOnInit() {
@@ -100,10 +101,10 @@ export const MiscAMap: NuwaComponent = {
     metadata: {width: 200, height: 100},
     content: MiscAMapComponent,
     properties: [
-        {key: "data/ngArguments/key", label: "KEY", type: "text", default:"eb6a831c04b6dfedda190d6254febb58"},
-        {key: "data/ngArguments/secret", label: "秘钥", type: "text", default:"55de9923dc16159e4750b7c743117e0d"},
-        {key: "data/ngArguments/city", label: "城市", type: "text", default:"无锡"},
-        {key: "data/ngArguments/zoom", label: "缩放", type: "number", default:12, min:2, max: 30},
+        {key: "data/ngArguments/key", label: "KEY", type: "text", default: "eb6a831c04b6dfedda190d6254febb58"},
+        {key: "data/ngArguments/secret", label: "秘钥", type: "text", default: "55de9923dc16159e4750b7c743117e0d"},
+        {key: "data/ngArguments/city", label: "城市", type: "text", default: "无锡"},
+        {key: "data/ngArguments/zoom", label: "缩放", type: "number", default: 12, min: 2, max: 30},
         {
             key: "data/ngArguments/style", label: "风格", type: "select", options: [
                 {value: "amap://styles/normal", label: "标准"},

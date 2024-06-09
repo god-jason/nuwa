@@ -1,4 +1,4 @@
-<form [formGroup]="form" (change)="onChange($event)" *ngIf="cell">
+<form (change)="onChange($event)" *ngIf="cell" [formGroup]="form">
 
     X
     <nz-input-number formControlName="x"/>

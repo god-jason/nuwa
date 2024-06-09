@@ -8,7 +8,7 @@
     background-color: #f0f0f0;
     user-select: none;
 
-    .item{
+    .item {
         background-color: #d0d0d0;
         border: 1px solid #d0d0d0;
         margin: 2px 1px;
@@ -16,11 +16,11 @@
         writing-mode: vertical-rl;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             background-color: white;
         }
 
-        &.active{
+        &.active {
             background-color: white;
         }
     }
@@ -32,7 +32,7 @@
     overflow-y: auto;
 }
 
-.split{
+.split {
     width: 8px;
     background-color: #c9c9c9;
     cursor: col-resize;

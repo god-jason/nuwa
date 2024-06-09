@@ -64,7 +64,7 @@ export class PageSettingComponent {
     }
 
     selectBackground(b: NuwaImage) {
-        this.editor.patchValue({background:{image: b.url}})
+        this.editor.patchValue({background: {image: b.url}})
         this.backgroundVisible = false
     }
 }

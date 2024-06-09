@@ -18,6 +18,15 @@ export class TransformSettingComponent implements OnInit, OnDestroy {
 
     form!: FormGroup;
 
+    constructor(private fb: FormBuilder) {
+        this.form = fb.group({
+            x: [0, [Validators.required]],
+            y: [0, [Validators.required]],
+            width: [0, [Validators.required]],
+            height: [0, [Validators.required]],
+            angle: [0, [Validators.required]],
+        })
+    }
 
     onCellChangeSize(event: { cell: Cell, current: any }) {
         if (event.cell == this.cell) {
@@ -70,17 +79,6 @@ export class TransformSettingComponent implements OnInit, OnDestroy {
         this.canvas.graph.off("cell:change:position", this.onCellChangePosition)
         this.canvas.graph.off("cell:change:angle", this.onCellChangeAngle)
         this.canvas.graph.off("cell:selected", this.onCellSelected)
-    }
-
-
-    constructor(private fb: FormBuilder) {
-        this.form = fb.group({
-            x: [0, [Validators.required]],
-            y: [0, [Validators.required]],
-            width: [0, [Validators.required]],
-            height: [0, [Validators.required]],
-            angle: [0, [Validators.required]],
-        })
     }
 
     onChange($event: Event) {

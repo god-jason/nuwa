@@ -9,7 +9,7 @@ export const MiscOutlet: NuwaComponent = {
     metadata: {width: 300, height: 200},
     content: RenderComponent,
     properties: [
-        {key:"data/ngArguments/name", label: "名称", type: "text", default: "新建子页面"},
+        {key: "data/ngArguments/name", label: "名称", type: "text", default: "新建子页面"},
         //{key:"data/name", label: "名称", type: "text", default: "新建子页面"},
         //{key:"data/ngArguments/page", label: "URL", type: "text"},
     ],

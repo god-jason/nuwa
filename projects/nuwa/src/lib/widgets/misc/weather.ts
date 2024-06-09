@@ -22,28 +22,28 @@ import {WeatherSvg} from "./weather_svg";
 })
 class MiscWeatherComponent {
     base = "https://i.tianqi.com/"
-    _code = "code"
-    _id = 1
+    src!: SafeResourceUrl
 
+    constructor(private sanitizer: DomSanitizer) {
+        this.setUrl()
+    }
+
+    _code = "code"
 
     @Input() set code(code: string) {
         this._code = code
         this.setUrl()
     }
 
+    _id = 1
+
     @Input() set id(id: number) {
         this._id = id
         this.setUrl()
     }
 
-    src!: SafeResourceUrl
-
     setUrl() {
         this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.base + "?c=" + this._code + "&id=" + this._id)
-    }
-
-    constructor(private sanitizer: DomSanitizer) {
-        this.setUrl()
     }
 }
 

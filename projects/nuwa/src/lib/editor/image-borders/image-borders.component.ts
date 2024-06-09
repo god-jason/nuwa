@@ -1,12 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
-import {NuwaImageBorderGallery, NuwaImageBorder} from "../../nuwa";
+import {NuwaImageBorder, NuwaImageBorderGallery} from "../../nuwa";
 import {ImageBorder} from "../../widgets/misc/image-border";
 
 @Component({
-  selector: 'nuwa-image-borders',
-  templateUrl: './image-borders.component.html',
-  styleUrl: './image-borders.component.scss'
+    selector: 'nuwa-image-borders',
+    templateUrl: './image-borders.component.html',
+    styleUrl: './image-borders.component.scss'
 })
 export class ImageBordersComponent {
     @Input() borders!: NuwaImageBorderGallery[]
@@ -16,6 +16,6 @@ export class ImageBordersComponent {
     }
 
     onDragStart($event: DragEvent, image: NuwaImageBorder) {
-        this.canvas?.drawNode($event, ImageBorder, {data:{ngArguments: image}})
+        this.canvas?.drawNode($event, ImageBorder, {data: {ngArguments: image}})
     }
 }

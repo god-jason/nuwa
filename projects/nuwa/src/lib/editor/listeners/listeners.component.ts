@@ -14,7 +14,7 @@ import {NuwaProject} from "../../project";
 })
 export class ListenersComponent implements OnInit, OnDestroy {
 
-    @Input() project!:NuwaProject
+    @Input() project!: NuwaProject
     component!: NuwaComponent
 
     @Input() canvas!: CanvasComponent;
@@ -32,6 +32,9 @@ export class ListenersComponent implements OnInit, OnDestroy {
         //"event": "发送事件",
     }
 
+    constructor(private ms: NzModalService, private cs: ComponentService) {
+    }
+
     getActionName(key: any) {
         return this.ACTIONS[key]
     }
@@ -46,10 +49,6 @@ export class ListenersComponent implements OnInit, OnDestroy {
             }
         return '[' + key + ']'
     }
-
-    constructor(private ms: NzModalService, private cs: ComponentService) {
-    }
-
 
     onCellSelected(event: { cell: Cell }) {
         this.cell = event.cell

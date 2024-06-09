@@ -4,7 +4,6 @@ import {CommonModule} from "@angular/common";
 import {NzInputDirective} from "ng-zorro-antd/input";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {InputSvg} from "./input_svg";
 
 @Component({
@@ -43,7 +42,7 @@ export const ControlInput: NuwaComponent = {
     events: [
         ...DefaultEvents,
         {name: "blur", label: "失去焦点"},
-        {name:"change", label: "变化"},
+        {name: "change", label: "变化"},
     ],
     properties: [],
     bindings: [

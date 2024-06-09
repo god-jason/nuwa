@@ -36,10 +36,12 @@ import {
     DeleteOutline,
     DownloadOutline,
     DownOutline,
+    DragOutline,
     ExportOutline,
     GroupOutline,
     HolderOutline,
     MinusOutline,
+    PlusOutline,
     ProfileOutline,
     RedoOutline,
     SaveOutline,
@@ -55,8 +57,6 @@ import {
     VerticalAlignTopOutline,
     VerticalLeftOutline,
     VerticalRightOutline,
-    PlusOutline,
-    DragOutline,
 } from '@ant-design/icons-angular/icons';
 import {HtmlPipe} from "./html.pipe";
 import {HtmlDirective} from "./html.directive";

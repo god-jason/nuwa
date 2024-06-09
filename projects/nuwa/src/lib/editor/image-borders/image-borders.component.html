@@ -1,7 +1,7 @@
 <nz-collapse>
-    <nz-collapse-panel *ngFor="let w of borders; let f = first" [nzHeader]="w.name" [nzActive]="f">
-        <div class="component" *ngFor="let c of w.borders" draggable="true" (dragstart)="onDragStart($event, c)">
-            <img [src]="c.url" [alt]="c.name" [title]="c.name || c.url" loading="lazy"/>
+    <nz-collapse-panel *ngFor="let w of borders; let f = first" [nzActive]="f" [nzHeader]="w.name">
+        <div (dragstart)="onDragStart($event, c)" *ngFor="let c of w.borders" class="component" draggable="true">
+            <img [alt]="c.name" [src]="c.url" [title]="c.name || c.url" loading="lazy"/>
         </div>
     </nz-collapse-panel>
 </nz-collapse>

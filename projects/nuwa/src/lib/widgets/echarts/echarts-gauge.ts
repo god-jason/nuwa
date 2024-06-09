@@ -2,8 +2,6 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
-import type {EChartsOption} from "echarts";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsGaugeSvg} from "./echarts-gauge_svg";
 
 
@@ -31,20 +29,24 @@ class EchartsGaugeComponent {
     chart: any;
 
     @Input() name = ''
+    option: any = this.getOption()
+
+    constructor(protected elementRef: ElementRef) {
+    }
 
     _value = 30
-    @Input() set value(v:number){
+
+    @Input() set value(v: number) {
         this._value = v;
         this.option = this.getOption()
     }
 
     _darkMode: boolean = false;
+
     @Input() set darkMode(value: boolean) {
         this._darkMode = value;
         this.option = this.getOption()
     }
-
-    option: any = this.getOption()
 
     getOption(): any {
         return {
@@ -68,9 +70,6 @@ class EchartsGaugeComponent {
 
     resize() {
         this.chart.resize()
-    }
-
-    constructor(protected elementRef: ElementRef) {
     }
 
     ngAfterViewInit() {

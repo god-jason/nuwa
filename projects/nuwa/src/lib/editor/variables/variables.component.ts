@@ -1,7 +1,6 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {NuwaProject} from "../../project";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
-import {Editor} from "codemirror";
 
 @Component({
     selector: 'nuwa-variables',

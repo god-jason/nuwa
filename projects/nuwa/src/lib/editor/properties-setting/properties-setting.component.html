@@ -1,7 +1,7 @@
 <p>组件：{{ component?.name }}</p>
 
 <p>
-    名称：<input [(ngModel)]="name" (change)="onNameChange()">
+    名称：<input (change)="onNameChange()" [(ngModel)]="name">
 </p>
 
-<smart-editor [fields]="fields" [values]="data" (change)="onChange()" #editor></smart-editor>
+<smart-editor #editor (change)="onChange()" [fields]="fields" [values]="data"></smart-editor>

@@ -5,8 +5,8 @@ import {RectSvg} from "./rect_svg";
 export const BaseRect: NuwaComponent = {
     name: '矩形', id: 'rect',
     svg: RectSvg, //icon: "assets/widgets/rect.svg",
-    type: "shape", internal:true,
-    metadata: { width: 100, height: 40 },
+    type: "shape", internal: true,
+    metadata: {width: 100, height: 40},
     events: [
         ...DefaultEvents,
     ],
@@ -14,8 +14,6 @@ export const BaseRect: NuwaComponent = {
         ...StrokeProperties('rect'),
         ...RadiusProperties('rect'),
     ],
-    bindings: [
-    ],
-    hooks: {
-    },
+    bindings: [],
+    hooks: {},
 }

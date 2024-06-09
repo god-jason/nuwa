@@ -6,7 +6,6 @@ import {BaseCircle} from "./base/circle";
 import {BaseEllipse} from "./base/ellipse";
 import {BaseImage} from "./base/image";
 import {ControlNumber} from "./control/number";
-import {Echarts} from "./echarts/echarts";
 import {EchartsBar} from "./echarts/echarts-bar";
 import {EchartsGauge} from "./echarts/echarts-gauge";
 import {EchartsLine} from "./echarts/echarts-line";

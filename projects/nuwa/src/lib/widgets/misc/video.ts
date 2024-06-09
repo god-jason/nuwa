@@ -2,7 +2,6 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {CircleSvg} from "../base/circle_svg";
 import {VideoSvg} from "./video_svg";
 
 @Component({
@@ -29,12 +28,12 @@ class MiscVideoComponent {
 
     src!: SafeResourceUrl
 
-    @Input() set url(u: string) {
-        this.src = this.sanitizer.bypassSecurityTrustResourceUrl(u)
-    }
-
     constructor(private sanitizer: DomSanitizer) {
         this.src = this.sanitizer.bypassSecurityTrustResourceUrl("")
+    }
+
+    @Input() set url(u: string) {
+        this.src = this.sanitizer.bypassSecurityTrustResourceUrl(u)
     }
 }
 
@@ -45,12 +44,12 @@ export const MiscVideo: NuwaComponent = {
     metadata: {width: 400, height: 300},
     content: MiscVideoComponent,
     properties: [
-        {key:"data/name", label: "名称", type: "text", default: "新建视频入口"},
-        {key:"data/ngArguments/url", label: "URL", type: "text"},
-        {key:"data/ngArguments/autoplay", label: "自动播放", type: "switch", default: true},
-        {key:"data/ngArguments/controls", label: "显示控件", type: "switch", default: true},
-        {key:"data/ngArguments/loop", label: "循环播放", type: "switch", default: true},
-        {key:"data/ngArguments/muted", label: "静音", type: "switch", default: true},
+        {key: "data/name", label: "名称", type: "text", default: "新建视频入口"},
+        {key: "data/ngArguments/url", label: "URL", type: "text"},
+        {key: "data/ngArguments/autoplay", label: "自动播放", type: "switch", default: true},
+        {key: "data/ngArguments/controls", label: "显示控件", type: "switch", default: true},
+        {key: "data/ngArguments/loop", label: "循环播放", type: "switch", default: true},
+        {key: "data/ngArguments/muted", label: "静音", type: "switch", default: true},
     ],
     bindings: [],
     hooks: {},

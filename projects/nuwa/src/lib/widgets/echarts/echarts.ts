@@ -1,9 +1,8 @@
 import {NuwaComponent} from "../../nuwa";
-import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
+import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsSvg} from "./echarts_svg";
 
 @Component({
@@ -27,7 +26,7 @@ class EchartsComponent {
 
     @Input() option: EChartsOption = {
         title: {
-          text: "echarts"
+            text: "echarts"
         },
         xAxis: {
             type: 'category',
@@ -48,16 +47,16 @@ class EchartsComponent {
         ]
     }
 
+    constructor(protected elementRef: ElementRef) {
+    }
+
     chartInit(ec: any) {
         this.chart = ec
         console.log(this.elementRef.nativeElement.clientWidth, this.elementRef.nativeElement.clientHeight)
     }
 
-    resize(){
+    resize() {
         this.chart.resize()
-    }
-
-    constructor(protected elementRef: ElementRef) {
     }
 
     ngAfterViewInit() {

@@ -13,11 +13,11 @@
         <td>{{ getActionName(e.action) }}</td>
         <td>{{ e.target }}</td>
         <td>
-            <i nz-icon nzType="edit" title="编辑" (click)="edit(i)"></i>
-            <i nz-icon nzType="delete" title="删除" (click)="delete(i)"></i>
+            <i (click)="edit(i)" nz-icon nzType="edit" title="编辑"></i>
+            <i (click)="delete(i)" nz-icon nzType="delete" title="删除"></i>
         </td>
     </tr>
     </tbody>
 </nz-table>
 
-<button nz-button nzType="primary" *ngIf="cell" (click)="add()">添加事件处理</button>
+<button (click)="add()" *ngIf="cell" nz-button nzType="primary">添加事件处理</button>

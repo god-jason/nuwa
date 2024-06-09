@@ -47,10 +47,10 @@ export const ControlSlider: NuwaComponent = {
     content: ControlSliderComponent,
     events: [
         ...DefaultEvents,
-        {name:"change", label: "变化"},
+        {name: "change", label: "变化"},
     ],
     properties: [
-        {key:'data/ngArguments/value',label:'进度', type:'number', min: 0, max: 100},
+        {key: 'data/ngArguments/value', label: '进度', type: 'number', min: 0, max: 100},
     ],
     bindings: [
         {name: 'value', label: "进度", default: ''},

@@ -1,11 +1,11 @@
 <div class="side">
-    <div class="item" *ngFor="let c of components?.toArray(); let i=index"
-         (click)="onClick(i)" [ngClass]="{active: index==i}">
+    <div (click)="onClick(i)" *ngFor="let c of components?.toArray(); let i=index"
+         [ngClass]="{active: index==i}" class="item">
         {{ c.title }}
     </div>
 </div>
 <div class="content">
     <ng-content></ng-content>
 </div>
-<div class="split" (mousedown)="onSplit($event)" *ngIf="index>-1"></div>
+<div (mousedown)="onSplit($event)" *ngIf="index>-1" class="split"></div>
 

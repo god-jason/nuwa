@@ -29,7 +29,7 @@ export class ListenerSettingComponent implements AfterViewInit {
     outlet: SmartField = {key: "outlet", label: "入口", type: "select", hidden: true, options: []}
     page: SmartField = {key: "page", label: "页面", type: "select", hidden: true, options: []}
 
-    iframe: SmartField = {key: "iframe", label: "web入口", type: "select", hidden: true, options:[]}
+    iframe: SmartField = {key: "iframe", label: "web入口", type: "select", hidden: true, options: []}
     url: SmartField = {key: "url", label: "链接", type: "text", hidden: true}
 
     parameters: SmartField = {
@@ -96,10 +96,10 @@ export class ListenerSettingComponent implements AfterViewInit {
         this.cell.options = this.data.canvas.graph.getCells().map(p => {
             return {value: p.id, label: p.data.name}
         })
-        this.outlet.options = this.data.canvas.graph.getCells().filter(p=>p.shape==":outlet:").map(p => {
+        this.outlet.options = this.data.canvas.graph.getCells().filter(p => p.shape == ":outlet:").map(p => {
             return {value: p.id, label: p.data.name}
         })
-        this.iframe.options = this.data.canvas.graph.getCells().filter(p=>p.shape==":iframe:").map(p => {
+        this.iframe.options = this.data.canvas.graph.getCells().filter(p => p.shape == ":iframe:").map(p => {
             return {value: p.id, label: p.data.name}
         })
         this.page.options = this.data.project.pages.map(p => {

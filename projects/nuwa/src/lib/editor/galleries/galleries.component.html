@@ -1,7 +1,7 @@
 <nz-collapse>
-    <nz-collapse-panel *ngFor="let w of galleries; let f = first" [nzHeader]="w.name" [nzActive]="f">
-        <div class="component" *ngFor="let c of w.images" draggable="true" (dragstart)="onDragStart($event, c.url)">
-            <img [src]="c.url" [alt]="c.name" [title]="c.name || c.url" loading="lazy"/>
+    <nz-collapse-panel *ngFor="let w of galleries; let f = first" [nzActive]="f" [nzHeader]="w.name">
+        <div (dragstart)="onDragStart($event, c.url)" *ngFor="let c of w.images" class="component" draggable="true">
+            <img [alt]="c.name" [src]="c.url" [title]="c.name || c.url" loading="lazy"/>
         </div>
     </nz-collapse-panel>
 </nz-collapse>

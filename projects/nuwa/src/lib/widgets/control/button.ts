@@ -3,7 +3,6 @@ import {NzButtonComponent} from "ng-zorro-antd/button";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
 import {ButtonSvg} from "./button_svg";
 
 @Component({

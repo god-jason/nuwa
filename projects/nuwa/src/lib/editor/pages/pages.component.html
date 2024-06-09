@@ -1,15 +1,14 @@
-
-<nz-list nzSize="small" nzBordered cdkDropList (cdkDropListDropped)="onDrop($event)">
+<nz-list (cdkDropListDropped)="onDrop($event)" cdkDropList nzBordered nzSize="small">
     @for (page of project.pages; track $index) {
         <nz-list-item class="page" (click)="open($index)" [ngClass]="{selected: $index==index}"
                       (contextmenu)="menuService.create($event, menu)" cdkDrag>
-            {{page.name || '未命名'}}
+            {{ page.name || '未命名' }}
             <i nz-icon nzType="holder" style="cursor:move;" cdkDragHandle></i>
         </nz-list-item>
         <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
                 <li nz-menu-item (click)="handleCopy($index)">复制</li>
-<!--                <li nz-menu-item (click)="handleEdit($index)">重命名</li>-->
+                <!--                <li nz-menu-item (click)="handleEdit($index)">重命名</li>-->
                 <li nz-menu-item (click)="handleDel($index)">删除</li>
             </ul>
         </nz-dropdown-menu>
@@ -17,4 +16,4 @@
 </nz-list>
 
 
-<button type="button" nz-button nzType="primary" (click)="handleAdd()">创建新页面</button>
+<button (click)="handleAdd()" nz-button nzType="primary" type="button">创建新页面</button>

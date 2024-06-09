@@ -2,7 +2,6 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {CircleSvg} from "../base/circle_svg";
 import {WebSvg} from "./web_svg";
 
 @Component({
@@ -24,12 +23,12 @@ import {WebSvg} from "./web_svg";
 class MiscWebComponent {
     src!: SafeResourceUrl
 
-    @Input() set url(u: string) {
-        this.src = this.sanitizer.bypassSecurityTrustResourceUrl(u)
-    }
-
     constructor(private sanitizer: DomSanitizer) {
         this.src = this.sanitizer.bypassSecurityTrustResourceUrl("")
+    }
+
+    @Input() set url(u: string) {
+        this.src = this.sanitizer.bypassSecurityTrustResourceUrl(u)
     }
 }
 
@@ -40,8 +39,8 @@ export const MiscWeb: NuwaComponent = {
     metadata: {width: 200, height: 160},
     content: MiscWebComponent,
     properties: [
-        {key:"data/ngArguments/url", label: "URL", type: "text"},
-        {key:"data/name", label: "名称", type: "text", default: "新建web入口"},
+        {key: "data/ngArguments/url", label: "URL", type: "text"},
+        {key: "data/name", label: "名称", type: "text", default: "新建web入口"},
     ],
     bindings: [],
     hooks: {},

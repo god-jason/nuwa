@@ -1,6 +1,5 @@
 import {NuwaComponent} from "../../nuwa";
 import {Component} from "@angular/core";
-import {CircleSvg} from "../base/circle_svg";
 import {EchartsMapSvg} from "./echarts-map_svg";
 
 @Component({

@@ -7,9 +7,9 @@ import {Cell} from "@antv/x6";
 import {ComponentService} from "../../component.service";
 
 @Component({
-  selector: 'nuwa-bindings',
-  templateUrl: './bindings.component.html',
-  styleUrl: './bindings.component.scss'
+    selector: 'nuwa-bindings',
+    templateUrl: './bindings.component.html',
+    styleUrl: './bindings.component.scss'
 })
 export class BindingsComponent {
     @Input() canvas!: CanvasComponent;
@@ -55,7 +55,7 @@ export class BindingsComponent {
 
         //表单
         this.fields = []
-        this.component.bindings?.forEach(b=>{
+        this.component.bindings?.forEach(b => {
             this.fields.push({
                 key: b.name,
                 label: b.label,
@@ -75,7 +75,7 @@ export class BindingsComponent {
         this.data = this.cell.data?.bindings || {}
 
         //变量表
-        this.options = this.project.variables.map(v=>{
+        this.options = this.project.variables.map(v => {
             return {label: v.label, value: v.name}
         })
         this.options.unshift({label: '无', value: ''})

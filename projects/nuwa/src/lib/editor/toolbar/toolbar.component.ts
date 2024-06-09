@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, ViewContainerRef} from '@angular/core';
-import {Graph, Node} from "@antv/x6";
+import {Node} from "@antv/x6";
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalService} from 'ng-zorro-antd/modal';
 //import {ComponentService} from "../../component.service";
@@ -25,6 +25,7 @@ export class ToolbarComponent {
 
     @Input() scale = 1
     @Output() scaleChange = new EventEmitter<number>()
+    showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
     constructor(
         private modal: NzModalService,
@@ -244,15 +245,12 @@ export class ToolbarComponent {
         })
     }
 
-
     isGroup(): boolean {
         if (this.canvas.graph.getSelectedCellCount() !== 1) return false;
         let current = this.canvas.graph.getSelectedCells()[0];
         //if (!current) return false;
         return current.getChildCount() > 0;
     }
-
-    showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
     handleGrid() {
         if (this.showGrid) this.canvas.graph.hideGrid()

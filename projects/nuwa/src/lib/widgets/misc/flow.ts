@@ -1,6 +1,5 @@
 import {NuwaComponent} from "../../nuwa";
-import {LineProperties, StrokeProperties} from "../properties";
-import {CircleSvg} from "../base/circle_svg";
+import {LineProperties} from "../properties";
 import {FlowSvg} from "./flow_svg";
 
 export const MiscFlow: NuwaComponent = {

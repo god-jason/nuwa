@@ -1,10 +1,10 @@
-<smart-editor [fields]="fields" [values]="canvas.page" (change)="onChange()" #editor></smart-editor>
+<smart-editor #editor (change)="onChange()" [fields]="fields" [values]="canvas.page"></smart-editor>
 
-<button nz-button [nzType]="'primary'" (click)="sizeVisible=true">常见尺寸</button>
-<nz-modal [(nzVisible)]="sizeVisible" nzTitle="选择尺寸" nzFooter=" " (nzOnCancel)="sizeVisible=false">
+<button (click)="sizeVisible=true" [nzType]="'primary'" nz-button>常见尺寸</button>
+<nz-modal (nzOnCancel)="sizeVisible=false" [(nzVisible)]="sizeVisible" nzFooter=" " nzTitle="选择尺寸">
     <ng-container *nzModalContent>
         <nz-list>
-            <nz-list-item *ngFor="let b of sizes" (click)="selectSize(b)">
+            <nz-list-item (click)="selectSize(b)" *ngFor="let b of sizes">
                 <span>{{ b.name || '' }} </span>
                 {{ b.width }} x {{ b.height }}
             </nz-list-item>
@@ -13,12 +13,12 @@
 </nz-modal>
 
 
-<button nz-button [nzType]="'primary'" (click)="backgroundVisible=true">背景库</button>
-<nz-modal [(nzVisible)]="backgroundVisible" nzTitle="选择背景" nzFooter=" " (nzOnCancel)="backgroundVisible=false">
+<button (click)="backgroundVisible=true" [nzType]="'primary'" nz-button>背景库</button>
+<nz-modal (nzOnCancel)="backgroundVisible=false" [(nzVisible)]="backgroundVisible" nzFooter=" " nzTitle="选择背景">
     <ng-container *nzModalContent>
         <div class="backgrounds">
-            <div class="background" *ngFor="let b of backgrounds" (click)="selectBackground(b)">
-                <img [src]="b.thumbnail || b.url" [alt]="b.name" [title]="b.name">
+            <div (click)="selectBackground(b)" *ngFor="let b of backgrounds" class="background">
+                <img [alt]="b.name" [src]="b.thumbnail || b.url" [title]="b.name">
             </div>
         </div>
     </ng-container>

@@ -16,11 +16,6 @@ export class ComponentService {
     //TODO 处理加载中
     public ready = false
     public readySub = new Subject<boolean>()
-
-    public Ready() {
-        return this.readySub.asObservable()
-    }
-
     public components: { [id: string]: NuwaComponent } = {}
 
     constructor(private ns: NzNotificationService) {
@@ -30,6 +25,10 @@ export class ComponentService {
         this.PutComponent(ImageBorder)
 
         //this.PutComponent(BaseGroup)
+    }
+
+    public Ready() {
+        return this.readySub.asObservable()
     }
 
     // public PutImage(component: NuwaImageComponent) {
@@ -46,7 +45,6 @@ export class ComponentService {
     //     const c = createHtmlComponent(component)
     //     this.PutComponent(c)
     // }
-
 
     public PutComponent(component: NuwaComponent) {
         this.components[component.id] = component

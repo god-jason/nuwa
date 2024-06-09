@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {CanvasComponent} from "./canvas/canvas.component";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
-import {NuwaCollection, NuwaImageGallery, NuwaImage, NuwaImageBorderGallery} from "../nuwa";
+import {NuwaCollection, NuwaImage, NuwaImageBorderGallery, NuwaImageGallery} from "../nuwa";
 
 @Component({
     selector: 'nuwa-editor',
@@ -13,33 +13,28 @@ export class EditorComponent {
     id: any = ''
 
     page!: NuwaPage
-
-    _project: NuwaProject = projectTemplate()
-
-    @Input() set project(project: NuwaProject) {
-        this.title.setTitle(this._project.name)
-        this.page = project.pages[0]
-    }
-
-    get project() {
-        return this._project
-    }
-
     //组件集合
     @Input() components!: NuwaCollection[]
     @Input() galleries!: NuwaImageGallery[];
     @Input() imageBorders!: NuwaImageBorderGallery[];
     @Input() backgrounds!: NuwaImage[];
-
     index = 0;
-
     scale = 1;
-
     @ViewChild(CanvasComponent) canvas!: CanvasComponent
-
     @Output() onSave = new EventEmitter<NuwaProject>()
 
     constructor(private title: Title) {
+    }
+
+    _project: NuwaProject = projectTemplate()
+
+    get project() {
+        return this._project
+    }
+
+    @Input() set project(project: NuwaProject) {
+        this.title.setTitle(this._project.name)
+        this.page = project.pages[0]
     }
 
     handleSave() {

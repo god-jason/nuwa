@@ -11,7 +11,6 @@ import {
     TemplateRef,
     ViewContainerRef,
 } from '@angular/core';
-import {BooleanInput} from "ng-zorro-antd/core/types";
 
 @Directive({selector: '[sideBarItem]'})
 export class SideBarItemDirective {
@@ -41,6 +40,9 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit {
 
     @HostBinding("style.width") styleWidth = "200px";
     @HostBinding("style.flex-direction") styleFlexDirection = "row";
+    @Input() index = 0;
+    splitting = false;
+    lastX = 0;
 
     //右对齐
     _right = false;
@@ -50,7 +52,6 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit {
         this.styleFlexDirection = p ? "row-reverse" : "row";
     }
 
-
     //宽度
     _width = 200
 
@@ -58,8 +59,6 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit {
         this._width = w
         this.styleWidth = w + "px"
     }
-
-    @Input() index = 0;
 
     onClick(i: number) {
         if (this.index > -1)
@@ -86,9 +85,6 @@ export class SideBarComponent implements AfterViewInit, AfterContentInit {
     ngAfterContentInit() {
 
     }
-
-    splitting = false;
-    lastX = 0;
 
     onSplit($event: MouseEvent) {
         this.splitting = true

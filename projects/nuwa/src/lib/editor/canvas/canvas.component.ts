@@ -26,22 +26,12 @@ import {NuwaPage} from "../../project";
 })
 export class CanvasComponent {
 
-    _page!: NuwaPage
-
-    @Input() set page(page: NuwaPage) {
-        this._page = page
-        this.render(page) //渲染
-    }
-
-    get page(): NuwaPage {
-        return this._page
-    }
-
     public graph: Graph;
-
     dnd: Dnd;
-
     edge: Edge | undefined;
+    currentCell?: any;
+    drawingEdgeComponent?: NuwaComponent
+    drawingEdge?: Edge
 
     constructor(
         private ns: NzNotificationService,
@@ -164,7 +154,16 @@ export class CanvasComponent {
         })
     }
 
-    currentCell?: any;
+    _page!: NuwaPage
+
+    get page(): NuwaPage {
+        return this._page
+    }
+
+    @Input() set page(page: NuwaPage) {
+        this._page = page
+        this.render(page) //渲染
+    }
 
     render(page: NuwaPage) {
         page.content?.cells?.forEach((cell: any) => {
@@ -183,10 +182,6 @@ export class CanvasComponent {
     drawBackground() {
         this.graph.drawBackground(this.page.background)
     }
-
-
-    drawingEdgeComponent?: NuwaComponent
-    drawingEdge?: Edge
 
     drawEdge(component: NuwaComponent) {
         this.drawingEdgeComponent = undefined
