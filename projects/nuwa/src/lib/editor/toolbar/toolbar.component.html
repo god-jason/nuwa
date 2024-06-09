@@ -1,30 +1,23 @@
-<a (click)="about()" nz-button>
-    <i nz-icon nzType="question-circle" title="关于"></i>
-</a>
 
-<nz-divider nzType="vertical"></nz-divider>
+<a (click)="handleSave()" nz-button title="保存">
+    <i nz-icon nzType="save"></i>
+</a>
 
 <a [nzDropdownMenu]="exportDropDownMenu" nz-button nz-dropdown title="导出">
     <i nz-icon nzType="profile"></i>
 </a>
 <nz-dropdown-menu #exportDropDownMenu="nzDropdownMenu">
     <ul nz-menu>
-        <li (click)="handleExport('SVG')" nz-menu-item>导出SVG</li>
-        <li (click)="handleExport('PNG')" nz-menu-item>导出PNG</li>
-        <li (click)="handleExport('JPEG')" nz-menu-item>导出JPEG</li>
+        <li (click)="canvas.graph.exportSVG()" nz-menu-item>导出SVG</li>
+        <li (click)="canvas.graph.exportPNG()" nz-menu-item>导出PNG</li>
+        <li (click)="canvas.graph.exportJPEG()" nz-menu-item>导出JPEG</li>
         <li nz-menu-divider></li>
-        <li (click)="handleExport('file')" nz-menu-item>导出JSON</li>
+        <li (click)="handleExport()" nz-menu-item>导出JSON</li>
         <li (click)="handleImport()" nz-menu-item>导入JSON</li>
     </ul>
 </nz-dropdown-menu>
 
-<a (click)="handleSave()" nz-button title="保存">
-    <i nz-icon nzType="save"></i>
-</a>
 
-<a (click)="handleGrid()" nz-button>
-    <i nz-icon nzType="table" title="显示网格"></i>
-</a>
 
 <nz-divider nzType="vertical"></nz-divider>
 
@@ -109,6 +102,10 @@
 
 <nz-divider nzType="vertical"></nz-divider>
 
+<a (click)="handleGrid()" nz-button>
+    <i nz-icon nzType="table" title="显示网格"></i>
+</a>
+
 <nz-select (ngModelChange)="handleScale($event)" [ngModelOptions]="{standalone: true}"
            [ngModel]="scale">
     <nz-option [nzValue]="0.25" nzLabel="25%"></nz-option>
@@ -118,4 +115,14 @@
     <nz-option [nzValue]="2" nzLabel="200%"></nz-option>
     <nz-option [nzValue]="5" nzLabel="500%"></nz-option>
 </nz-select>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<a (click)="preview()" nz-button>
+    <i nz-icon nzType="play-square" title="预览"></i>
+</a>
+
+<a (click)="about()" nz-button>
+    <i nz-icon nzType="question-circle" title="关于"></i>
+</a>
 

@@ -39,23 +39,13 @@ export class ToolbarComponent {
         //console.log("save", this.canvas.graph.toJSON())
     }
 
-    handleExport(type: string) {
-        console.log(this.canvas.graph);
-        switch (type) {
-            case 'SVG':
-                this.canvas.graph.exportSVG();
-                break;
-            case 'PNG':
-                this.canvas.graph.exportPNG();
-                break;
-            case 'JPEG':
-                // 有点问题
-                this.canvas.graph.exportJPEG();
-                break;
-            case 'file':
-                this.savefiles(this.canvas.graph.toJSON(), Date.now() + '');
-                break;
-        }
+    handleExport() {
+        const urlObject = window.URL || window.webkitURL || window;
+        const export_blob = new Blob([JSON.stringify(this.canvas.graph.toJSON())]);
+        const save_link = document.createElement("a");
+        save_link.href = urlObject.createObjectURL(export_blob);
+        save_link.download = Date.now() + '.json';
+        save_link.click();
     }
 
     handleUndo() {
@@ -259,15 +249,6 @@ export class ToolbarComponent {
         localStorage.setItem("nuwa-editor-grid", JSON.stringify(this.showGrid));
     }
 
-    savefiles(data: any, name: string) {
-        const urlObject = window.URL || window.webkitURL || window;
-        const export_blob = new Blob([JSON.stringify(data)]);
-        const save_link = document.createElement("a");
-        save_link.href = urlObject.createObjectURL(export_blob);
-        save_link.download = name;
-        save_link.click();
-    }
-
     handleScale($event: number) {
         //console.log("handleScale", $event)
         this.scaleChange.emit($event)
@@ -294,5 +275,9 @@ export class ToolbarComponent {
 
     drawFlow() {
         this.canvas?.drawEdge(MiscFlow)
+    }
+
+    preview() {
+
     }
 }
