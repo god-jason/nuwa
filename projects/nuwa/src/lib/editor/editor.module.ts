@@ -4,7 +4,6 @@ import {EditorComponent} from "./editor.component";
 import {AboutComponent} from "./about/about.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AnimationsComponent} from "./animations/animations.component";
-import {BackgroundSettingComponent} from "./background-setting/background-setting.component";
 import {CanvasComponent} from "./canvas/canvas.component";
 import {ComponentsComponent} from "./components/components.component";
 import {ElementsComponent} from "./elements/elements.component";
@@ -13,7 +12,7 @@ import {ListenersComponent} from "./listeners/listeners.component";
 import {PageSettingComponent} from "./page-setting/page-setting.component";
 import {PagesComponent} from "./pages/pages.component";
 import {PropertiesSettingComponent} from "./properties-setting/properties-setting.component";
-import {PropsComponent} from "./props/props.component";
+import {CellSettingComponent} from "./cell-setting/cell-setting.component";
 import {ScriptsComponent} from "./scripts/scripts.component";
 import {SideBarComponent, SideBarItemDirective} from "./side-bar/side-bar.component";
 import {SourcesComponent} from "./sources/sources.component";
@@ -71,7 +70,6 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzEmptyModule} from "ng-zorro-antd/empty";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {ListenerSettingComponent} from "./listener-setting/listener-setting.component";
-import {CanvasSettingComponent} from "./canvas-setting/canvas-setting.component";
 import {ImageBordersComponent} from "./image-borders/image-borders.component";
 import {SmartEditorComponent} from "@god-jason/smart";
 import {VariablesComponent} from "./variables/variables.component";
@@ -82,9 +80,7 @@ import {BindingsComponent} from "./bindings/bindings.component";
     declarations: [
         AboutComponent,
         AnimationsComponent,
-        BackgroundSettingComponent,
         CanvasComponent,
-        CanvasSettingComponent,
         ComponentsComponent,
         ElementsComponent,
         GalleriesComponent,
@@ -93,7 +89,7 @@ import {BindingsComponent} from "./bindings/bindings.component";
         PageSettingComponent,
         PagesComponent,
         PropertiesSettingComponent,
-        PropsComponent,
+        CellSettingComponent,
         ScriptsComponent,
         SideBarComponent,
         SideBarItemDirective,

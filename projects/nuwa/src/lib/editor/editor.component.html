@@ -16,17 +16,17 @@
         }
 
         @if (imageBorders) {
-            <nuwa-image-borders *sideBarItem="'图片边框'" [canvas]="canvas"
+            <nuwa-image-borders *sideBarItem="'边框'" [canvas]="canvas"
                                 [borders]="imageBorders"></nuwa-image-borders>
         }
 
         @if (canvas.graph?.getCellCount()) {
-            <nuwa-elements *sideBarItem="'图元'" [canvas]="canvas"></nuwa-elements>
+            <nuwa-elements *sideBarItem="'元素'" [canvas]="canvas"></nuwa-elements>
         }
 
         <!--        <nuwa-layers *sideBarItem="'图层'" [renderer]="renderer"></nuwa-layers>-->
         <!--        <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>-->
-        <nuwa-variables *sideBarItem="'变量表'" [project]="project"></nuwa-variables>
+        <nuwa-variables *sideBarItem="'变量'" [project]="project"></nuwa-variables>
 
     </nuwa-side-bar>
     <div class="content">
@@ -35,8 +35,8 @@
                      [style.height]="project.pages[index].height*scale+'px'"></nuwa-canvas>
     </div>
     <nuwa-side-bar [width]="400" [right]="true">
-        <nuwa-canvas-setting *sideBarItem="'页面属性'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-canvas-setting>
-        <nuwa-props *sideBarItem="'元素属性'" [canvas]="canvas"></nuwa-props>
+        <nuwa-page-setting *sideBarItem="'页面属性'" [canvas]="canvas" [backgrounds]="backgrounds"></nuwa-page-setting>
+        <nuwa-cell-setting *sideBarItem="'元素属性'" [canvas]="canvas"></nuwa-cell-setting>
         <nuwa-bindings *sideBarItem="'数据绑定'" [canvas]="canvas" [project]="project"></nuwa-bindings>
         <nuwa-listeners *sideBarItem="'事件响应'" [canvas]="canvas" [project]="project"></nuwa-listeners>
 <!--        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>-->
