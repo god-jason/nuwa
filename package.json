@@ -34,7 +34,7 @@
         "@ctrl/ngx-codemirror": "^6.1.0",
         "@god-jason/smart": "^1.0.5",
         "camelcase": "^7.0.1",
-        "codemirror": "^5.65.13",
+        "codemirror": "^5.65.16",
         "dayjs": "^1.11.10",
         "echarts": "^5.5.0",
         "lodash-es": "^4.17.21",

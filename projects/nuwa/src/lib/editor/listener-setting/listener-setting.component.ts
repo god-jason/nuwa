@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, TemplateRef, ViewChild} from '@angular/core';
 import {NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {NuwaComponent, NuwaListener} from "../../nuwa";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
@@ -36,8 +36,10 @@ export class ListenerSettingComponent implements AfterViewInit {
         key: "parameters", label: "参数", type: "table", children: [
             {key: "name", label: "变量", type: "text"},
             {key: "value", label: "值（表达式）", type: "text"},
-        ]
+        ], hidden: true
     }
+
+    script: SmartField = {key: "script", label: "品牌商", type: "template", hidden: true}
 
     action: SmartField = {
         key: "action", label: "执行动作", type: "select", default: "set", options: [
@@ -49,30 +51,7 @@ export class ListenerSettingComponent implements AfterViewInit {
             {value: "animate", label: "执行动画"},
             {value: "script", label: "执行脚本"},
             //{value: "event", label: "发送事件"},
-        ], change: (v) => {
-            console.log("action change", v)
-            this.cell.hidden = true
-            this.outlet.hidden = true
-            this.page.hidden = true
-            this.iframe.hidden = true
-            this.url.hidden = true
-            this.parameters.hidden = true
-            if (v == "page") {
-                this.outlet.hidden = false
-                this.page.hidden = false
-                this.parameters.hidden = false
-            } else if (v == "link") {
-                this.iframe.hidden = false
-                this.url.hidden = false
-                this.parameters.hidden = false
-            } else if (v == "set") {
-                this.parameters.hidden = false
-            } else if (v == "show" || v == "hide" || v == "animate") {
-                this.cell.hidden = false
-            } else if (v == "script") {
-                //this.script.hidden = false
-            }
-        }
+        ], change: (v) => this.onActionChange(v)
     }
 
     fields: SmartField[] = [
@@ -85,9 +64,11 @@ export class ListenerSettingComponent implements AfterViewInit {
         this.iframe,
         this.url,
         this.parameters,
+        this.script,
     ]
 
     @ViewChild("editor") editor!: SmartEditorComponent
+    @ViewChild("scriptEditor") scriptEditor!: TemplateRef<any>;
 
     constructor() {
     }
@@ -96,18 +77,57 @@ export class ListenerSettingComponent implements AfterViewInit {
         this.cell.options = this.data.canvas.graph.getCells().map(p => {
             return {value: p.id, label: p.data.name}
         })
+
         this.outlet.options = this.data.canvas.graph.getCells().filter(p => p.shape == ":outlet:").map(p => {
             return {value: p.id, label: p.data.name}
         })
+        this.outlet.options.unshift({value:'', label:'当前画布'})
+
         this.iframe.options = this.data.canvas.graph.getCells().filter(p => p.shape == ":iframe:").map(p => {
             return {value: p.id, label: p.data.name}
         })
+        this.iframe.options.unshift({value:'', label:'当前窗口'}, {value:'_blank', label:'新窗口'})
+
         this.page.options = this.data.project.pages.map(p => {
             return {value: p.name, label: p.name}
         })
+
         this.event.options = this.data.component?.events?.map(e => {
             return {value: e.name, label: e.label}
         })
+
+        this.script.template = this.scriptEditor
+
+        //初始化
+        this.onActionChange(this.data.listener?.action || 'click')
+    }
+
+    onActionChange(action: string): void {
+        console.log("action change", action)
+
+        this.cell.hidden = true
+        this.outlet.hidden = true
+        this.page.hidden = true
+        this.iframe.hidden = true
+        this.url.hidden = true
+        this.parameters.hidden = true
+        this.script.hidden = true
+
+        if (action == "page") {
+            this.outlet.hidden = false
+            this.page.hidden = false
+            this.parameters.hidden = false
+        } else if (action == "link") {
+            this.iframe.hidden = false
+            this.url.hidden = false
+            this.parameters.hidden = false
+        } else if (action == "set") {
+            this.parameters.hidden = false
+        } else if (action == "show" || action == "hide" || action == "animate") {
+            this.cell.hidden = false
+        } else if (action == "script") {
+            this.script.hidden = false
+        }
     }
 
 }

@@ -1,1 +1,6 @@
 <smart-editor #editor [fields]="fields" [values]="data.listener"></smart-editor>
+
+<ng-template #scriptEditor let-control="control" let-field="field">
+    <ngx-codemirror [formControl]="control"
+                    [options]="{lineNumbers: true,theme: 'material',mode: 'javascript'}"></ngx-codemirror>
+</ng-template>

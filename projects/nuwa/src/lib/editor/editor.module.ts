@@ -74,6 +74,7 @@ import {ImageBordersComponent} from "./image-borders/image-borders.component";
 import {SmartEditorComponent} from "@god-jason/smart";
 import {VariablesComponent} from "./variables/variables.component";
 import {BindingsComponent} from "./bindings/bindings.component";
+import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import {BindingsComponent} from "./bindings/bindings.component";
         CdkDrag,
         CdkDragHandle,
         SmartEditorComponent,
+        CodemirrorModule,
 
         NzIconModule.forChild([
             SaveOutline, ExportOutline, UndoOutline, RedoOutline, ScissorOutline,
