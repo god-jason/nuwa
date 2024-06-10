@@ -93,3 +93,19 @@ export const TextProperties: SmartField[] = [
     //     ]
     // },
 ]
+
+export const ngTextProperties: SmartField[] = [
+    {label: "颜色", key: "data/ngArguments/color", type: "color", clear: true},
+    {label: "字号", key: "data/ngArguments/fontSize", type: "number", min: 0, max: 65535, default: 16},
+    {label: "字体", key: "data/ngArguments/fontFamily", type: "select", options: fontFamilies, default: "SimHei"},
+    {label: "加粗", key: "data/ngArguments/fontWeight", type: "select", options: fontWeights, default: "normal"},
+    {label: "风格", key: "data/ngArguments/fontStyle", type: "select", options: fontStyles, default: "normal"},
+    {
+        label: "对齐", key: "data/ngArguments/textAlign", type: "select", default: "left",
+        options: [
+            {value: "left", label: "左对齐"},
+            {value: "center", label: "居中对齐"},
+            {value: "right", label: "右对齐"},
+        ]
+    },
+]

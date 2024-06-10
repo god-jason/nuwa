@@ -1,7 +1,7 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {Component, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {DefaultEvents} from "../properties";
+import {DefaultEvents, ngTextProperties} from "../properties";
 import {TextSvgBase64} from "./text_svg";
 
 @Component({
@@ -16,6 +16,21 @@ import {TextSvgBase64} from "./text_svg";
 })
 class ControlTextComponent {
     @Input() text = "文本框"
+
+    @Input() @HostBinding("style.color") color = "black";
+
+    @HostBinding("style.font-size") _fontSize = '16px';
+    @Input() set fontSize(fontSize: number) {
+        this._fontSize = fontSize + 'px';
+    }
+
+    @Input() @HostBinding("style.font-family") fontFamily = "SimHei";
+
+    @Input() @HostBinding("style.font-weight") fontWeight = "normal";
+
+    @Input() @HostBinding("style.font-style") fontStyle = "normal";
+
+    @Input() @HostBinding("style.text-align") textAlign = "left";
 }
 
 export const ControlText: NuwaComponent = {
@@ -28,7 +43,8 @@ export const ControlText: NuwaComponent = {
         ...DefaultEvents,
     ],
     properties: [
-        {label: "文本", key: `data/ngArguments/text`, type: "textarea"},
+        {label: "文本", key: `data/ngArguments/text`, type: "textarea", max: 99999, default: '这是一段文字'},
+        ...ngTextProperties
     ],
     bindings: [],
     hooks: {},

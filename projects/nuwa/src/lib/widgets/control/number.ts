@@ -1,7 +1,7 @@
 import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {Component, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {DefaultEvents} from "../properties";
+import {DefaultEvents, ngTextProperties} from "../properties";
 import {NumberSvgBase64} from "./number_svg";
 
 @Component({
@@ -17,6 +17,21 @@ class ControlNumberComponent {
     @Input() value = Math.PI
     @Input() min = 0
     @Input() max = 2
+
+    @Input() @HostBinding("style.color") color = "black";
+
+    @HostBinding("style.font-size") _fontSize = '16px';
+    @Input() set fontSize(fontSize: number) {
+        this._fontSize = fontSize + 'px';
+    }
+
+    @Input() @HostBinding("style.font-family") fontFamily = "SimHei";
+
+    @Input() @HostBinding("style.font-weight") fontWeight = "normal";
+
+    @Input() @HostBinding("style.font-style") fontStyle = "normal";
+
+    @Input() @HostBinding("style.text-align") textAlign = "left";
 }
 
 export const ControlNumber: NuwaComponent = {
@@ -32,6 +47,7 @@ export const ControlNumber: NuwaComponent = {
         {label: "值", key: `data/ngArguments/value`, type: "number", default: Math.PI},
         {label: "最少保留小位数", key: `data/ngArguments/min`, type: "number", step: 1, min: 0, max: 100, default: 0},
         {label: "最多保留小位数", key: `data/ngArguments/max`, type: "number", step: 1, min: 1, max: 100, default: 2},
+        ...ngTextProperties,
     ],
     bindings: [
         {name: 'value', label: "输入", default: ''},
