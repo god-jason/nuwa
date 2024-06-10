@@ -1,8 +1,15 @@
-<nz-collapse>
-    <nz-collapse-panel nzActive nzHeader="变换">
-        <nuwa-transform-setting [canvas]="canvas"></nuwa-transform-setting>
-    </nz-collapse-panel>
-    <nz-collapse-panel nzActive nzHeader="属性">
-        <nuwa-properties-setting [canvas]="canvas"></nuwa-properties-setting>
-    </nz-collapse-panel>
-</nz-collapse>
+@if (canvas.currentCell) {
+    <nz-collapse>
+        <nz-collapse-panel nzActive nzHeader="变换">
+            <nuwa-transform-setting [canvas]="canvas"></nuwa-transform-setting>
+        </nz-collapse-panel>
+        <nz-collapse-panel nzActive nzHeader="属性">
+            <nuwa-properties-setting [canvas]="canvas"></nuwa-properties-setting>
+        </nz-collapse-panel>
+    </nz-collapse>
+} @else {
+    <nz-empty nzNotFoundContent="未选中元素"></nz-empty>
+}
+
+
+

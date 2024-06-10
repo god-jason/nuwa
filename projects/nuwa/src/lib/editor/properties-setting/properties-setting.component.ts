@@ -80,18 +80,6 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
         this.name = event.cell.getPropByPath("data/name")
     }
 
-    // ngAfterViewInit() {
-    //     setTimeout(() => {
-    //         this.editor.group.valueChanges.subscribe(res => {
-    //             console.log("properties change", res)
-    //             //Object.assign(this.page, res)
-    //             Object.keys(res).forEach(key => {
-    //                 this.cell?.setPropByPath(key, res[key])
-    //             })
-    //         })
-    //     }, 100)
-    // }
-
     onChange() {
         let value = this.editor.value
         console.log("properties onChange", value)

@@ -1,7 +1,5 @@
 import {Component, ElementRef, Injector, Input} from '@angular/core';
-
-import {Edge, FunctionExt, Graph, Node, Shape} from '@antv/x6';
-
+import {Cell, Edge, FunctionExt, Graph, Node, Shape} from '@antv/x6';
 import {Transform} from "@antv/x6-plugin-transform";
 import {Snapline} from "@antv/x6-plugin-snapline";
 import {Clipboard} from "@antv/x6-plugin-clipboard";
@@ -10,13 +8,11 @@ import {History} from "@antv/x6-plugin-history";
 import {Selection} from "@antv/x6-plugin-selection";
 import {Export} from "@antv/x6-plugin-export";
 import {Dnd} from "@antv/x6-plugin-dnd";
-
-//import {ComponentService} from "../../component.service";
 import {NuwaComponent} from "../../nuwa";
-
 import {register} from '@antv/x6-angular-shape'
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NuwaPage} from "../../project";
+import {ComponentService} from "../../component.service";
 
 
 @Component({
@@ -25,16 +21,18 @@ import {NuwaPage} from "../../project";
     styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent {
-
     public graph: Graph;
-    dnd: Dnd;
-    edge: Edge | undefined;
-    currentCell?: any;
-    drawingEdgeComponent?: NuwaComponent
-    drawingEdge?: Edge
+    public dnd: Dnd;
+
+    public currentCell?: Cell;
+    public currentComponent?: NuwaComponent;
+
+    private drawingEdgeComponent?: NuwaComponent
+    private drawingEdge?: Edge
 
     constructor(
         private ns: NzNotificationService,
+        private cs: ComponentService,
         private injector: Injector,
         element: ElementRef,
     ) {
@@ -147,10 +145,12 @@ export class CanvasComponent {
 
         this.graph.on('cell:selected', ({cell}) => {
             this.currentCell = cell
+            this.currentComponent = this.cs.Get(cell.shape)
         })
 
-        this.graph.on('cell:selected', ({cell}) => {
-            this.currentCell = cell
+        this.graph.on('cell:unselected', ({cell}) => {
+            this.currentCell = undefined
+            this.currentComponent = undefined
         })
     }
 
