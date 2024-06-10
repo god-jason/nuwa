@@ -415,7 +415,9 @@ export class RenderComponent implements AfterViewInit {
         //初始化数值
         let variables = {}
         page.variables?.forEach(v => {
-            if (v.value) {
+            if (v.type == "string") {
+                ObjectExt.setByPath(variables, v.name, v.value, '.')
+            } else if (v.value) {
                 let value = this.eval(v.value)
                 ObjectExt.setByPath(variables, v.name, value, '.')
             }
