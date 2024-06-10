@@ -3,7 +3,7 @@ import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {EchartsPieSvg} from "./echarts-pie_svg";
+import {EchartsPieSvgBase64} from "./echarts-pie_svg";
 
 interface ChartValue {
     name: string
@@ -93,7 +93,7 @@ class EchartsPieComponent implements AfterViewInit {
 
 export const EchartsPie: NuwaComponent = {
     name: '饼图', id: ':echarts-pie:',
-    icon: EchartsPieSvg, //icon: "assets/widgets/echarts-pie.svg",
+    icon: EchartsPieSvgBase64, //icon: "assets/widgets/echarts-pie.svg",
     type: "angular",
     metadata: {width: 400, height: 400},
     content: EchartsPieComponent,

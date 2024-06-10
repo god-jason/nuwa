@@ -3,7 +3,7 @@ import {NzProgressComponent} from "ng-zorro-antd/progress";
 import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents} from "../properties";
-import {ProgressSvg} from "./progress_svg";
+import {ProgressSvgBase64} from "./progress_svg";
 
 @Component({
     selector: 'nuwa-control-progress',
@@ -39,7 +39,7 @@ class ControlProgressComponent {
 
 export const ControlProgress: NuwaComponent = {
     name: '进度条', id: ':progress:',
-    icon: ProgressSvg, //icon: "assets/widgets/progress.svg",
+    icon: ProgressSvgBase64, //icon: "assets/widgets/progress.svg",
     type: "angular",
     metadata: {width: 200, height: 30},
     content: ControlProgressComponent,

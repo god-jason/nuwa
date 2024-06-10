@@ -2,7 +2,7 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {WebSvg} from "./web_svg";
+import {WebSvgBase64} from "./web_svg";
 
 @Component({
     selector: '$nuwa-misc-web',
@@ -34,7 +34,7 @@ class MiscWebComponent {
 
 export const MiscWeb: NuwaComponent = {
     name: '网页', id: ':iframe:',
-    icon: WebSvg, //icon: "assets/widgets/web.svg",
+    icon: WebSvgBase64, //icon: "assets/widgets/web.svg",
     type: "angular",
     metadata: {width: 200, height: 160},
     content: MiscWebComponent,

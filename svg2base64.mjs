@@ -42,7 +42,7 @@ function convert(filename) {
     let variable = prefix + base + "_svg"
     variable = camelCase(variable, {pascalCase: true})
 
-    fs.appendFileSync(out, `export const ${variable}: string = '`)
+    fs.appendFileSync(out, `export const ${variable}Base64: string = '`)
 
     const content = fs.readFileSync(filename, "utf-8")
     const img = 'data:image/svg+xml;base64,' + btoa(content)

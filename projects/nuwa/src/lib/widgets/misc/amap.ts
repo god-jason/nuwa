@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnInit} from "@angular/core";
 import {load} from '@amap/amap-jsapi-loader';
 import {NuwaComponent} from "../../nuwa";
-import {AmapSvg} from "./amap_svg";
+import {AmapSvgBase64} from "./amap_svg";
 
 @Component({
     selector: '$nuwa-misc-amap',
@@ -96,7 +96,7 @@ class MiscAMapComponent implements OnInit {
 
 export const MiscAMap: NuwaComponent = {
     name: '高德地图', id: ':amap:',
-    icon: AmapSvg, //icon: "assets/widgets/amap.svg",
+    icon: AmapSvgBase64, //icon: "assets/widgets/amap.svg",
     type: "angular",
     metadata: {width: 200, height: 100},
     content: MiscAMapComponent,

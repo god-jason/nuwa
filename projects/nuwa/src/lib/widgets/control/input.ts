@@ -4,7 +4,7 @@ import {CommonModule} from "@angular/common";
 import {NzInputDirective} from "ng-zorro-antd/input";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents} from "../properties";
-import {InputSvg} from "./input_svg";
+import {InputSvgBase64} from "./input_svg";
 
 @Component({
     selector: 'nuwa-control-input',
@@ -35,7 +35,7 @@ class ControlInputComponent {
 
 export const ControlInput: NuwaComponent = {
     name: '输入框', id: ':input:',
-    icon: InputSvg, //icon: "assets/widgets/input.svg",
+    icon: InputSvgBase64, //icon: "assets/widgets/input.svg",
     type: "angular",
     metadata: {width: 160, height: 30},
     content: ControlInputComponent,

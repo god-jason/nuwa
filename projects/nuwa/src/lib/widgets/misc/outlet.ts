@@ -1,10 +1,10 @@
 import {NuwaComponent} from "../../nuwa";
-import {OutletSvg} from "./outlet_svg";
+import {OutletSvgBase64} from "./outlet_svg";
 import {RenderComponent} from "../../viewer/render/render.component";
 
 export const MiscOutlet: NuwaComponent = {
     name: '子页面', id: ':outlet:',
-    icon: OutletSvg, //icon: "assets/widgets/outlet.svg",
+    icon: OutletSvgBase64, //icon: "assets/widgets/outlet.svg",
     type: "angular",
     metadata: {width: 300, height: 200},
     content: RenderComponent,

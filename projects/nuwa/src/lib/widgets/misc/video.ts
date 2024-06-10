@@ -2,7 +2,7 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {VideoSvg} from "./video_svg";
+import {VideoSvgBase64} from "./video_svg";
 
 @Component({
     selector: '$nuwa-misc-video',
@@ -39,7 +39,7 @@ class MiscVideoComponent {
 
 export const MiscVideo: NuwaComponent = {
     name: '视频', id: ':video:',
-    icon: VideoSvg, //icon: "assets/widgets/video.svg",
+    icon: VideoSvgBase64, //icon: "assets/widgets/video.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: MiscVideoComponent,

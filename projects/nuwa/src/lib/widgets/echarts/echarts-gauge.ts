@@ -2,7 +2,7 @@ import {NuwaComponent} from "../../nuwa";
 import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
-import {EchartsGaugeSvg} from "./echarts-gauge_svg";
+import {EchartsGaugeSvgBase64} from "./echarts-gauge_svg";
 
 
 @Component({
@@ -80,7 +80,7 @@ class EchartsGaugeComponent {
 
 export const EchartsGauge: NuwaComponent = {
     name: '仪表盘', id: ':echarts-gauge:',
-    icon: EchartsGaugeSvg, //icon: "assets/widgets/echarts-gauge.svg",
+    icon: EchartsGaugeSvgBase64, //icon: "assets/widgets/echarts-gauge.svg",
     type: "angular",
     metadata: {width: 300, height: 300},
     content: EchartsGaugeComponent,

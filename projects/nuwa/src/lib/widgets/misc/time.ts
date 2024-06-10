@@ -1,7 +1,7 @@
 import {NuwaComponent} from "../../nuwa";
 import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {TimeSvg} from "./time_svg";
+import {TimeSvgBase64} from "./time_svg";
 
 @Component({
     selector: '$nuwa-misc-time',
@@ -38,7 +38,7 @@ class MiscTimeComponent implements OnInit, OnDestroy{
 
 export const MiscTime: NuwaComponent = {
     name: '时间', id: ':time:',
-    icon: TimeSvg, //icon: "assets/widgets/time.svg",
+    icon: TimeSvgBase64, //icon: "assets/widgets/time.svg",
     type: "angular",
     metadata: {width: 200, height: 40},
     content: MiscTimeComponent,

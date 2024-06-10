@@ -1,10 +1,10 @@
 import {NuwaComponent} from "../../nuwa";
 import {LineProperties} from "../properties";
-import {FlowSvg} from "./flow_svg";
+import {FlowSvgBase64} from "./flow_svg";
 
 export const MiscFlow: NuwaComponent = {
     name: '流动线条', id: ':flow:',
-    icon: FlowSvg, //icon: "assets/widgets/flow.svg",
+    icon: FlowSvgBase64, //icon: "assets/widgets/flow.svg",
     type: "line",
     extends: {inherit: "edge"},
     metadata: {

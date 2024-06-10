@@ -1,11 +1,11 @@
 import {NuwaComponent} from "../../nuwa";
 import {DefaultEvents} from "../properties";
-import {ImageSvg} from "./image_svg";
+import {ImageSvgBase64} from "./image_svg";
 
 export const BaseImage: NuwaComponent = {
     name: '图片',
     id: 'image',
-    icon: ImageSvg, //icon: "assets/widgets/image.svg",
+    icon: ImageSvgBase64, //icon: "assets/widgets/image.svg",
     type: "shape", internal: true,
     extends: {inherit: 'image'},
     events: [
@@ -13,7 +13,7 @@ export const BaseImage: NuwaComponent = {
     ],
     metadata: {
         width: 100, height: 80,
-        imageUrl: "assets/widgets/image.svg",
+        imageUrl: ImageSvgBase64,//"assets/widgets/image.svg",
     },
     properties: [
         {label: "图片", key: "attrs/image/xlink:href", type: "file"},

@@ -3,7 +3,7 @@ import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {EchartsLineSvg} from "./echarts-line_svg";
+import {EchartsLineSvgBase64} from "./echarts-line_svg";
 
 interface ChartValue {
     name: string
@@ -102,7 +102,7 @@ class EchartsLineComponent implements AfterViewInit {
 
 export const EchartsLine: NuwaComponent = {
     name: '折线图', id: ':echarts-line:',
-    icon: EchartsLineSvg, //icon: "assets/widgets/echarts-line.svg",
+    icon: EchartsLineSvgBase64, //icon: "assets/widgets/echarts-line.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsLineComponent,

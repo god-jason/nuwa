@@ -3,7 +3,7 @@ import {Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {EchartsSvg} from "./echarts_svg";
+import {EchartsSvgBase64} from "./echarts_svg";
 
 @Component({
     selector: 'app-echarts',
@@ -66,7 +66,7 @@ class EchartsComponent {
 
 export const Echarts: NuwaComponent = {
     name: '图表', id: ':echarts:',
-    icon: EchartsSvg, //icon: "assets/widgets/echarts.svg",
+    icon: EchartsSvgBase64, //icon: "assets/widgets/echarts.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsComponent,

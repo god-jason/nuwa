@@ -3,7 +3,7 @@ import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
-import {EchartsBarSvg} from "./echarts-bar_svg";
+import {EchartsBarSvgBase64} from "./echarts-bar_svg";
 
 interface ChartValue {
     name: string
@@ -101,7 +101,7 @@ class EchartsBarComponent implements AfterViewInit {
 
 export const EchartsBar: NuwaComponent = {
     name: '柱状图', id: ':echarts-bar:',
-    icon: EchartsBarSvg, //icon: "assets/widgets/echarts-bar.svg",
+    icon: EchartsBarSvgBase64, //icon: "assets/widgets/echarts-bar.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsBarComponent,

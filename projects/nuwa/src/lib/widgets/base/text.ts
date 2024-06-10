@@ -1,10 +1,10 @@
 import {NuwaComponent} from "../../nuwa";
 import {DefaultEvents, StrokeProperties, TextProperties} from "../properties";
-import {TextSvg} from "./text_svg";
+import {TextSvgBase64} from "./text_svg";
 
 export const BaseText: NuwaComponent = {
     name: '文本', id: ':text:',
-    icon: TextSvg, //icon: "assets/widgets/text.svg",
+    icon: TextSvgBase64, //icon: "assets/widgets/text.svg",
     type: "shape",
     extends: {inherit: "rect"},
     metadata: {
