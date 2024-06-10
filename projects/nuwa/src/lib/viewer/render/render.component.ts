@@ -411,6 +411,17 @@ export class RenderComponent implements AfterViewInit {
             })
 
         })
+
+        //初始化数值
+        let variables = {}
+        page.variables?.forEach(v => {
+            if (v.value) {
+                let value = this.eval(v.value)
+                ObjectExt.setByPath(variables, v.name, value, '.')
+            }
+        })
+        this.patchValues(variables)
+
     }
 
     @HostListener('window:resize', ['$event'])
