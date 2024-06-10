@@ -4,7 +4,7 @@ import {TextSvg} from "./text_svg";
 
 export const BaseText: NuwaComponent = {
     name: '文本', id: ':text:',
-    svg: TextSvg, //icon: "assets/widgets/text.svg",
+    icon: TextSvg, //icon: "assets/widgets/text.svg",
     type: "shape",
     extends: {inherit: "rect"},
     metadata: {

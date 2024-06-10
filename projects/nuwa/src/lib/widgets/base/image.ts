@@ -5,7 +5,7 @@ import {ImageSvg} from "./image_svg";
 export const BaseImage: NuwaComponent = {
     name: '图片',
     id: 'image',
-    svg: ImageSvg, //icon: "assets/widgets/image.svg",
+    icon: ImageSvg, //icon: "assets/widgets/image.svg",
     type: "shape", internal: true,
     extends: {inherit: 'image'},
     events: [

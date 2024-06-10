@@ -93,7 +93,7 @@ class EchartsPieComponent implements AfterViewInit {
 
 export const EchartsPie: NuwaComponent = {
     name: '饼图', id: ':echarts-pie:',
-    svg: EchartsPieSvg, //icon: "assets/widgets/echarts-pie.svg",
+    icon: EchartsPieSvg, //icon: "assets/widgets/echarts-pie.svg",
     type: "angular",
     metadata: {width: 400, height: 400},
     content: EchartsPieComponent,

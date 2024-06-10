@@ -12,7 +12,7 @@ class EchartsMapComponent {
 
 export const EchartsMap: NuwaComponent = {
     name: '地图', id: ':echarts-map:',
-    svg: EchartsMapSvg, //icon: "assets/widgets/echarts-map.svg",
+    icon: EchartsMapSvg, //icon: "assets/widgets/echarts-map.svg",
     type: "angular",
     metadata: {width: 100, height: 40},
     content: EchartsMapComponent,

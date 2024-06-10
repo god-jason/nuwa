@@ -102,7 +102,7 @@ class EchartsLineComponent implements AfterViewInit {
 
 export const EchartsLine: NuwaComponent = {
     name: '折线图', id: ':echarts-line:',
-    svg: EchartsLineSvg, //icon: "assets/widgets/echarts-line.svg",
+    icon: EchartsLineSvg, //icon: "assets/widgets/echarts-line.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: EchartsLineComponent,

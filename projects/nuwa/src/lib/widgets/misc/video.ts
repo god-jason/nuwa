@@ -39,7 +39,7 @@ class MiscVideoComponent {
 
 export const MiscVideo: NuwaComponent = {
     name: '视频', id: ':video:',
-    svg: VideoSvg, //icon: "assets/widgets/video.svg",
+    icon: VideoSvg, //icon: "assets/widgets/video.svg",
     type: "angular",
     metadata: {width: 400, height: 300},
     content: MiscVideoComponent,

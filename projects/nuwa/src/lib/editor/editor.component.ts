@@ -24,6 +24,7 @@ export class EditorComponent {
     @Output() onSave = new EventEmitter<NuwaProject>()
 
     constructor(private title: Title) {
+        title.setTitle("NUWA 组态编辑器")
     }
 
     _project: NuwaProject = projectTemplate()

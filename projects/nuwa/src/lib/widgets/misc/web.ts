@@ -34,7 +34,7 @@ class MiscWebComponent {
 
 export const MiscWeb: NuwaComponent = {
     name: '网页', id: ':iframe:',
-    svg: WebSvg, //icon: "assets/widgets/web.svg",
+    icon: WebSvg, //icon: "assets/widgets/web.svg",
     type: "angular",
     metadata: {width: 200, height: 160},
     content: MiscWebComponent,

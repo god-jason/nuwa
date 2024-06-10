@@ -80,7 +80,7 @@ class EchartsGaugeComponent {
 
 export const EchartsGauge: NuwaComponent = {
     name: '仪表盘', id: ':echarts-gauge:',
-    svg: EchartsGaugeSvg, //icon: "assets/widgets/echarts-gauge.svg",
+    icon: EchartsGaugeSvg, //icon: "assets/widgets/echarts-gauge.svg",
     type: "angular",
     metadata: {width: 300, height: 300},
     content: EchartsGaugeComponent,

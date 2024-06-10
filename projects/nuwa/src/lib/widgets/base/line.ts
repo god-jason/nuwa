@@ -4,7 +4,7 @@ import {LineSvg} from "./line_svg";
 
 export const BaseLine: NuwaComponent = {
     name: '线条', id: ':line:',
-    svg: LineSvg, //icon: "assets/widgets/line.svg",
+    icon: LineSvg, //icon: "assets/widgets/line.svg",
     type: "line", extends: {inherit: "edge"}, //TODO 不用继承就好了
     metadata: {
         markup: [

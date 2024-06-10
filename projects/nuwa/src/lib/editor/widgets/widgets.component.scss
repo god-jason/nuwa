@@ -5,24 +5,23 @@
 :host ::ng-deep {
     .inner {
         svg {
-            width: 40px !important;
-            height: 40px !important;
+            width: 24px !important;
+            height: 24px !important;
         }
     }
 }
 
 .component {
-    display: inline-block;
+    //display: inline-block;
+    display: flex;
     margin: 1px;
-    padding: 5px 0;
-    //border: 1px dashed grey;
+    //padding: 5px 0;
+    border-bottom: 1px dashed grey;
     cursor: pointer;
 
-    width: 50px;
-
     .icon {
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
 
         display: flex;
         justify-content: center;
@@ -30,20 +29,21 @@
     }
 
     svg, img {
-        width: 40px;
-        height: 40px;
+        width: 24px;
+        height: 24px;
     }
 
     .inner {
-        width: 40px;
-        height: 40px;
-
-
+        width: 24px;
+        height: 24px;
     }
 
     .name {
-        text-align: center;
+        //text-align: center;
         //font-size: 12px;
-        font-size: 11px;
+        //font-size: 11px;
+        display: flex;
+        //align-items: center;
+        vertical-align: center;
     }
 }

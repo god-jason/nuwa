@@ -38,7 +38,7 @@ class MiscTimeComponent implements OnInit, OnDestroy{
 
 export const MiscTime: NuwaComponent = {
     name: '时间', id: ':time:',
-    svg: TimeSvg, //icon: "assets/widgets/time.svg",
+    icon: TimeSvg, //icon: "assets/widgets/time.svg",
     type: "angular",
     metadata: {width: 200, height: 40},
     content: MiscTimeComponent,

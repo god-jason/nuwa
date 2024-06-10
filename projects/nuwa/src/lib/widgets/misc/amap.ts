@@ -96,7 +96,7 @@ class MiscAMapComponent implements OnInit {
 
 export const MiscAMap: NuwaComponent = {
     name: '高德地图', id: ':amap:',
-    svg: AmapSvg, //icon: "assets/widgets/amap.svg",
+    icon: AmapSvg, //icon: "assets/widgets/amap.svg",
     type: "angular",
     metadata: {width: 200, height: 100},
     content: MiscAMapComponent,

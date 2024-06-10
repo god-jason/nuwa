@@ -4,7 +4,7 @@ import {NumberSvg} from "./number_svg";
 
 export const ControlNumber: NuwaComponent = {
     name: '数值', id: ':number:',
-    svg: NumberSvg, //icon: "assets/widgets/number.svg",
+    icon: NumberSvg, //icon: "assets/widgets/number.svg",
     type: "shape", extends: {inherit: "rect"},
     metadata: {
         width: 100,

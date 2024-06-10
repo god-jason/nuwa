@@ -42,7 +42,7 @@ class ControlSwitchComponent {
 
 export const ControlSwitch: NuwaComponent = {
     name: '开关', id: ':switch:',
-    svg: SwitchSvg, //icon: "assets/widgets/switch.svg",
+    icon: SwitchSvg, //icon: "assets/widgets/switch.svg",
     type: "angular",
     metadata: {width: 100, height: 40},
     content: ControlSwitchComponent,

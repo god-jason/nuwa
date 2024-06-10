@@ -39,7 +39,7 @@ class ControlProgressComponent {
 
 export const ControlProgress: NuwaComponent = {
     name: '进度条', id: ':progress:',
-    svg: ProgressSvg, //icon: "assets/widgets/progress.svg",
+    icon: ProgressSvg, //icon: "assets/widgets/progress.svg",
     type: "angular",
     metadata: {width: 200, height: 30},
     content: ControlProgressComponent,

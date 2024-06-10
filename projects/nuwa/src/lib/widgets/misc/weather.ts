@@ -57,7 +57,7 @@ function createWeatherOptions() {
 
 export const MiscWeather: NuwaComponent = {
     name: '天气', id: ':weather:',
-    svg: WeatherSvg, //icon: "assets/widgets/weather.svg",
+    icon: WeatherSvg, //icon: "assets/widgets/weather.svg",
     type: "angular",
     metadata: {width: 200, height: 100},
     content: MiscWeatherComponent,
