@@ -25,8 +25,8 @@ class ControlInputComponent {
     @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() value: any
-    @Input() type = ""
-    @Input() placeholder = ""
+    @Input() type = "text"
+    @Input() placeholder = "输入框"
 
     onChange(value: any) {
         this.listener.emit({event:'change', data:this.value})
@@ -44,7 +44,10 @@ export const ControlInput: NuwaComponent = {
         {name: "blur", label: "失去焦点"},
         {name: "change", label: "变化"},
     ],
-    properties: [],
+    properties: [
+        {label: "内容", key: `data/ngArguments/value`, type: "text"},
+        {label: "提示", key: `data/ngArguments/placeholder`, type: "text"},
+    ],
     bindings: [
         {name: 'value', label: "输入", default: ''},
     ],

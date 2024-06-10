@@ -35,7 +35,7 @@ class ControlSelectComponent {
 
 
 export const ControlSelect: NuwaComponent = {
-    name: '选择', id: ':select:',
+    name: '下拉选择', id: ':select:',
     icon: SelectSvgBase64, //icon: "assets/widgets/select.svg",
     type: "angular",
     metadata: {width: 100, height: 40},

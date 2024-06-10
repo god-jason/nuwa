@@ -21,19 +21,19 @@ import {MiscWeather} from "./misc/weather";
 import {MiscAMap} from "./misc/amap";
 import {MiscVideo} from "./misc/video";
 import {MiscTime} from "./misc/time";
+import {ControlText} from "./control/text";
 
 export const NuwaWidgets: NuwaCollection[] = [
     {
         name: "基础组件",
         components: [
-            //BaseLine,
-            BaseText, BaseRect,
-            BaseCircle, BaseEllipse, BaseImage,
+            BaseRect, BaseCircle, BaseEllipse, BaseImage,
         ]
     },
     {
         name: "交互控件",
         components: [
+            ControlText,
             ControlButton, ControlNumber, ControlInput,
             ControlSwitch, ControlProgress, ControlSelect,
             ControlSlider

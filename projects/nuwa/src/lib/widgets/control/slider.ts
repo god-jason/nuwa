@@ -51,7 +51,11 @@ export const ControlSlider: NuwaComponent = {
         {name: "change", label: "变化"},
     ],
     properties: [
-        {key: 'data/ngArguments/value', label: '进度', type: 'number', min: 0, max: 100},
+        {key: 'data/ngArguments/value', label: '进度', type: 'number'},
+        {key: 'data/ngArguments/min', label: '最小值', type: 'number', default: 0},
+        {key: 'data/ngArguments/max', label: '最大值', type: 'number', default: 100},
+        {key: 'data/ngArguments/step', label: '步长', type: 'number', default: 1},
+        {key: 'data/ngArguments/vertical', label: '垂直', type: 'switch'},
     ],
     bindings: [
         {name: 'value', label: "进度", default: ''},
