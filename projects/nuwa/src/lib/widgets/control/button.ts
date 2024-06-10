@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {NzButtonComponent} from "ng-zorro-antd/button";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -22,13 +22,13 @@ import {ButtonSvgBase64} from "./button_svg";
                 (click)="onClick($event)">{{ text }}</button>`
 })
 class ControlButtonComponent {
-    @Input() listener = new EventEmitter();
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() text = "按钮"
     @Input() fontSize = 16
 
     onClick($event: MouseEvent) {
-        this.listener.emit($event)
+        this.listener.emit({event:'click', data: $event})
     }
 }
 

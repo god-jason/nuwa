@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {NzSliderComponent} from "ng-zorro-antd/slider";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -26,7 +26,7 @@ import {SliderSvgBase64} from "./slider_svg";
                    (change)="onChange($event)"></nz-slider>`
 })
 class ControlSliderComponent {
-    @Input() listener = new EventEmitter();
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() value = 60
     @Input() min = 0
@@ -35,7 +35,7 @@ class ControlSliderComponent {
     @Input() vertical = false
 
     onChange($event: Event) {
-        this.listener.emit(this.value)
+        this.listener.emit({event:'change', data:this.value})
     }
 }
 

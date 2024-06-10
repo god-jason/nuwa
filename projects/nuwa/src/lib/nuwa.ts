@@ -15,6 +15,12 @@ export declare interface NuwaEvent {
     label: string
 }
 
+export declare interface NuwaEventData {
+    event: string
+    data: any
+    target?: any
+}
+
 export declare interface NuwaParameter {
     name: string
     label: string
@@ -42,7 +48,7 @@ export declare interface NuwaListener {
     parameters?: NuwaParameter[]
 
     //脚本
-    script?: string
+    script?: string | ((cell: Cell, value: any, tools: any) => void)
 }
 
 export declare interface NuwaComponent {

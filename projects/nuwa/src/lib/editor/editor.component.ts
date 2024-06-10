@@ -3,6 +3,7 @@ import {Title} from "@angular/platform-browser";
 import {CanvasComponent} from "./canvas/canvas.component";
 import {NuwaPage, NuwaProject, projectTemplate} from "../project";
 import {NuwaCollection, NuwaImage, NuwaImageBorderGallery, NuwaImageGallery} from "../nuwa";
+import {ObjectExt} from "@antv/x6";
 
 @Component({
     selector: 'nuwa-editor',
@@ -25,6 +26,8 @@ export class EditorComponent {
 
     constructor(private title: Title) {
         title.setTitle("NUWA 组态编辑器")
+
+        console.log(ObjectExt.flatten({a:{b:1}}))
     }
 
     _project: NuwaProject = projectTemplate()

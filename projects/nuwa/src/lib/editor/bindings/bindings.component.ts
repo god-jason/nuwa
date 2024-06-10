@@ -75,9 +75,9 @@ export class BindingsComponent {
         this.data = this.cell.data?.bindings || {}
 
         //变量表
-        this.options = this.project.variables.map(v => {
+        this.options = this.project.variables?.map(v => {
             return {label: v.label, value: v.name}
-        })
+        })||[]
         this.options.unshift({label: '无', value: ''})
 
     }

@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {NzSelectComponent} from "ng-zorro-antd/select";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -23,13 +23,13 @@ import {SelectSvgBase64} from "./select_svg";
                    (change)="onChange()"></nz-select>    `
 })
 class ControlSelectComponent {
-    @Input() listener = new EventEmitter();
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() value: any
     @Input() options: any = []
 
     onChange() {
-        this.listener.emit(this.value)
+        this.listener.emit({event:'change', data:this.value})
     }
 }
 

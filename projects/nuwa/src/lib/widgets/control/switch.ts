@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -31,12 +31,12 @@ import {SwitchSvgBase64} from "./switch_svg";
                    (change)="onChange($event)"></nz-switch>`
 })
 class ControlSwitchComponent {
-    @Input() listener = new EventEmitter();
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() value = 60
 
     onChange($event: Event) {
-        this.listener.emit(this.value)
+        this.listener.emit({event:'change', data:this.value})
     }
 }
 

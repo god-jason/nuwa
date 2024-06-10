@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NzInputDirective} from "ng-zorro-antd/input";
@@ -22,14 +22,14 @@ import {InputSvgBase64} from "./input_svg";
                       [placeholder]="placeholder" (change)="onChange(box.value)" #box>`
 })
 class ControlInputComponent {
-    @Input() listener = new EventEmitter();
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     @Input() value: any
     @Input() type = ""
     @Input() placeholder = ""
 
     onChange(value: any) {
-        this.listener.emit(this.value)
+        this.listener.emit({event:'change', data:this.value})
     }
 }
 

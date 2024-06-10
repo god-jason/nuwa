@@ -2,7 +2,7 @@ export declare interface NuwaVariable {
     name: string;
     label: string;
     type: string;
-    value: string;
+    value: any;
 }
 
 export declare interface NuwaProject {
@@ -10,7 +10,7 @@ export declare interface NuwaProject {
     name: string
     description?: string
     pages: NuwaPage[]
-    variables: NuwaVariable[];
+    variables?: NuwaVariable[];
 }
 
 export declare interface NuwaBackground {
@@ -25,6 +25,7 @@ export declare interface NuwaPage {
     width: number
     height: number
     background?: NuwaBackground
+    variables?: NuwaVariable[];
 }
 
 export function pageTemplate(name: string = "新建页面"): NuwaPage {
