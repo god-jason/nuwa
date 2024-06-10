@@ -23,6 +23,7 @@ import {SliderSvgBase64} from "./slider_svg";
         <nz-slider [(ngModel)]="value" [ngModelOptions]="{standalone:true}"
                    [nzMin]="min" [nzMax]="max" [nzStep]="step"
                    [nzVertical]="vertical"
+                   (ngModelChange)="onChange($event)"
                    (change)="onChange($event)"></nz-slider>`
 })
 class ControlSliderComponent {

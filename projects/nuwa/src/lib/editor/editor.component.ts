@@ -14,6 +14,7 @@ export class EditorComponent {
     id: any = ''
 
     page!: NuwaPage
+
     //组件集合
     @Input() components!: NuwaCollection[]
     @Input() galleries!: NuwaImageGallery[];

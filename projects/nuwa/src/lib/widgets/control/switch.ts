@@ -28,12 +28,12 @@ import {SwitchSvgBase64} from "./switch_svg";
         }`,
     template: `
         <nz-switch [(ngModel)]="value" [ngModelOptions]="{standalone:true}"
-                   (change)="onChange($event)"></nz-switch>`
+                   (change)="onChange($event)" (ngModelChange)="onChange($event)"></nz-switch>`
 })
 class ControlSwitchComponent {
     @Input() listener = new EventEmitter<NuwaEventData>();
 
-    @Input() value = 60
+    @Input() value = false
 
     onChange($event: Event) {
         this.listener.emit({event:'change', data:this.value})

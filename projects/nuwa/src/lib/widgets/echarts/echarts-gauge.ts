@@ -88,6 +88,12 @@ export const EchartsGauge: NuwaComponent = {
         {key: "data/ngArguments/darkMode", label: "暗色", type: "switch"},
         {key: "data/ngArguments/value", label: "值", type: "number"},
     ],
-    bindings: [],
-    hooks: {},
+    bindings: [
+        {name: 'value', label: "值", default: ''},
+    ],
+    hooks: {
+        value(cell, value) {
+            cell.setPropByPath("data/ngArguments/value", value);
+        }
+    },
 }

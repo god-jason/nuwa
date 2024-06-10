@@ -8,6 +8,7 @@ import {MiscFlow} from "../../widgets/misc/flow";
 import {NzDrawerService} from "ng-zorro-antd/drawer";
 import {RenderComponent} from "../../viewer/render/render.component";
 import {cloneDeep} from "lodash-es";
+import {NuwaProject} from "../../project";
 
 @Component({
     selector: 'nuwa-toolbar',
@@ -16,6 +17,7 @@ import {cloneDeep} from "lodash-es";
 })
 export class ToolbarComponent {
     @Input() canvas!: CanvasComponent;
+    @Input() project!: NuwaProject;
 
     // 1200X340
     //@Input() graph!: Graph;
@@ -276,7 +278,11 @@ export class ToolbarComponent {
 
     preview() {
         this.canvas.page.content = this.canvas.graph.toJSON()
-        let page = cloneDeep(this.canvas.page)
+
+        //复制项目，避免脚本被编译
+        let project = cloneDeep(this.project)
+        let index = project.pages.findIndex(p => p.name == this.canvas.page.name)
+        let page = project.pages[index]
 
         let ref = this.ds.create({
             nzTitle: '预览' + page.name,
@@ -287,6 +293,7 @@ export class ToolbarComponent {
         })
         ref.afterOpen.subscribe(() => {
             console.log("preview", page)
+            ref.getContentComponentRef()?.setInput("project", project)
             ref.getContentComponentRef()?.setInput("page", page)
         })
 
