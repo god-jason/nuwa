@@ -168,11 +168,14 @@ export class CanvasComponent {
     render(page: NuwaPage) {
         page.content?.cells?.forEach((cell: any) => {
             const cmp = this.cs.Get(cell.shape)
+            if (!cmp) {
+                cell.shape = "rect" //应该改为未知对象
+                return
+            }
             this.checkRegister(cmp)
-            cell.shape = "rect" //TODO 应该改为未知对象
         })
 
-        //绘制背景 if (page.background)
+        //绘制背景
         this.graph.drawBackground(page.background || {})
 
         //恢复内容

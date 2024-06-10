@@ -10,7 +10,7 @@ export declare interface NuwaProject {
     name: string
     description?: string
     pages: NuwaPage[]
-    variables?: NuwaVariable[];
+    //variables?: NuwaVariable[];
 }
 
 export declare interface NuwaBackground {
@@ -34,6 +34,7 @@ export function pageTemplate(name: string = "新建页面"): NuwaPage {
         content: {},
         width: window.screen.width, //自动获取屏幕尺寸
         height: window.screen.height,
+        variables: []
     }
 }
 
@@ -44,6 +45,5 @@ export function projectTemplate(name: string = '新建组态工程'): NuwaProjec
         pages: [
             pageTemplate("首页")
         ],
-        variables: []
     }
 }

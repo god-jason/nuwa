@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NuwaPage, NuwaProject} from "../project";
 import {RenderComponent} from "./render/render.component";
-import {NuwaCollection} from "../nuwa";
+import {NuwaCollection, NuwaEventData} from "../nuwa";
+import {ComponentService} from "../component.service";
 
 @Component({
     selector: 'nuwa-viewer',
@@ -13,17 +14,22 @@ import {NuwaCollection} from "../nuwa";
     styleUrl: './viewer.component.scss'
 })
 export class ViewerComponent {
-    page!: NuwaPage
     //组件集合
-    @Input() components!: NuwaCollection[]
-
-    constructor() {
+    @Input() set components(cols: NuwaCollection[]){
+        this.cs.PutCollections(cols)
     }
 
-    _project!: NuwaProject
+    //项目
+    @Input() project!: NuwaProject
 
-    @Input() set project(project: NuwaProject) {
-        this._project = project
-        this.page = project.pages[0] //默认打开第一个
+    //变量
+    @Input() values: any = {}
+
+    //事件
+    @Output() event = new EventEmitter<NuwaEventData>();
+
+    constructor(private cs: ComponentService) {
     }
+
+
 }

@@ -26,8 +26,7 @@ export class EditorComponent {
 
     constructor(private title: Title) {
         title.setTitle("NUWA 组态编辑器")
-
-        console.log(ObjectExt.flatten({a:{b:1}}))
+        //console.log(ObjectExt.flatten({a:{b:1}}))
     }
 
     _project: NuwaProject = projectTemplate()

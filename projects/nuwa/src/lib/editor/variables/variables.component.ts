@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {NuwaProject} from "../../project";
+import {NuwaPage} from "../../project";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 
 @Component({
@@ -8,7 +8,9 @@ import {SmartEditorComponent, SmartField} from "@god-jason/smart";
     styleUrl: './variables.component.scss'
 })
 export class VariablesComponent {
-    @Input() project!: NuwaProject;
+    //@Input() project!: NuwaProject;
+    @Input() page!: NuwaPage;
+
     fields: SmartField[] = [
         {
             key: 'variables', label: '', type: 'table', children: [
@@ -31,7 +33,7 @@ export class VariablesComponent {
     @ViewChild("editor") editor!: SmartEditorComponent;
 
     onChange() {
-        this.project.variables = this.editor.value.variables
-        console.log("variables change", this.project.variables)
+        this.page.variables = this.editor.value.variables
+        //console.log("variables change", this.page.variables)
     }
 }

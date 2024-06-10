@@ -25,7 +25,7 @@
 
         <!--        <nuwa-layers *sideBarItem="'图层'" [renderer]="renderer"></nuwa-layers>-->
         <!--        <nuwa-sources *sideBarItem="'数据源'"></nuwa-sources>-->
-        <nuwa-variables *sideBarItem="'变量'" [project]="project"></nuwa-variables>
+        <nuwa-variables *sideBarItem="'变量'" [page]="canvas.page"></nuwa-variables>
 
     </nuwa-side-bar>
     <div class="content">
@@ -36,7 +36,7 @@
     <nuwa-side-bar [right]="true" [width]="400">
         <nuwa-page-setting *sideBarItem="'页面属性'" [backgrounds]="backgrounds" [canvas]="canvas"></nuwa-page-setting>
         <nuwa-cell-setting *sideBarItem="'元素属性'" [canvas]="canvas"></nuwa-cell-setting>
-        <nuwa-bindings *sideBarItem="'数据绑定'" [canvas]="canvas" [project]="project"></nuwa-bindings>
+        <nuwa-bindings *sideBarItem="'数据绑定'" [canvas]="canvas"></nuwa-bindings>
         <nuwa-listeners *sideBarItem="'事件响应'" [canvas]="canvas" [project]="project"></nuwa-listeners>
         <!--        <nuwa-scripts *sideBarItem="'脚本'"></nuwa-scripts>-->
     </nuwa-side-bar>

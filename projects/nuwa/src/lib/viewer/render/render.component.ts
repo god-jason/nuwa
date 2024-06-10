@@ -1,9 +1,6 @@
-import {Component, ElementRef, EventEmitter, HostListener, Injector, Input} from '@angular/core';
-import {Cell, Graph, Shape} from "@antv/x6";
-import {Subscription} from "rxjs";
-//import {WindowComponent} from "../viewer/window/window.component";
+import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Injector, Input, Output} from '@angular/core';
+import {Cell, Graph, ObjectExt, Shape} from "@antv/x6";
 import {NzNotificationService} from "ng-zorro-antd/notification";
-import {NzModalService} from "ng-zorro-antd/modal";
 import {NuwaPage, NuwaProject} from "../../project";
 import {ComponentService} from "../../component.service";
 import {defaultsDeep, isFunction, isObject, isString} from "lodash-es";
@@ -17,11 +14,43 @@ import {register} from "@antv/x6-angular-shape";
     templateUrl: './render.component.html',
     styleUrl: './render.component.scss'
 })
-export class RenderComponent {
+export class RenderComponent implements AfterViewInit {
 
-    @Input() project!: NuwaProject
-    graph!: Graph;
-    subs: Subscription[] = []
+    //项目
+    _project!: NuwaProject
+
+    get project(): NuwaProject {
+        return this._project
+    }
+
+    @Input() set project(project: NuwaProject) {
+        this._project = project
+        //this.render(project) //渲染
+        this._page = project.pages[0] //默认打开第一个
+    }
+
+    //页面
+    _page!: NuwaPage
+
+    get page(): NuwaPage {
+        return this._page
+    }
+
+    @Input() set page(page: NuwaPage) {
+        this._page = page
+        this.render(page) //渲染
+    }
+
+    @Input() set values(variables: any) {
+        this.patchValues(variables)
+    }
+
+    @Output() event = new EventEmitter<NuwaEventData>()
+
+    //页面变量
+    variables: any = {}
+
+    private graph!: Graph;
 
     @Input() mousewheel = false
     @Input() panning = false
@@ -29,18 +58,22 @@ export class RenderComponent {
     @Input() padding = 10
 
     tools: any = {
-
+        //set
     }
 
     constructor(
         private ns: NzNotificationService,
         private cs: ComponentService,
         private injector: Injector,
-        element: ElementRef
+        private element: ElementRef
     ) {
-        //title.setTitle(this.project.name)
+
+    }
+
+    ngAfterViewInit() {
+
         this.graph = new Graph({
-            container: element.nativeElement,
+            container: this.element.nativeElement,
             interacting: false,
             mousewheel: this.mousewheel,
             panning: this.panning,
@@ -100,26 +133,37 @@ export class RenderComponent {
         //         text: {text: '页面'},
         //     }
         // })
+
+        if (this._page)
+            this.render(this._page)
     }
 
     triggerEvent(cell: Cell, event: string, value: any) {
         //change事件，反向同步
         if (event == "change") {
             let k = cell.data.bindings?.value
-            if (k && k.length > 0)
-                this.setVariable(k, value)
+            if (k && k.length > 0) {
+                let obj = {}
+                ObjectExt.setByPath(obj, k, value, '.')
+                this.setVariables(obj)
+                this.event.emit({event: "set", data: obj})
+            }
         }
 
         //处理事件
         cell?.data.listeners?.forEach((listener: NuwaListener) => {
-            if (event != event) return
+            if (event != listener.event) return
 
 
             let parameters: any = {}
+            let obj: any = {}
             listener.parameters?.forEach(p => {
                 //计算表达式
-                if (p.value)
-                    parameters[p.name] = this.eval(p.value)
+                if (p.value) {
+                    let value = this.eval(p.value)
+                    parameters[p.name] = value
+                    ObjectExt.setByPath(obj, p.name, value, '.')
+                }
             })
 
             //处理不同动作
@@ -133,12 +177,14 @@ export class RenderComponent {
                             ngArguments: {
                                 project: this.project,
                                 page: this.project.pages[index],
-                                values: parameters,
+                                values: obj,
                             }
                         })
+                        this.event.emit({event: "page", data: listener.page})
                     } else {
                         //当前页面
                         this.page = this.project.pages[index]
+                        this.setVariables(obj)
                     }
                     break
                 case "link":
@@ -146,31 +192,30 @@ export class RenderComponent {
                     Object.keys(parameters).forEach(k => {
                         u.searchParams.append(k, parameters[k])
                     })
-
                     let url = u.toString()
 
-                    if (listener.iframe == "_blank")
-                        //新标签页
+                    if (listener.iframe == "_blank")//新标签页
                         window.open(url, "_blank")
-                    else if (listener.iframe)
-                        //子窗口
+                    else if (listener.iframe) //子窗口
                         this.graph.getCellById(listener.iframe)?.setData({ngArguments: {url: url}})
-                    else
-                        //当前窗口
+                    else //当前窗口
                         location.href = url
                     break
                 case "set":
-                    Object.keys(parameters).forEach(k => {
-                        this.setVariable(k, parameters[k])
-                    })
+                    this.setVariables(obj)
+                    this.event.emit({event: "set", data: obj})
                     break
                 case "show":
-                    if (listener.cell)
+                    if (listener.cell) {
                         this.graph.getCellById(listener.cell)?.show()
+                        this.event.emit({event: "show", data: listener.cell})
+                    }
                     break
                 case "hide":
-                    if (listener.cell)
+                    if (listener.cell) {
                         this.graph.getCellById(listener.cell)?.hide()
+                        this.event.emit({event: "hide", data: listener.cell})
+                    }
                     break
                 case "animate":
 
@@ -179,6 +224,7 @@ export class RenderComponent {
                     if (isFunction(listener.script)) {
                         try {
                             listener.script.call(this, cell, event, this.tools)
+                            //this.event.emit({event:"script", data: cell.id})
                         } catch (e: any) {
                             this.ns.error("组件事件响应处理错误", e.message)
                         }
@@ -188,9 +234,8 @@ export class RenderComponent {
         })
     }
 
-    //页面名称
+    //页面名称(编辑时使用)
     _name = ''
-
     @Input() set name(name: string) {
         this._name = name
 
@@ -210,17 +255,6 @@ export class RenderComponent {
         })
     }
 
-    _page!: NuwaPage
-
-    get page(): NuwaPage {
-        return this._page
-    }
-
-    @Input() set page(page: NuwaPage) {
-        this._page = page
-        this.render(page) //渲染
-    }
-
     evaluate(expr: string, params: any) {
         const keys = Object.keys(params);
         const values = Object.values(params);
@@ -232,19 +266,13 @@ export class RenderComponent {
         const values = Object.values(this.variables);
 
         try {
+            //效率可能有点低
             return new Function(...keys, 'return ' + expr)(...values)
         } catch (e: any) {
             return undefined
         }
     }
 
-
-    //变量
-    variables: any = {}
-
-    @Input() set values(variables: any) {
-        this.patchValues(variables)
-    }
 
     //更新变量
     private setVariable(key: string, value: any) {
@@ -255,31 +283,32 @@ export class RenderComponent {
         this.graph.getCells().forEach(cell => {
 
             //查询绑定。。。
-            Object.keys(cell.data?.bindings).forEach(k => {
-                const bind = cell.data?.bindings[k]
-                if (bind != key) return
+            if (isObject(cell.data.bindings))
+                Object.keys(cell.data.bindings).forEach(k => {
+                    const bind = cell.data?.bindings[k]
+                    if (bind != key) return
 
-                //执行钩子
-                let cmp = this.cs.Get(cell.shape)
-                if (!cmp) return
-                let hook = cmp?.hooks?.[k]
-                if (!hook) return
+                    //执行钩子
+                    let cmp = this.cs.Get(cell.shape)
+                    if (!cmp) return
+                    let hook = cmp?.hooks?.[k]
+                    if (!hook) return
 
-                //编译hook
-                if (isString(hook)) {
-                    try {// @ts-ignore
-                        hook = new Function('cell', 'value', hook)
-                    } catch (e: any) {
-                        this.ns.error("hook编译错误", hook + ' ' + e.message)
-                        return
+                    //编译hook
+                    if (isString(hook)) {
+                        try {// @ts-ignore
+                            hook = new Function('cell', 'value', hook)
+                        } catch (e: any) {
+                            this.ns.error("hook编译错误", hook + ' ' + e.message)
+                            return
+                        }
+                        // @ts-ignore
+                        cmp.hooks[k] = hook
                     }
-                    // @ts-ignore
-                    cmp.hooks[k] = hook
-                }
 
-                if (isFunction(hook))
-                    hook.call(this, cell, value)
-            })
+                    if (isFunction(hook))
+                        hook.call(this, cell, value)
+                })
         })
     }
 
@@ -311,8 +340,12 @@ export class RenderComponent {
         //预处理，注册组件
         page.content?.cells?.forEach((cell: any) => {
             const cmp = this.cs.Get(cell.shape)
+            if (!cmp) {
+                cell.shape = "rect" //应该改为未知对象
+                return
+            }
+
             this.checkRegister(cmp)
-            cell.shape = "rect" //应该改为未知对象
         })
 
         this.graph.drawBackground(page.background || {})
@@ -323,10 +356,6 @@ export class RenderComponent {
             this.graph.centerContent()
             this.graph.zoomToFit({padding: this.padding})
         }
-
-        //清空订阅
-        this.subs.forEach(sub => sub.unsubscribe())
-        this.subs = []
 
         //监听事件
         this.graph.getCells().forEach(cell => {
@@ -343,32 +372,32 @@ export class RenderComponent {
             }
 
             //编译组件的事件处理
-            // @ts-ignore
-            Object.keys(cmp.listeners).forEach(k => {
-                // @ts-ignore
-                let listener = cmp.listeners[k]
-                if (isString(listener))
-                    try { // @ts-ignore
-                        cmp.listeners[k] = new Function('cell', 'event', 'tools', listener)
-                    } catch (e: any) {
-                        this.ns.error("脚本编译错误", listener + ' ' + e.message)
-                    }
+            if (isObject(cmp.listeners))
+                Object.keys(cmp.listeners).forEach(k => {
+                    // @ts-ignore
+                    let listener = cmp.listeners[k]
+                    if (isString(listener))
+                        try { // @ts-ignore
+                            cmp.listeners[k] = new Function('cell', 'event', 'tools', listener)
+                        } catch (e: any) {
+                            this.ns.error("脚本编译错误", listener + ' ' + e.message)
+                        }
 
-            })
+                })
 
             //编译组件的数据绑定处理
-            // @ts-ignore
-            Object.keys(cmp.hooks).forEach(k => {
-                // @ts-ignore
-                let hook = cmp.hooks[k]
-                if (isString(hook) && hook.length > 0)
-                    try {// @ts-ignore
-                        cmp.hooks[k] = new Function('cell', 'value', hook)
-                    } catch (e: any) {
-                        this.ns.error("hook编译错误", hook + ' ' + e.message)
-                        return
-                    }
-            })
+            if (isObject(cmp.hooks))
+                Object.keys(cmp.hooks).forEach(k => {
+                    // @ts-ignore
+                    let hook = cmp.hooks[k]
+                    if (isString(hook) && hook.length > 0)
+                        try {// @ts-ignore
+                            cmp.hooks[k] = new Function('cell', 'value', hook)
+                        } catch (e: any) {
+                            this.ns.error("hook编译错误", hook + ' ' + e.message)
+                            return
+                        }
+                })
 
             //编译元素的处理编译
             cell.data?.listeners?.forEach((listener: NuwaListener) => {
@@ -398,7 +427,7 @@ export class RenderComponent {
     }
 
     ngOnDestroy(): void {
-        this.subs.forEach(sub => sub.unsubscribe())
+
     }
 
     checkRegister(component: NuwaComponent): boolean {

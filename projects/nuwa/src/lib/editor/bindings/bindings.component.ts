@@ -13,7 +13,7 @@ import {ComponentService} from "../../component.service";
 })
 export class BindingsComponent {
     @Input() canvas!: CanvasComponent;
-    @Input() project!: NuwaProject;
+    //@Input() project!: NuwaProject;
 
     @ViewChild("editor") editor!: SmartEditorComponent;
 
@@ -75,7 +75,7 @@ export class BindingsComponent {
         this.data = this.cell.data?.bindings || {}
 
         //变量表
-        this.options = this.project.variables?.map(v => {
+        this.options = this.canvas.page.variables?.map(v => {
             return {label: v.label, value: v.name}
         })||[]
         this.options.unshift({label: '无', value: ''})

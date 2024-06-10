@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output, ViewContainerRef} from '@angular
 import {Node} from "@antv/x6";
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {AboutComponent} from "../about/about.component";
-import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
 import {BaseLine} from "../../widgets/base/line";
 import {MiscFlow} from "../../widgets/misc/flow";
 import {NzDrawerService} from "ng-zorro-antd/drawer";
+import {RenderComponent} from "../../viewer/render/render.component";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'nuwa-toolbar',
@@ -249,7 +250,7 @@ export class ToolbarComponent {
 
     handleScale($event: number) {
         this.scaleChange.emit($event)
-        this.canvas.graph.zoomTo($event, {center:{x:0,y:0}})
+        this.canvas.graph.zoomTo($event, {center: {x: 0, y: 0}})
     }
 
     about() {
@@ -274,12 +275,20 @@ export class ToolbarComponent {
     }
 
     preview() {
-        this.ds.create({
-            nzTitle: '预览',
+        this.canvas.page.content = this.canvas.graph.toJSON()
+        let page = cloneDeep(this.canvas.page)
+
+        let ref = this.ds.create({
+            nzTitle: '预览' + page.name,
             nzPlacement: 'top',
-            nzContent: AboutComponent,
+            nzContent: RenderComponent,
             nzWidth: '100%',
             nzHeight: '100%',
         })
+        ref.afterOpen.subscribe(() => {
+            console.log("preview", page)
+            ref.getContentComponentRef()?.setInput("page", page)
+        })
+
     }
 }
