@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewContainerRef} from '@angular/core';
 import {Node} from "@antv/x6";
-import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalService} from 'ng-zorro-antd/modal';
-//import {ComponentService} from "../../component.service";
 import {AboutComponent} from "../about/about.component";
 import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
@@ -16,7 +14,6 @@ import {NzDrawerService} from "ng-zorro-antd/drawer";
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-    @Input() project!: NuwaProject;
     @Input() canvas!: CanvasComponent;
 
     // 1200X340
@@ -251,10 +248,8 @@ export class ToolbarComponent {
     }
 
     handleScale($event: number) {
-        //console.log("handleScale", $event)
         this.scaleChange.emit($event)
-        this.canvas.graph.zoomTo($event)
-        //this.canvas.graph.resize()
+        this.canvas.graph.zoomTo($event, {center:{x:0,y:0}})
     }
 
     about() {
