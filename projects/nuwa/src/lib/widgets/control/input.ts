@@ -1,7 +1,6 @@
 import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {NzInputDirective} from "ng-zorro-antd/input";
 import {FormsModule} from "@angular/forms";
 import {DefaultEvents, ngTextProperties} from "../properties";
 import {InputSvgBase64} from "./input_svg";
@@ -11,14 +10,14 @@ import {InputSvgBase64} from "./input_svg";
     standalone: true,
     imports: [
         CommonModule,
-        NzInputDirective,
         FormsModule,
     ],
     styles: `input {
         width: 100%;
-        height: 100%
+        height: 100%;
+        border: none;
     }`,
-    template: `<input nz-input [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [type]="type"
+    template: `<input [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [type]="type"
                       [style.color]="color" [style.font-size]="fontSize+'px'"
                       [style.font-family]="fontFamily" [style.font-weight]="fontWeight"
                       [style.font-style]="fontStyle" [style.text-align]="textAlign"
