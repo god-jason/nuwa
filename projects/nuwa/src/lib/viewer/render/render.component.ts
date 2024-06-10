@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input} from '@angular/core';
-import {Cell, Graph} from "@antv/x6";
+import {Component, ElementRef, EventEmitter, HostListener, Injector, Input} from '@angular/core';
+import {Cell, Graph, Shape} from "@antv/x6";
 import {Subscription} from "rxjs";
 //import {WindowComponent} from "../viewer/window/window.component";
 import {NzNotificationService} from "ng-zorro-antd/notification";
@@ -7,7 +7,8 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {NuwaPage, NuwaProject} from "../../project";
 import {ComponentService} from "../../component.service";
 import {defaultsDeep, isFunction, isObject, isString} from "lodash-es";
-import {NuwaEventData, NuwaListener} from "../../nuwa";
+import {NuwaComponent, NuwaEventData, NuwaListener} from "../../nuwa";
+import {register} from "@antv/x6-angular-shape";
 
 @Component({
     selector: 'nuwa-render',
@@ -28,43 +29,13 @@ export class RenderComponent {
     @Input() padding = 10
 
     tools: any = {
-        go: (page: string) => {
-            // this.project.pages.forEach(value => {
-            //     if (value.name == page)
-            //         this.Render(value)
-            // })
-        },
-        window: (url: string, width = 400, height = 300, title = '窗口') => {
-            this.ms.create({
-                //nzContent: WindowComponent,
-                nzData: {url, width, height, title},
-                nzWidth: width + 48,
-                nzFooter: null,
-            })
-        },
-        open: (url: string, blank = false) => {
-            if (blank)
-                window.open(url)
-            else
-                location.href = url
-        },
-        auth: (cb: () => {}) => {
-            // this.ms.create({
-            //     nzContent: AuthComponent,
-            //     nzTitle: "请输入登录密码",
-            //     nzFooter: null
-            // }).afterClose.subscribe(res => {
-            //     if (res == 'ok') cb()
-            // })
-        }
 
     }
 
     constructor(
         private ns: NzNotificationService,
-        private ms: NzModalService,
         private cs: ComponentService,
-        //private mqtt: MqttService,
+        private injector: Injector,
         element: ElementRef
     ) {
         //title.setTitle(this.project.name)
@@ -132,19 +103,26 @@ export class RenderComponent {
     }
 
     triggerEvent(cell: Cell, event: string, value: any) {
-        //TODO change事件，反向同步
+        //change事件，反向同步
+        if (event == "change") {
+            let k = cell.data.bindings?.value
+            if (k && k.length > 0)
+                this.setVariable(k, value)
+        }
 
+        //处理事件
         cell?.data.listeners?.forEach((listener: NuwaListener) => {
             if (event != event) return
 
 
             let parameters: any = {}
             listener.parameters?.forEach(p => {
-                //TODO 计算表达式
-                parameters[p.name] = p.value
+                //计算表达式
+                if (p.value)
+                    parameters[p.name] = this.eval(p.value)
             })
 
-            //listener.action
+            //处理不同动作
             switch (listener.action) {
                 case "page":
                     let index = this.project.pages.findIndex(p => p.name == listener.page)
@@ -249,6 +227,17 @@ export class RenderComponent {
         return (new Function(...keys, 'return ' + expr))(...values)
     }
 
+    eval(expr: string): any {
+        const keys = Object.keys(this.variables);
+        const values = Object.values(this.variables);
+
+        try {
+            return new Function(...keys, 'return ' + expr)(...values)
+        } catch (e: any) {
+            return undefined
+        }
+    }
+
 
     //变量
     variables: any = {}
@@ -322,7 +311,8 @@ export class RenderComponent {
         //预处理，注册组件
         page.content?.cells?.forEach((cell: any) => {
             const cmp = this.cs.Get(cell.shape)
-            if (!cmp) return
+            this.checkRegister(cmp)
+            cell.shape = "rect" //应该改为未知对象
         })
 
         this.graph.drawBackground(page.background || {})
@@ -333,8 +323,6 @@ export class RenderComponent {
             this.graph.centerContent()
             this.graph.zoomToFit({padding: this.padding})
         }
-
-        //TODO 调用组件的init
 
         //清空订阅
         this.subs.forEach(sub => sub.unsubscribe())
@@ -413,4 +401,53 @@ export class RenderComponent {
         this.subs.forEach(sub => sub.unsubscribe())
     }
 
+    checkRegister(component: NuwaComponent): boolean {
+        if (component.registered || component.internal)
+            return true
+        component.registered = true
+
+        switch (component.type) {
+            case "line":
+                //注册线
+                if (component.extends) {
+                    Graph.registerEdge(component.id, component.extends, true)
+                    return true
+                }
+                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                break
+            case "shape":
+                //注册衍生组件
+                if (component.extends) {
+                    Graph.registerNode(component.id, component.extends, true)
+                    return true
+                }
+                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                break;
+            case "html":
+                // @ts-ignore
+                Shape.HTML.register({
+                    shape: component.id,
+                    width: component.metadata?.width || 100,
+                    height: component.metadata?.height || 100,
+                    // @ts-ignore
+                    html: component.html,
+                })
+                break;
+            case "angular":
+                if (component.content) {
+                    register({
+                        shape: component.id,
+                        width: component.metadata?.width || 100,
+                        height: component.metadata?.height || 100,
+                        content: component.content,
+                        injector: this.injector,
+                    })
+                    component.registered = true
+                    return true
+                }
+                this.ns.error("编译错误", component.id + " " + component.name + "缺少content")
+                break;
+        }
+        return false
+    }
 }

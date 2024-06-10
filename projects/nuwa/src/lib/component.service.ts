@@ -12,10 +12,6 @@ import {ImageBorder} from "./widgets/misc/image-border";
     providedIn: 'root'
 })
 export class ComponentService {
-
-    //TODO 处理加载中
-    public ready = false
-    public readySub = new Subject<boolean>()
     public components: { [id: string]: NuwaComponent } = {}
 
     constructor(private ns: NzNotificationService) {
@@ -23,28 +19,8 @@ export class ComponentService {
         this.PutComponent(BaseLine)
         this.PutComponent(MiscFlow)
         this.PutComponent(ImageBorder)
-
         //this.PutComponent(BaseGroup)
     }
-
-    public Ready() {
-        return this.readySub.asObservable()
-    }
-
-    // public PutImage(component: NuwaImageComponent) {
-    //     const c = createImageComponent(component)
-    //     this.PutComponent(c)
-    // }
-    //
-    // public PutPath(component: NuwaPathComponent) {
-    //     const c = createPathComponent(component)
-    //     this.PutComponent(c)
-    // }
-    //
-    // public PutHtml(component: NuwaHtmlComponent) {
-    //     const c = createHtmlComponent(component)
-    //     this.PutComponent(c)
-    // }
 
     public PutComponent(component: NuwaComponent) {
         this.components[component.id] = component

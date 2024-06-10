@@ -167,9 +167,9 @@ export class CanvasComponent {
 
     render(page: NuwaPage) {
         page.content?.cells?.forEach((cell: any) => {
-            //const cmp = this.cs.Get(cell.shape)
-            //TODO 使用filter 过滤掉找不到组件的情况
-
+            const cmp = this.cs.Get(cell.shape)
+            this.checkRegister(cmp)
+            cell.shape = "rect" //TODO 应该改为未知对象
         })
 
         //绘制背景 if (page.background)

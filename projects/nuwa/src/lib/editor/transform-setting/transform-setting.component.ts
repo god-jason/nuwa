@@ -40,7 +40,7 @@ export class TransformSettingComponent implements OnInit, OnDestroy {
     }
 
     onCellChangeAngle(event: { cell: Cell, current: any }) {
-        //TODO 此处无效
+        //ERROR 此处无效
         if (event.cell == this.cell)
             this.form.patchValue(event.current as any)
     }
