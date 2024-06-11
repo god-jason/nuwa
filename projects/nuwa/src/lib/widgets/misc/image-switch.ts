@@ -11,6 +11,7 @@ export const ImageSwitch: NuwaComponent = {
     extends: {inherit: 'image'},
     events: [
         ...DefaultEvents,
+        {name: "change", label: "变化"},
     ],
     metadata: {
         width: 100, height: 100,
@@ -33,6 +34,10 @@ export const ImageSwitch: NuwaComponent = {
             //更新图片
             let img = cell.getPropByPath(value ? "data/on" : "data/off")
             cell.setPropByPath("attrs/image/xlink:href", img)
+
+            //回传
+            //@ts-ignore
+            this.handleEvent(cell, "change", value)
         }
     },
     bindings: [
@@ -49,7 +54,9 @@ export const ImageSwitch: NuwaComponent = {
     },
 }
 
-export function createImageSwitch(name: string, id: string, on: string, off: string): NuwaComponent {
+export function createImageSwitch(name: string, id: string,
+                                  width: number, height: number,
+                                  on: string, off: string): NuwaComponent {
     return {
         name, id,
         icon: off,
@@ -57,10 +64,10 @@ export function createImageSwitch(name: string, id: string, on: string, off: str
         extends: {inherit: 'image'},
         events: [
             ...DefaultEvents,
+            {name: "change", label: "变化"},
         ],
         metadata: {
-            width: 100, height: 80,
-            imageUrl: off,
+            width, height, imageUrl: off,
             data: {on, off, value: false}
         },
         properties: [
@@ -70,11 +77,17 @@ export function createImageSwitch(name: string, id: string, on: string, off: str
             click(cell: Cell, event: Event) {
                 //翻转
                 let value = !cell.getPropByPath("data/value")
+
                 //设置值
                 cell.setPropByPath("data/value", value)
+
                 //更新图片
                 let img = cell.getPropByPath(value ? "data/on" : "data/off")
                 cell.setPropByPath("attrs/image/xlink:href", img)
+
+                //回传
+                //@ts-ignore
+                this.handleEvent(cell, "change", value)
             }
         },
         bindings: [
