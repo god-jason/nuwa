@@ -76,6 +76,67 @@ class EchartsBarComponent implements AfterViewInit {
         this.option = this.getOption()
     }
 
+    @Input() set $0(v: number){
+        if (this._values.length>0) {
+            this._values[0].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $1(v: number){
+        if (this._values.length>1) {
+            this._values[1].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $2(v: number){
+        if (this._values.length>2) {
+            this._values[2].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $3(v: number){
+        if (this._values.length>3) {
+            this._values[3].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $4(v: number){
+        if (this._values.length>4) {
+            this._values[4].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $5(v: number){
+        if (this._values.length>5) {
+            this._values[5].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $6(v: number){
+        if (this._values.length>6) {
+            this._values[6].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $7(v: number){
+        if (this._values.length>7) {
+            this._values[7].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $8(v: number){
+        if (this._values.length>8) {
+            this._values[8].value = v
+            this.option = this.getOption()
+        }
+    }
+    @Input() set $9(v: number){
+        if (this._values.length>9) {
+            this._values[9].value = v
+            this.option = this.getOption()
+        }
+    }
+
     _darkMode: boolean = false;
 
     @Input() set darkMode(value: boolean) {
@@ -166,10 +227,50 @@ export const EchartsBar: NuwaComponent = {
     ],
     bindings: [
         {name: 'values', label: "数据集", default: ''},
+        {name: '$0', label: "值0", default: ''},
+        {name: '$1', label: "值1", default: ''},
+        {name: '$2', label: "值2", default: ''},
+        {name: '$3', label: "值3", default: ''},
+        {name: '$4', label: "值4", default: ''},
+        {name: '$5', label: "值5", default: ''},
+        {name: '$6', label: "值6", default: ''},
+        {name: '$7', label: "值7", default: ''},
+        {name: '$8', label: "值8", default: ''},
+        {name: '$9', label: "值9", default: ''},
     ],
     hooks: {
         values(cell, value) {
             cell.setPropByPath("data/ngArguments/values", value);
+        },
+        $0(cell, value) {
+            cell.setPropByPath("data/ngArguments/$0", value);
+        },
+        $1(cell, value) {
+            cell.setPropByPath("data/ngArguments/$1", value);
+        },
+        $2(cell, value) {
+            cell.setPropByPath("data/ngArguments/$2", value);
+        },
+        $3(cell, value) {
+            cell.setPropByPath("data/ngArguments/$3", value);
+        },
+        $4(cell, value) {
+            cell.setPropByPath("data/ngArguments/$4", value);
+        },
+        $5(cell, value) {
+            cell.setPropByPath("data/ngArguments/$5", value);
+        },
+        $6(cell, value) {
+            cell.setPropByPath("data/ngArguments/$6", value);
+        },
+        $7(cell, value) {
+            cell.setPropByPath("data/ngArguments/$7", value);
+        },
+        $8(cell, value) {
+            cell.setPropByPath("data/ngArguments/$8", value);
+        },
+        $9(cell, value) {
+            cell.setPropByPath("data/ngArguments/$9", value);
         }
     },
 }
