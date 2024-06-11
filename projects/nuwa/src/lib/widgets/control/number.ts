@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, HostBinding, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents, ngTextProperties} from "../properties";
 import {NumberSvgBase64} from "./number_svg";
@@ -14,6 +14,8 @@ import {NumberSvgBase64} from "./number_svg";
     template: `{{ value | number: "1."+min+"-"+max }}`
 })
 class ControlNumberComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     @Input() value = Math.PI
     @Input() min = 0
     @Input() max = 2

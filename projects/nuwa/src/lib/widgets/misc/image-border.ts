@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 
 @Component({
@@ -35,6 +35,8 @@ import {CommonModule} from "@angular/common";
     }
 })
 class ImageBorderComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     @Input() url = 'assets/widgets/.9.png'
     @Input() top = 58
     @Input() right = 58

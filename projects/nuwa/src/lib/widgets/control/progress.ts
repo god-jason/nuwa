@@ -1,6 +1,6 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {NzProgressComponent} from "ng-zorro-antd/progress";
-import {Component, ElementRef, Input} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents} from "../properties";
 import {ProgressSvgBase64} from "./progress_svg";
@@ -29,6 +29,8 @@ import {ProgressSvgBase64} from "./progress_svg";
                      nzStrokeLinecap="square"></nz-progress>`
 })
 class ControlProgressComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     @Input() value = 60
     @Input() color = "#6992ff"
 

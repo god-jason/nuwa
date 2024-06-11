@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {SmartSelectOption} from "@god-jason/smart";
@@ -21,6 +21,8 @@ import {WeatherSvgBase64} from "./weather_svg";
         <iframe [src]="src"></iframe>`
 })
 class MiscWeatherComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     base = "https://i.tianqi.com/"
     src!: SafeResourceUrl
 

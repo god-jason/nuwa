@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {WebSvgBase64} from "./web_svg";
@@ -21,6 +21,8 @@ import {WebSvgBase64} from "./web_svg";
         <iframe [src]="src"></iframe>`
 })
 class MiscWebComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     src!: SafeResourceUrl
 
     constructor(private sanitizer: DomSanitizer) {

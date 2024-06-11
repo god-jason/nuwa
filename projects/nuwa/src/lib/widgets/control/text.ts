@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, HostBinding, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents, ngTextProperties} from "../properties";
 import {TextSvgBase64} from "./text_svg";
@@ -15,6 +15,8 @@ import {TextSvgBase64} from "./text_svg";
         <pre>{{ text }}</pre>`
 })
 class ControlTextComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     @Input() text = "文本框"
 
     @Input() @HostBinding("style.color") color = "black";

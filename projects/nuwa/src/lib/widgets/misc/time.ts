@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {TimeSvgBase64} from "./time_svg";
 
@@ -13,6 +13,7 @@ import {TimeSvgBase64} from "./time_svg";
     template: `{{now | date: format }}`
 })
 class MiscTimeComponent implements OnInit, OnDestroy{
+    @Input() listener = new EventEmitter<NuwaEventData>();
 
     now = Date.now();
 

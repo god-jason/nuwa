@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {VideoSvgBase64} from "./video_svg";
@@ -21,6 +21,8 @@ import {VideoSvgBase64} from "./video_svg";
         <video [src]="src" [autoplay]="autoplay" [loop]="loop" [controls]="controls" [muted]="muted" preload="auto"></video>`
 })
 class MiscVideoComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     @Input() autoplay = true;
     @Input() controls = true;
     @Input() muted = true;

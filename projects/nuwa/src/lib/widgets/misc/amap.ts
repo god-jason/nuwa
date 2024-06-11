@@ -1,6 +1,6 @@
-import {Component, ElementRef, HostListener, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit} from "@angular/core";
 import {load} from '@amap/amap-jsapi-loader';
-import {NuwaComponent} from "../../nuwa";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
 import {AmapSvgBase64} from "./amap_svg";
 
 @Component({
@@ -23,6 +23,8 @@ import {AmapSvgBase64} from "./amap_svg";
         <div [id]="id" class="container"></div>`
 })
 class MiscAMapComponent implements OnInit {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     id = "amap_" + Math.random().toString(36);
 
     @Input() key = "eb6a831c04b6dfedda190d6254febb58"

@@ -138,7 +138,7 @@ export class RenderComponent implements AfterViewInit {
             this.render(this._page)
     }
 
-    _handleEvent(cell: Cell, listener: NuwaListener, parameters: any, obj: any) {
+    _handleEvent(cell: Cell, listener: NuwaListener, parameters: any, obj: any, value: any) {
         //处理不同动作
         switch (listener.action) {
             case "page":
@@ -196,7 +196,9 @@ export class RenderComponent implements AfterViewInit {
             case "script":
                 if (isFunction(listener.script)) {
                     try {
-                        listener.script.call(this, cell, event, this.tools)
+                        //'$graph', '$cell', '$event', '$value', '$variables', $set, '$tools',
+                        //@ts-ignore
+                        listener.script.call(this, this.graph, cell, listener.event, value, this.variables, this.$set, this.tools)
                         //this.event.emit({event:"script", data: cell.id})
                     } catch (e: any) {
                         this.ns.error("组件事件响应处理错误", e.message)
@@ -236,9 +238,9 @@ export class RenderComponent implements AfterViewInit {
 
             //延迟处理
             if (listener.delay > 0) {
-                setTimeout(() => this._handleEvent(cell, listener, parameters, obj), listener.delay)
+                setTimeout(() => this._handleEvent(cell, listener, parameters, obj, value), listener.delay)
             } else {
-                this._handleEvent(cell, listener, parameters, obj)
+                this._handleEvent(cell, listener, parameters, obj, value)
             }
 
         })
@@ -328,6 +330,10 @@ export class RenderComponent implements AfterViewInit {
                         hook.call(this, cell, value)
                 })
         })
+    }
+
+    private $set = (key: string, value: any)=>{
+        this.setVariable(key, value)
     }
 
     //递归更新变量
@@ -421,7 +427,7 @@ export class RenderComponent implements AfterViewInit {
             cell.data?.listeners?.forEach((listener: NuwaListener) => {
                 if (isString(listener.script) && listener.script.length > 0) {
                     try { // @ts-ignore
-                        listener.script = new Function('cell', 'event', 'tools', func)
+                        listener.script = new Function('$graph', '$cell', '$event', '$value', '$variables', '$set', '$tools', listener.script)
                     } catch (e: any) {
                         this.ns.error("脚本编译错误", listener.script + ' ' + e.message)
                     }

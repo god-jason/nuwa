@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {AfterViewInit, Component, ElementRef, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import type {EChartsOption} from "echarts";
@@ -32,6 +32,8 @@ interface ChartValue {
 
 })
 class EchartsBarComponent implements AfterViewInit {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     chart: any;
 
     constructor(protected elementRef: ElementRef) {

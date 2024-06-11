@@ -1,5 +1,5 @@
-import {NuwaComponent} from "../../nuwa";
-import {Component, ElementRef, Input} from "@angular/core";
+import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
 import {EchartsGaugeSvgBase64} from "./echarts-gauge_svg";
@@ -27,6 +27,8 @@ import {EchartsGaugeSvgBase64} from "./echarts-gauge_svg";
 
 })
 class EchartsGaugeComponent {
+    @Input() listener = new EventEmitter<NuwaEventData>();
+
     chart: any;
 
     @Input() name = ''
