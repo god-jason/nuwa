@@ -37,7 +37,7 @@ export class EditorComponent {
 
     @Input() set project(project: NuwaProject) {
         this._project = project
-        
+
         this.title.setTitle(this._project.name)
         this.page = project.pages[0]
     }

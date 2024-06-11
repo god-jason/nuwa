@@ -84,7 +84,7 @@ export class RenderComponent implements AfterViewInit {
         });
 
         this.graph.on('cell:click', ({cell, e}) => {
-            this.triggerEvent(cell, 'click', undefined)
+            this.handleEvent(cell, 'click', undefined)
 
             try {
                 let cmp = this.cs.Get(cell.shape)
@@ -138,7 +138,75 @@ export class RenderComponent implements AfterViewInit {
             this.render(this._page)
     }
 
-    triggerEvent(cell: Cell, event: string, value: any) {
+    _handleEvent(cell: Cell, listener: NuwaListener, parameters: any, obj: any) {
+        //处理不同动作
+        switch (listener.action) {
+            case "page":
+                let index = this.project.pages.findIndex(p => p.name == listener.page)
+                if (listener.outlet) {
+                    let outlet = this.graph.getCellById(listener.outlet)
+                    //打开页面
+                    outlet.setData({
+                        ngArguments: {
+                            project: this.project,
+                            page: this.project.pages[index],
+                            values: obj,
+                        }
+                    })
+                    this.event.emit({event: "page", data: listener.page})
+                } else {
+                    //当前页面
+                    this.page = this.project.pages[index]
+                    this.setVariables(obj)
+                }
+                break
+            case "link":
+                let u = new URL(listener.url || "")
+                Object.keys(parameters).forEach(k => {
+                    u.searchParams.append(k, parameters[k])
+                })
+                let url = u.toString()
+
+                if (listener.iframe == "_blank")//新标签页
+                    window.open(url, "_blank")
+                else if (listener.iframe) //子窗口
+                    this.graph.getCellById(listener.iframe)?.setData({ngArguments: {url: url}})
+                else //当前窗口
+                    location.href = url
+                break
+            case "set":
+                this.setVariables(obj)
+                this.event.emit({event: "set", data: obj})
+                break
+            case "show":
+                if (listener.cell) {
+                    this.graph.getCellById(listener.cell)?.show()
+                    this.event.emit({event: "show", data: listener.cell})
+                }
+                break
+            case "hide":
+                if (listener.cell) {
+                    this.graph.getCellById(listener.cell)?.hide()
+                    this.event.emit({event: "hide", data: listener.cell})
+                }
+                break
+            case "animate":
+
+                break
+            case "script":
+                if (isFunction(listener.script)) {
+                    try {
+                        listener.script.call(this, cell, event, this.tools)
+                        //this.event.emit({event:"script", data: cell.id})
+                    } catch (e: any) {
+                        this.ns.error("组件事件响应处理错误", e.message)
+                    }
+                }
+                break
+        }
+    }
+
+    handleEvent(cell: Cell, event: string, value: any) {
         //change事件，反向同步
         if (event == "change") {
             let k = cell.data.bindings?.value
@@ -166,71 +234,13 @@ export class RenderComponent implements AfterViewInit {
                 }
             })
 
-            //处理不同动作
-            switch (listener.action) {
-                case "page":
-                    let index = this.project.pages.findIndex(p => p.name == listener.page)
-                    if (listener.outlet) {
-                        let outlet = this.graph.getCellById(listener.outlet)
-                        //打开页面
-                        outlet.setData({
-                            ngArguments: {
-                                project: this.project,
-                                page: this.project.pages[index],
-                                values: obj,
-                            }
-                        })
-                        this.event.emit({event: "page", data: listener.page})
-                    } else {
-                        //当前页面
-                        this.page = this.project.pages[index]
-                        this.setVariables(obj)
-                    }
-                    break
-                case "link":
-                    let u = new URL(listener.url || "")
-                    Object.keys(parameters).forEach(k => {
-                        u.searchParams.append(k, parameters[k])
-                    })
-                    let url = u.toString()
-
-                    if (listener.iframe == "_blank")//新标签页
-                        window.open(url, "_blank")
-                    else if (listener.iframe) //子窗口
-                        this.graph.getCellById(listener.iframe)?.setData({ngArguments: {url: url}})
-                    else //当前窗口
-                        location.href = url
-                    break
-                case "set":
-                    this.setVariables(obj)
-                    this.event.emit({event: "set", data: obj})
-                    break
-                case "show":
-                    if (listener.cell) {
-                        this.graph.getCellById(listener.cell)?.show()
-                        this.event.emit({event: "show", data: listener.cell})
-                    }
-                    break
-                case "hide":
-                    if (listener.cell) {
-                        this.graph.getCellById(listener.cell)?.hide()
-                        this.event.emit({event: "hide", data: listener.cell})
-                    }
-                    break
-                case "animate":
-
-                    break
-                case "script":
-                    if (isFunction(listener.script)) {
-                        try {
-                            listener.script.call(this, cell, event, this.tools)
-                            //this.event.emit({event:"script", data: cell.id})
-                        } catch (e: any) {
-                            this.ns.error("组件事件响应处理错误", e.message)
-                        }
-                    }
-                    break
+            //延迟处理
+            if (listener.delay > 0) {
+                setTimeout(() => this._handleEvent(cell, listener, parameters, obj), listener.delay)
+            } else {
+                this._handleEvent(cell, listener, parameters, obj)
             }
+
         })
     }
 
@@ -374,7 +384,7 @@ export class RenderComponent implements AfterViewInit {
             if (cmp.content) {
                 let listener = new EventEmitter<NuwaEventData>()
                 listener.subscribe(event => {
-                    this.triggerEvent(cell, event.event, event.data)
+                    this.handleEvent(cell, event.event, event.data)
                 })
                 cell.setPropByPath("data/ngArguments/listener", listener)
             }

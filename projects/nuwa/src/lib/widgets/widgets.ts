@@ -43,7 +43,7 @@ export const NuwaWidgets: NuwaCollection[] = [
         name: "图表组件",
         components: [
             //Echarts,
-            EchartsBar, EchartsGauge, EchartsLine, EchartsPie
+            EchartsBar, EchartsLine, EchartsPie, EchartsGauge
         ]
     },
     {

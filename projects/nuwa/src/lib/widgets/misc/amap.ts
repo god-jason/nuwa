@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, HostListener, Input, OnInit} from "@angular/core";
 import {load} from '@amap/amap-jsapi-loader';
 import {NuwaComponent} from "../../nuwa";
 import {AmapSvgBase64} from "./amap_svg";
@@ -32,6 +32,16 @@ class MiscAMapComponent implements OnInit {
     constructor(protected element: ElementRef) {
 
     }
+
+    // @HostListener('mouseup', ['$event']) onMouseUp(event: MouseEvent) {
+    //     event.stopPropagation();
+    // }
+    // @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
+    //     event.stopPropagation();
+    // }
+    // @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
+    //     event.stopPropagation();
+    // }
 
     @Input() _zoom = 12
 
