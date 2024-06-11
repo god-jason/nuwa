@@ -22,6 +22,7 @@ import {MiscAMap} from "./misc/amap";
 import {MiscVideo} from "./misc/video";
 import {MiscTime} from "./misc/time";
 import {ControlText} from "./control/text";
+import {ControlTable} from "./control/table";
 
 export const NuwaWidgets: NuwaCollection[] = [
     {
@@ -36,7 +37,7 @@ export const NuwaWidgets: NuwaCollection[] = [
             ControlText,
             ControlButton, ControlNumber, ControlInput,
             ControlSwitch, ControlProgress, ControlSelect,
-            ControlSlider
+            ControlSlider, ControlTable,
         ]
     },
     {

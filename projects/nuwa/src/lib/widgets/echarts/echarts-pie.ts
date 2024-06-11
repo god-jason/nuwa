@@ -48,7 +48,7 @@ class EchartsPieComponent implements AfterViewInit {
     ]
 
     @Input() set values(v: ChartValue[]) {
-        this._values = v
+        this._values = v || []
         this.option = this.getOption()
     }
 
@@ -103,9 +103,23 @@ export const EchartsPie: NuwaComponent = {
             key: "data/ngArguments/values", label: "数据", type: "table", children: [
                 {key: 'name', label: '项目', type: 'text'},
                 {key: 'value', label: '值', type: 'number'},
+            ], default: [
+                {name: "一", value: 100},
+                {name: "二", value: 110},
+                {name: "三", value: 120},
+                {name: "四", value: 130},
+                {name: "五", value: 120},
+                {name: "六", value: 100},
+                {name: "日", value: 125},
             ]
         },
     ],
-    bindings: [],
-    hooks: {},
+    bindings: [
+        {name: 'values', label: "数据集", default: ''},
+    ],
+    hooks: {
+        values(cell, value) {
+            cell.setPropByPath("data/ngArguments/values", value);
+        }
+    },
 }
