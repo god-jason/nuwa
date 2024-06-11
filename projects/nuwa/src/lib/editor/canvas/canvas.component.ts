@@ -89,7 +89,11 @@ export class CanvasComponent {
         this.graph.bindKey('ctrl+y', () => this.graph.redo())
         this.graph.bindKey('ctrl+x', () => this.graph.cut(this.graph.getSelectedCells(), {deep: true}))
         this.graph.bindKey('ctrl+c', () => this.graph.copy(this.graph.getSelectedCells(), {deep: true}))
-        this.graph.bindKey('ctrl+v', () => this.graph.resetSelection(this.graph.paste()))
+        this.graph.bindKey('ctrl+v', () => {
+            let cs = this.graph.paste()
+            cs.forEach(cell=>cell.data.name += '_copy')
+            this.graph.resetSelection(cs)
+        })
         this.graph.bindKey('backspace', () => this.graph.getSelectedCells().forEach(cell => cell.remove()))
         this.graph.bindKey('delete', () => this.graph.getSelectedCells().forEach(cell => cell.remove()))
 

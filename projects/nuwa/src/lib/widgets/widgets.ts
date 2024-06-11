@@ -23,6 +23,7 @@ import {MiscVideo} from "./misc/video";
 import {MiscTime} from "./misc/time";
 import {ControlText} from "./control/text";
 import {ControlTable} from "./control/table";
+import {ImageSwitch} from "./misc/image-switch";
 
 export const NuwaWidgets: NuwaCollection[] = [
     {
@@ -51,6 +52,7 @@ export const NuwaWidgets: NuwaCollection[] = [
         name: "其他组件",
         components: [
             //MiscFlow,
+            ImageSwitch,
             MiscTime,
             MiscVideo,
             MiscWeather,

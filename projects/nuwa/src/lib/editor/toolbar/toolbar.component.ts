@@ -30,7 +30,7 @@ export class ToolbarComponent {
     showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
     //上传json
-    @ViewChild('file', { static: true }) file!: ElementRef<HTMLInputElement>;
+    @ViewChild('file', {static: true}) file!: ElementRef<HTMLInputElement>;
 
     constructor(
         private ms: NzModalService,
@@ -75,7 +75,9 @@ export class ToolbarComponent {
     }
 
     handlePaste() {
-        this.canvas.graph.paste()
+        let cs = this.canvas.graph.paste()
+        cs.forEach(cell => cell.data.name += "_copy")
+        this.canvas.graph.resetSelection(cs)
     }
 
     handleDelete() {
@@ -314,9 +316,9 @@ export class ToolbarComponent {
         const reader = new FileReader()
         reader.onloadend = () => {
             console.log("reader", reader.result)
-            try{
+            try {
                 this.editor.project = JSON.parse(reader.result as string)
-            }catch(err){
+            } catch (err) {
 
             }
 
