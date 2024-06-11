@@ -13,6 +13,7 @@ import {ObjectExt} from "@antv/x6";
 export class EditorComponent {
     id: any = ''
 
+    _project: NuwaProject = projectTemplate()
     page!: NuwaPage
 
     //组件集合
@@ -30,13 +31,13 @@ export class EditorComponent {
         //console.log(ObjectExt.flatten({a:{b:1}}))
     }
 
-    _project: NuwaProject = projectTemplate()
-
     get project() {
         return this._project
     }
 
     @Input() set project(project: NuwaProject) {
+        this._project = project
+        
         this.title.setTitle(this._project.name)
         this.page = project.pages[0]
     }

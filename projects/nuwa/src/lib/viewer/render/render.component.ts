@@ -239,7 +239,15 @@ export class RenderComponent implements AfterViewInit {
     @Input() set name(name: string) {
         this._name = name
 
-        //清空
+        if (!this.graph)
+            this.graph = new Graph({
+                container: this.element.nativeElement,
+                interacting: false,
+                background: {
+                    color: "#c0c0c0" //默认背景颜色
+                }
+            });
+
         this.graph.clearCells()
 
         //显示名称

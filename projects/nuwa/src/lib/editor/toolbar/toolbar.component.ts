@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewContainerRef} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {Node} from "@antv/x6";
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {AboutComponent} from "../about/about.component";
@@ -9,6 +9,7 @@ import {NzDrawerService} from "ng-zorro-antd/drawer";
 import {RenderComponent} from "../../viewer/render/render.component";
 import {cloneDeep} from "lodash-es";
 import {NuwaProject} from "../../project";
+import {EditorComponent} from "../editor.component";
 
 @Component({
     selector: 'nuwa-toolbar',
@@ -28,10 +29,14 @@ export class ToolbarComponent {
     @Output() scaleChange = new EventEmitter<number>()
     showGrid = JSON.parse(localStorage.getItem("nuwa-editor-grid") || 'true');
 
+    //上传json
+    @ViewChild('file', { static: true }) file!: ElementRef<HTMLInputElement>;
+
     constructor(
         private ms: NzModalService,
         private ds: NzDrawerService,
         private viewContainerRef: ViewContainerRef,
+        private editor: EditorComponent,
     ) {
     }
 
@@ -41,8 +46,10 @@ export class ToolbarComponent {
     }
 
     handleExport() {
+        this.canvas.page.content = this.canvas.graph.toJSON()
+
         const urlObject = window.URL || window.webkitURL || window;
-        const export_blob = new Blob([JSON.stringify(this.canvas.graph.toJSON())]);
+        const export_blob = new Blob([JSON.stringify(this.project)]);
         const save_link = document.createElement("a");
         save_link.href = urlObject.createObjectURL(export_blob);
         save_link.download = Date.now() + '.json';
@@ -266,6 +273,7 @@ export class ToolbarComponent {
     handleImport() {
         //this.canvas.graph.toJSON()
         //this.canvas.graph.fromJSON()
+        this.file?.nativeElement.click()
     }
 
     drawLine() {
@@ -297,5 +305,22 @@ export class ToolbarComponent {
             ref.getContentComponentRef()?.setInput("page", page)
         })
 
+    }
+
+    onJsonUpload($event: Event) {
+        console.log("upload", $event, this.file.nativeElement.files)
+        //@ts-ignore
+        const file = $event.target.files[0]
+        const reader = new FileReader()
+        reader.onloadend = () => {
+            console.log("reader", reader.result)
+            try{
+                this.editor.project = JSON.parse(reader.result as string)
+            }catch(err){
+
+            }
+
+        }
+        reader.readAsText(file, "utf-8")
     }
 }
