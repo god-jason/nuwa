@@ -24,6 +24,7 @@ import {MiscTime} from "./misc/time";
 import {ControlText} from "./control/text";
 import {ControlTable} from "./control/table";
 import {ImageSwitch} from "./misc/image-switch";
+import {MiscForeach} from "./misc/foreach";
 
 export const NuwaWidgets: NuwaCollection[] = [
     {
@@ -59,6 +60,7 @@ export const NuwaWidgets: NuwaCollection[] = [
             MiscOutlet,
             MiscWeb,
             MiscAMap,
+            MiscForeach,
             //NinePatchImage,
         ]
     },

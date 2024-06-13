@@ -6,7 +6,7 @@ import {TemplateRef, Type} from "@angular/core";
 export declare interface NuwaBinding {
     name: string
     label: string
-    type?: string
+    type?: 'color' | 'text' | 'number' | 'page'
     default?: any
 }
 
