@@ -4,7 +4,7 @@ import {Cell} from "@antv/x6";
 import {ImageSwitchOffSvgBase64} from "./image-switch-off_svg";
 
 export const SvgUseSwitch: NuwaComponent = {
-    name: '开关图', id: ':svg-use-switch:',
+    name: 'Svg开关图', id: ':svg-use-switch:',
     icon: ImageSwitchOffSvgBase64, //icon: "assets/widgets/image.svg",
     type: "shape",
     extends: {

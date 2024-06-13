@@ -3,7 +3,7 @@ import {ImagesSvgBase64} from "./images_svg";
 import {DefaultEvents} from "../properties";
 
 export const SvgUses: NuwaComponent = {
-    name: '开关图',
+    name: 'Svg图集',
     id: ':svg-uses:',
     icon: ImagesSvgBase64,
     type: "shape",
