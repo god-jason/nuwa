@@ -1,14 +1,16 @@
 <nz-collapse>
     <nz-collapse-panel *ngFor="let w of galleries; let f = first" [nzActive]="f" [nzHeader]="w.name">
-        <div (dragstart)="onDragStart($event, c)" *ngFor="let c of w.images" class="component" draggable="true">
+        <div (dragstart)="onDragStart($event, c)" *ngFor="let c of w.images"
+             class="component" draggable="true"
+             [title]="c.switch ? '开关':''">
             @if (c.use) {
                 <svg>
                     <use [attr.xlink:href]="c.url || c.urls?.[0]" stroke="black"></use>
                 </svg>
             } @else {
-                <img [alt]="c.name" [src]="c.thumbnail || c.url || c.urls?.[0]" [title]="c.name || ''" loading="lazy"/>
+                <img [alt]="c.name" [src]="c.thumbnail || c.url || c.urls?.[0]"/>
             }
-            <span>{{c.name || ''}}</span>
+            <span>{{ c.name || '' }}</span>
         </div>
     </nz-collapse-panel>
 </nz-collapse>

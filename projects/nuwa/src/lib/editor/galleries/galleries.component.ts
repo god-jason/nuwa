@@ -4,6 +4,8 @@ import {BaseImage} from "../../widgets/base/image";
 import {NuwaImage, NuwaImageGallery} from "../../nuwa";
 import {ImageSwitch} from "../../widgets/misc/image-switch";
 import {Images} from "../../widgets/misc/images";
+import {SvgUse} from "../../widgets/misc/svg-use";
+import {SvgUseSwitch} from "../../widgets/misc/svg-use-switch";
 
 @Component({
     selector: 'nuwa-galleries',
@@ -32,6 +34,37 @@ export class GalleriesComponent {
         //         imageUrl: "/nuwa/gallery/" + img,
         //     }
         // })
+
+        if (img.use) {
+
+            if (img.urls && img.urls.length > 0) {
+                if (img.switch) {
+                    //图开关
+                    this.canvas?.drawNode($event, SvgUseSwitch, {
+                        "data/off": img.urls[0],
+                        "data/on": img.urls[1],
+                        "attrs/image/xlink:href": img.urls[0],
+                        "data/name": (img.name || '图开关') + (this.canvas.graph.getCellCount() + 1)
+                    })
+                } else {
+                    //图集
+                    this.canvas?.drawNode($event, Images, {
+                        "data/urls": img.urls,
+                        "attrs/image/xlink:href": img.urls[0],
+                        "data/name": (img.name || '图集') + (this.canvas.graph.getCellCount() + 1)
+                    })
+                }
+            } else if (img.url) {
+                this.canvas?.drawNode($event, SvgUse, {
+                    "attrs/image/xlink:href": img.url,
+                    "data/name": (img.name || '图片') + (this.canvas.graph.getCellCount() + 1)
+                })
+            } else {
+                $event.preventDefault()
+            }
+
+            return
+        }
 
 
         if (img.urls && img.urls.length > 0) {

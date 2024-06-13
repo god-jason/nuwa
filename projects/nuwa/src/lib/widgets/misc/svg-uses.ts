@@ -1,24 +1,42 @@
 import {NuwaComponent} from "../../nuwa";
-import {DefaultEvents} from "../properties";
 import {ImagesSvgBase64} from "./images_svg";
+import {DefaultEvents} from "../properties";
 
-export const Images: NuwaComponent = {
-    name: '开关图', id: ':images:',
+export const SvgUses: NuwaComponent = {
+    name: '开关图',
+    id: ':svg-uses:',
     icon: ImagesSvgBase64,
     type: "shape",
-    extends: {inherit: 'image'},
+    extends: {
+        markup: [
+            {
+                tagName: 'use',
+                selector: 'image'
+            },
+        ],
+        attrs: {
+            image:{
+                //"xlink:href": "",
+                preserveAspectRatio: "none meet",
+                stroke: 'black',
+                refWidth: '100%',
+                refHeight: '100%',
+            }
+        }
+    },
     events: [
         ...DefaultEvents,
     ],
     metadata: {
-        width: 100, height: 100,
-        imageUrl: ImagesSvgBase64,//"assets/widgets/image.svg",
+        width: 200,
+        height: 200,
         data: {
             value: false,
         }
     },
     properties: [
-        {key: "data/urls", label: "图片集", type: "files"},
+        {label: "图片集", key: "data/urls", type: "files"},
+        {label: "颜色", key: "attrs/image/stroke", type: "color"},
     ],
     listeners: {
     },
@@ -37,18 +55,3 @@ export const Images: NuwaComponent = {
         }
     },
 }
-
-export function createImages(urls: string[]): NuwaComponent {
-    return {
-        name:'开关', id: ':images:',
-        icon: urls[0],
-        type: "shape",
-        extends: {inherit: 'image'},
-        metadata: {
-            width:100, height:100, imageUrl: urls[0],
-            data: {urls, value: false}
-        },
-    }
-}
-
-
