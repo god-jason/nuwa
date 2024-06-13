@@ -166,7 +166,7 @@ export const EchartsLine: NuwaComponent = {
         },
     ],
     bindings: [
-        {name: 'values', label: "数据集", default: ''},
+        {name: 'values', label: "数据集"},
     ],
     hooks: {
         values(cell, value) {

@@ -1,0 +1,529 @@
+{
+    "name": "电力",
+    "images": [
+        {
+            "name": "禁止",
+            "use": true,
+            "url": "assets/power.svg#error"
+        },
+        {
+            "name": "隔离开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Dis_V_D_Open",
+                "assets/power.svg#Dis_V_D_Close"
+            ]
+        },
+        {
+            "name": "隔离开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Dis_V_U_Open",
+                "assets/power.svg#Dis_V_U_Close"
+            ]
+        },
+        {
+            "name": "机械开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mec_V_D_Open",
+                "assets/power.svg#Mec_V_D_Close"
+            ]
+        },
+        {
+            "name": "机械开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mec_V_U_Open",
+                "assets/power.svg#Mec_V_U_Close"
+            ]
+        },
+        {
+            "name": "负荷隔离开关",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#LoadDis_V_D_Open",
+                "assets/power.svg#LoadDis_V_D_Close"
+            ]
+        },
+        {
+            "name": "负荷隔离开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#LoadDis_V_U_OPen",
+                "assets/power.svg#LoadDis_V_U_Close"
+            ]
+        },
+        {
+            "name": "圆形隔离开关",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#RoundDis_V_Open",
+                "assets/power.svg#RoundDis_V_Close"
+            ]
+        },
+        {
+            "name": "菱形隔离开关",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DiamondDis_V_Open",
+                "assets/power.svg#DiamondDis_V_Close"
+            ]
+        },
+        {
+            "name": "小车隔离开关",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DrawoutDis_V_D_Open",
+                "assets/power.svg#DrawoutDis_H_Close"
+            ]
+        },
+        {
+            "name": "小车隔离开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DrawoutDis_V_U_Open",
+                "assets/power.svg#DrawoutDis_H_Close"
+            ]
+        },
+        {
+            "name": "接地隔离开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#GroundDis_V_D_Open",
+                "assets/power.svg#GroundDis_V_D_Close"
+            ]
+        },
+        {
+            "name": "接地隔离开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#GroundDis_V_U_Open",
+                "assets/power.svg#GroundDis_V_U_Close"
+            ]
+        },
+        {
+            "name": "熔断器式隔离开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#FuseDis_V_D_Open",
+                "assets/power.svg#FuseDis_V_D_Close"
+            ]
+        },
+        {
+            "name": "熔断器式隔离开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#FuseDis_V_U_Open",
+                "assets/power.svg#FuseDis_V_U_Close"
+            ]
+        },
+        {
+            "name": "多级单线开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mul_SLine_V_D_Open",
+                "assets/power.svg#Mul_SLine_V_D_Close"
+            ]
+        },
+        {
+            "name": "多级单线开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mul_SLine_V_U_Open",
+                "assets/power.svg#Mul_SLine_V_U_Close"
+            ]
+        },
+        {
+            "name": "多级多线开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mul_MLine_V_D_OPen",
+                "assets/power.svg#Mul_MLine_V_D_Close"
+            ]
+        },
+        {
+            "name": "多级多线开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Mul_MLine_V_U_Open",
+                "assets/power.svg#Mul_MLine_V_D_Close"
+            ]
+        },
+        {
+            "name": "不闭锁按钮开关-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#UnlockButt_V_D_OPen",
+                "assets/power.svg#UnlockButt_V_D_Close"
+            ]
+        },
+        {
+            "name": "不闭锁按钮开关-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#UnlockButt_V_U_Open",
+                "assets/power.svg#UnlockButt_V_U_Close"
+            ]
+        },
+        {
+            "name": "断路器",
+            "urls": [
+                "assets/power.svg#Breaker_V_Open",
+                "assets/power.svg#Breaker_V_Close",
+                "assets/power.svg#Breaker_V_Invalid",
+                "assets/power.svg#Breaker_V_InitStop",
+                "assets/power.svg#Breaker_V_Close"
+            ]
+        },
+        {
+            "name": "断路器2-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Breaker2_V_D_Open",
+                "assets/power.svg#Breaker2_V_D_Close"
+            ]
+        },
+        {
+            "name": "断路器2-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Breaker2_V_U_Open",
+                "assets/power.svg#Breaker2_V_U_Close"
+            ]
+        },
+        {
+            "name": "闸刀状断路器-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DisBreaker_V_D_Open",
+                "assets/power.svg#DisBreaker_V_D_Close"
+            ]
+        },
+        {
+            "name": "闸刀状断路器-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DisBreaker_V_U_Open",
+                "assets/power.svg#DisBreaker_V_U_Close"
+            ]
+        },
+        {
+            "name": "熔断器式断路器-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#FuseBreaker_V_D_Open",
+                "assets/power.svg#FuseBreaker_V_D_Close"
+            ]
+        },
+        {
+            "name": "熔断器式断路器-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#FuseBreaker_V_U_Open",
+                "assets/power.svg#FuseBreaker_V_U_Close"
+            ]
+        },
+        {
+            "name": "小车断路器",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DrawoutBreaker_V_Open",
+                "assets/power.svg#DrawoutBreaker_V_Close"
+            ]
+        },
+        {
+            "name": "熔断器-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Fuse_V_D_Open",
+                "assets/power.svg#Fuse_V_D_Close"
+            ]
+        },
+        {
+            "name": "熔断器-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#Fuse_V_U_Open",
+                "assets/power.svg#Fuse_V_D_Close"
+            ]
+        },
+        {
+            "name": "跌落式熔断器-下",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DropFuse_V_D_Open",
+                "assets/power.svg#DropFuse_V_D_Close"
+            ]
+        },
+        {
+            "name": "跌落式熔断器-上",
+            "switch": true,
+            "use": true,
+            "urls": [
+                "assets/power.svg#DropFuse_V_U_Open",
+                "assets/power.svg#DropFuse_V_D_Close"
+            ]
+        },
+        {
+            "name": "电容器接地",
+            "use": true,
+            "url": "assets/power.svg#Capacitor_V_U"
+        },
+        {
+            "name": "串联电容",
+            "use": true,
+            "url": "assets/power.svg#SeriesCapacitor_H"
+        },
+        {
+            "name": "可变电容器_水平",
+            "use": true,
+            "url": "assets/power.svg#ReguCapacitor_H"
+        },
+        {
+            "name": "可变电容器_竖直",
+            "use": true,
+            "url": "assets/power.svg#ReguCapacitor_V"
+        },
+        {
+            "name": "预调电容器_水平",
+            "use": true,
+            "url": "assets/power.svg#PresetCapacitor_H"
+        },
+        {
+            "name": "预调电容器_竖直",
+            "use": true,
+            "url": "assets/power.svg#PresetCapacitor_V"
+        },
+        {
+            "name": "旁路电容",
+            "use": true,
+            "url": "assets/power.svg#BypassCapacitor_H_L"
+        },
+        {
+            "name": "极性电容_左",
+            "use": true,
+            "url": "assets/power.svg#PolarCapacitor_H_L"
+        },
+        {
+            "name": "极性电容_右",
+            "use": true,
+            "url": "assets/power.svg#PolarCapacitor_H_R"
+        },
+        {
+            "name": "差动可调电容器_下",
+            "use": true,
+            "url": "assets/power.svg#DiffReguCapacitor_V_D"
+        },
+        {
+            "name": "差动可调电容器_上",
+            "use": true,
+            "url": "assets/power.svg#DiffReguCapacitor_V_U"
+        },
+        {
+            "name": "定片分离可调电容器_左",
+            "use": true,
+            "url": "assets/power.svg#StaSepReguCapacitor_V_L"
+        },
+        {
+            "name": "定片分离可调电容器_右",
+            "use": true,
+            "url": "assets/power.svg#StaSepReguCapacitor_V_R"
+        },
+        {
+            "name": "电抗器",
+            "use": true,
+            "url": "assets/power.svg#Reactor_H"
+        },
+        {
+            "name": "并联电抗器_接地下",
+            "use": true,
+            "url": "assets/power.svg#ShuntReactor_V_D"
+        },
+        {
+            "name": "绕组",
+            "use": true,
+            "url": "assets/power.svg#Winding"
+        },
+        {
+            "name": "星型绕组",
+            "use": true,
+            "url": "assets/power.svg#YWinding"
+        },
+        {
+            "name": "三角形绕组",
+            "use": true,
+            "url": "assets/power.svg#DeltaWinding"
+        },
+        {
+            "name": "自耦绕组",
+            "use": true,
+            "url": "assets/power.svg#AutoWinding"
+        },
+        {
+            "name": "站用变压器",
+            "use": true,
+            "url": "assets/power.svg#StationTransformer"
+        },
+        {
+            "name": "带铁芯的电感器",
+            "use": true,
+            "url": "assets/power.svg#IroncoreInductor_H_D"
+        },
+        {
+            "name": "带铁芯连续可变电感器",
+            "use": true,
+            "url": "assets/power.svg#IroncoreVarInductor_H_D"
+        },
+        {
+            "name": "铁芯有间隙电感器",
+            "use": true,
+            "url": "assets/power.svg#IroncoreGapInductor_H_D"
+        },
+        {
+            "name": "可变电感器_右",
+            "use": true,
+            "url": "assets/power.svg#ReguInductor_H_R"
+        },
+        {
+            "name": "可变电感器_左",
+            "use": true,
+            "url": "assets/power.svg#ReguInductor_H_L"
+        },
+        {
+            "name": "电流互感器",
+            "use": true,
+            "url": "assets/power.svg#CT_V_R"
+        },
+        {
+            "name": "双铁芯双绕组电流互感器_右",
+            "use": true,
+            "url": "assets/power.svg#DDCT_V_R"
+        },
+        {
+            "name": "双铁芯双绕组电流互感器_左",
+            "use": true,
+            "url": "assets/power.svg#DDCT_V_L"
+        },
+        {
+            "name": "带抽斗的电流互感器_右",
+            "use": true,
+            "url": "assets/power.svg#CT_V_R"
+        },
+        {
+            "name": "带抽斗的电流互感器_左",
+            "use": true,
+            "url": "assets/power.svg#CT_V_L"
+        },
+        {
+            "name": "电流互感器1_右",
+            "use": true,
+            "url": "assets/power.svg#CT1_V_R"
+        },
+        {
+            "name": "电流互感器1_左",
+            "use": true,
+            "url": "assets/power.svg#CT1_V_L"
+        },
+        {
+            "name": "电流互感器2",
+            "use": true,
+            "url": "assets/power.svg#CT2_V"
+        },
+        {
+            "name": "电压互感器",
+            "use": true,
+            "url": "assets/power.svg#PT"
+        },
+        {
+            "name": "负荷_上",
+            "use": true,
+            "url": "assets/power.svg#Load_U"
+        },
+        {
+            "name": "负荷_下",
+            "use": true,
+            "url": "assets/power.svg#Load_D"
+        },
+        {
+            "name": "注入",
+            "use": true,
+            "url": "assets/power.svg#EquivalentSource"
+        },
+        {
+            "name": "交流符",
+            "use": true,
+            "url": "assets/power.svg#ACSymbol"
+        },
+        {
+            "name": "消弧线圈",
+            "use": true,
+            "url": "assets/power.svg#ArcSuppCoil_V_D"
+        },
+        {
+            "name": "避雷器1",
+            "use": true,
+            "url": "assets/power.svg#Arrester1_V_D"
+        },
+        {
+            "name": "避雷器2",
+            "use": true,
+            "url": "assets/power.svg#Arrester2_V_D"
+        },
+        {
+            "name": "接地符",
+            "use": true,
+            "url": "assets/power.svg#Ground_D"
+        },
+        {
+            "name": "无噪声接地符",
+            "use": true,
+            "url": "assets/power.svg#NoiselessGround_D"
+        },
+        {
+            "name": "保护接地符",
+            "use": true,
+            "url": "assets/power.svg#ProtectGround_D"
+        },
+        {
+            "name": "可调节设备符号",
+            "use": true,
+            "url": "assets/power.svg#ReguSymbol"
+        },
+        {
+            "name": "非线性调节设备符号",
+            "use": true,
+            "url": "assets/power.svg#NolinearReguSymbol"
+        }
+    ]
+}

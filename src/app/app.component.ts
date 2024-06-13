@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {EditorModule} from "../../projects/nuwa/src/lib/editor/editor.module";
-import {NuwaImage, NuwaImageBorderGallery} from "../../projects/nuwa/src/lib/nuwa";
+import {NuwaImage, NuwaImageBorderGallery, NuwaImageGallery} from "../../projects/nuwa/src/lib/nuwa";
+//import {powerImages} from "./powerImages";
+
+import * as powers from "./power.json"
 
 @Component({
     selector: 'app-root',
@@ -33,7 +36,7 @@ export class AppComponent {
         name: "测试用图",
         borders: [
             {
-                url: "/assets/widgets/.9.png",
+                url: "/assets/.9.png",
                 top: 58,
                 bottom: 58,
                 left: 58,
@@ -41,4 +44,7 @@ export class AppComponent {
             }
         ]
     }];
+    galleries: NuwaImageGallery[] = [
+        powers.default,
+    ];
 }

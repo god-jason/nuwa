@@ -7,7 +7,7 @@ export declare interface NuwaBinding {
     name: string
     label: string
     type?: 'color' | 'text' | 'number' | 'page'
-    default?: any
+    //default?: any
 }
 
 export declare interface NuwaEvent {
@@ -106,7 +106,10 @@ export declare interface NuwaCollection {
 export declare interface NuwaImage {
     name?: string
     thumbnail?: string
-    url: string
+    url?: string
+    urls?: string[]
+    switch?: boolean //开关图片的通
+    use?: boolean //svg use
 }
 
 export declare interface NuwaImageGallery {

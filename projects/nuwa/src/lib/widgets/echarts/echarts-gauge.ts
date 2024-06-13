@@ -145,7 +145,7 @@ export const EchartsGauge: NuwaComponent = {
         {key: "data/ngArguments/max", label: "最大值", type: "number", step: 1, min: 0, max: 99999, default: 100},
     ],
     bindings: [
-        {name: 'value', label: "值", default: ''},
+        {name: 'value', label: "值"},
     ],
     hooks: {
         value(cell, value) {

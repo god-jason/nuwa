@@ -68,7 +68,7 @@ export const ControlInput: NuwaComponent = {
         ...ngTextProperties,
     ],
     bindings: [
-        {name: 'value', label: "输入", default: ''},
+        {name: 'value', label: "输入"},
     ],
     hooks: {
         value(cell, value) {

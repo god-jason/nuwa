@@ -58,7 +58,7 @@ export const ControlSlider: NuwaComponent = {
         {key: 'data/ngArguments/vertical', label: '垂直', type: 'switch'},
     ],
     bindings: [
-        {name: 'value', label: "进度", default: ''},
+        {name: 'value', label: "进度"},
     ],
     hooks: {
         value(cell, value) {

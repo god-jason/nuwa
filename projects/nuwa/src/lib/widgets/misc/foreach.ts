@@ -49,7 +49,7 @@ export const MiscForeach: NuwaComponent = {
         {label: "页面", key: "data/ngArguments/page", type: "text"},
     ],
     bindings: [
-        {name: 'items', label: "输入", default: ''},
+        {name: 'items', label: "输入"},
     ],
     hooks: {
         value(cell, value) {

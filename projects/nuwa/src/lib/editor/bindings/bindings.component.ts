@@ -60,7 +60,6 @@ export class BindingsComponent {
                 key: b.name,
                 label: b.label,
                 type: 'text',
-                default: b.default,
                 options: this.options,
                 auto: this.options,
             })

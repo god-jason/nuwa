@@ -14,7 +14,10 @@ export class WidgetsComponent {
     @Input() canvas!: CanvasComponent;
 
     onDragStart($event: DragEvent, component: NuwaComponent) {
-        this.canvas?.drawNode($event, component)
+        //node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
+        this.canvas?.drawNode($event, component, {
+            "data/name": component.name + (this.canvas.graph.getCellCount() + 1)
+        })
     }
 
     onClick(c: NuwaComponent) {

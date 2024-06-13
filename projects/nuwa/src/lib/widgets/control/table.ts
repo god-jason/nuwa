@@ -100,7 +100,7 @@ export const ControlTable: NuwaComponent = {
         //{label: "值", key: `data/ngArguments/values`, type: "color", clear: true},
     ],
     bindings: [
-        {name: 'values', label: "数据集", default: ''},
+        {name: 'values', label: "数据集"},
     ],
     hooks: {
         values(cell, value) {

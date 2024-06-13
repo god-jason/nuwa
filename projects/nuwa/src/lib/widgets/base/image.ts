@@ -12,7 +12,7 @@ export const BaseImage: NuwaComponent = {
         ...DefaultEvents,
     ],
     metadata: {
-        width: 100, height: 80,
+        width: 100, height: 100,
         imageUrl: ImageSvgBase64,//"assets/widgets/image.svg",
     },
     properties: [
@@ -24,4 +24,18 @@ export const BaseImage: NuwaComponent = {
             ], default: "xMidYMid meet"
         },
     ]
+}
+
+
+export function createImageComponent(url: string): NuwaComponent {
+    return {
+        name: '图片',
+        id: 'image',
+        type: "shape", internal: true,
+        extends: {inherit: 'image'},
+        metadata: {
+            width: 100, height: 100,
+            imageUrl: url,
+        },
+    }
 }

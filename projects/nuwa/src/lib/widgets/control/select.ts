@@ -54,7 +54,7 @@ export const ControlSelect: NuwaComponent = {
         },
     ],
     bindings: [
-        {name: 'value', label: "选择", default: ''},
+        {name: 'value', label: "选择"},
     ],
     hooks: {
         value(cell, value) {

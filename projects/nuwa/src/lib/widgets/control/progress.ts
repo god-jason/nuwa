@@ -52,7 +52,7 @@ export const ControlProgress: NuwaComponent = {
         {key: 'data/ngArguments/value', label: '进度', type: 'number', min: 0, max: 100},
     ],
     bindings: [
-        {name: 'value', label: "进度", default: ''},
+        {name: 'value', label: "进度"},
     ],
     hooks: {
         value(cell, value) {

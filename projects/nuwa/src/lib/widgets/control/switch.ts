@@ -54,7 +54,7 @@ export const ControlSwitch: NuwaComponent = {
         {key: 'data/ngArguments/value', label: '开关', type: 'switch'},
     ],
     bindings: [
-        {name: 'value', label: "开关", default: ''},
+        {name: 'value', label: "开关"},
     ],
     hooks: {
         value(cell, value) {

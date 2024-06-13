@@ -227,7 +227,7 @@ export class CanvasComponent {
         })
 
         //绑定的数据
-        component.bindings?.forEach(b => props[b.name] = b.default)
+        //component.bindings?.forEach(b => props[b.name] = b.default)
 
         //创建节点
         node = this.graph.createNode({
@@ -249,7 +249,7 @@ export class CanvasComponent {
         })
 
         //设置名称
-        node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
+        //node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
 
         this.dnd.start(node, $event);
     }
