@@ -2,9 +2,9 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
 import {NuwaProject} from "../../project";
 import {SmartEditorComponent, SmartField, SmartSelectOption} from "@god-jason/smart";
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {Cell} from "@antv/x6";
-import {ComponentService} from "../../component.service";
+import {WidgetService} from "../../widget.service";
 
 @Component({
     selector: 'nuwa-bindings',
@@ -24,10 +24,10 @@ export class BindingsComponent {
 
     name = ''
 
-    component?: NuwaComponent
+    widget?: NuwaWidget
     cell?: Cell
 
-    constructor(private cs: ComponentService) {
+    constructor(private ws: WidgetService) {
     }
 
     ngOnInit() {
@@ -49,13 +49,11 @@ export class BindingsComponent {
 
         this.cell = event.cell
         let id = event.cell.shape
-        this.component = this.cs.Get(id)
-
-        //console.log('onCellSelected', event.cell, this.component)
+        this.widget = this.ws.Get(id)
 
         //表单
         this.fields = []
-        this.component.bindings?.forEach(b => {
+        this.widget.bindings?.forEach(b => {
             this.fields.push({
                 key: b.name,
                 label: b.label,

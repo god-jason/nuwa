@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -57,7 +57,7 @@ function createWeatherOptions() {
     return options
 }
 
-export const MiscWeather: NuwaComponent = {
+export const MiscWeather: NuwaWidget = {
     name: '天气', id: ':weather:',
     icon: WeatherSvgBase64, //icon: "assets/widgets/weather.svg",
     type: "angular",

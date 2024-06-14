@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, inject, TemplateRef, ViewChild} from '@angular/core';
 import {NZ_MODAL_DATA} from "ng-zorro-antd/modal";
-import {NuwaComponent, NuwaListener} from "../../nuwa";
+import {NuwaWidget, NuwaListener} from "../../nuwa";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {NuwaProject} from "../../project";
 import {CanvasComponent} from "../canvas/canvas.component";
@@ -9,7 +9,7 @@ import {CanvasComponent} from "../canvas/canvas.component";
 export declare interface ListenerData {
     canvas: CanvasComponent,
     project: NuwaProject,
-    component: NuwaComponent,
+    widget: NuwaWidget,
     listener: NuwaListener,
 }
 
@@ -92,7 +92,7 @@ export class ListenerSettingComponent implements AfterViewInit {
             return {value: p.name, label: p.name}
         })
 
-        this.event.options = this.data.component?.events?.map(e => {
+        this.event.options = this.data.widget?.events?.map(e => {
             return {value: e.name, label: e.label}
         })
 

@@ -1,8 +1,8 @@
 import {DefaultEvents, StrokeProperties} from "../properties";
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {CircleSvgBase64} from "./circle_svg";
 
-export const BaseCircle: NuwaComponent = {
+export const BaseCircle: NuwaWidget = {
     name: '圆形', id: 'circle',
     icon: CircleSvgBase64, //icon: "assets/widgets/circle.svg",
     type: "shape", internal: true,

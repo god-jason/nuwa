@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NuwaPage, NuwaProject} from "../project";
 import {RenderComponent} from "./render/render.component";
 import {NuwaCollection, NuwaEventData} from "../nuwa";
-import {ComponentService} from "../component.service";
+import {WidgetService} from "../widget.service";
 
 @Component({
     selector: 'nuwa-viewer',
@@ -28,7 +28,7 @@ export class ViewerComponent {
     //事件
     @Output() event = new EventEmitter<NuwaEventData>();
 
-    constructor(private cs: ComponentService) {
+    constructor(private cs: WidgetService) {
     }
 
 

@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents, ngTextProperties} from "../properties";
@@ -73,7 +73,7 @@ class ControlTableComponent {
     }
 }
 
-export const ControlTable: NuwaComponent = {
+export const ControlTable: NuwaWidget = {
     name: '表格', id: ':table:',
     icon: TableSvgBase64, //icon: "assets/widgets/table.svg",
     type: "angular",

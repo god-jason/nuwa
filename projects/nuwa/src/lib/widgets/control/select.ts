@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {NzSelectComponent} from "ng-zorro-antd/select";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -34,7 +34,7 @@ class ControlSelectComponent {
 }
 
 
-export const ControlSelect: NuwaComponent = {
+export const ControlSelect: NuwaWidget = {
     name: '下拉选择', id: ':select:',
     icon: SelectSvgBase64, //icon: "assets/widgets/select.svg",
     type: "angular",

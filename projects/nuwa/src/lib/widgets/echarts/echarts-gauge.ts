@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
@@ -121,7 +121,7 @@ class EchartsGaugeComponent {
     }
 }
 
-export const EchartsGauge: NuwaComponent = {
+export const EchartsGauge: NuwaWidget = {
     name: '仪表盘', id: ':echarts-gauge:',
     icon: EchartsGaugeSvgBase64, //icon: "assets/widgets/echarts-gauge.svg",
     type: "angular",

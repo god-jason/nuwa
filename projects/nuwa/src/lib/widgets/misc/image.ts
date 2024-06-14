@@ -1,10 +1,10 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {DefaultEvents} from "../properties";
 import {Cell, ObjectExt} from "@antv/x6";
 import {ImageSvgBase64} from "./image_svg";
 import {isUndefined} from "lodash-es";
 
-export const MiscImage: NuwaComponent = {
+export const MiscImage: NuwaWidget = {
     name: '图片', id: ':image:',
     icon: ImageSvgBase64,
     type: "shape",

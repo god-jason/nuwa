@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ForeachSvgBase64} from "./foreach_svg";
@@ -39,7 +39,7 @@ class MiscForeachComponent {
 
 }
 
-export const MiscForeach: NuwaComponent = {
+export const MiscForeach: NuwaWidget = {
     name: '迭代器', id: ':foreach:',
     icon: ForeachSvgBase64, //icon: "assets/widgets/foreach.svg",
     type: "angular",

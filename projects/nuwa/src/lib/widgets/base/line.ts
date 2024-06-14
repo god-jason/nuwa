@@ -1,8 +1,8 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {LineProperties} from "../properties";
 import {LineSvgBase64} from "./line_svg";
 
-export const BaseLine: NuwaComponent = {
+export const BaseLine: NuwaWidget = {
     name: '线条', id: ':line:',
     icon: LineSvgBase64, //icon: "assets/widgets/line.svg",
     type: "line", extends: {inherit: "edge"}, //不用继承就好了

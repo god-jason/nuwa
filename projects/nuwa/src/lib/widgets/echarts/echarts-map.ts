@@ -1,4 +1,4 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {Component} from "@angular/core";
 import {EchartsMapSvgBase64} from "./echarts-map_svg";
 
@@ -10,7 +10,7 @@ class EchartsMapComponent {
 
 }
 
-export const EchartsMap: NuwaComponent = {
+export const EchartsMap: NuwaWidget = {
     name: '地图', id: ':echarts-map:',
     icon: EchartsMapSvgBase64, //icon: "assets/widgets/echarts-map.svg",
     type: "angular",

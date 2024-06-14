@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -40,7 +40,7 @@ class ControlSwitchComponent {
     }
 }
 
-export const ControlSwitch: NuwaComponent = {
+export const ControlSwitch: NuwaWidget = {
     name: '开关', id: ':switch:',
     icon: SwitchSvgBase64, //icon: "assets/widgets/switch.svg",
     type: "angular",

@@ -51,7 +51,7 @@ export declare interface NuwaListener {
     script?: string | ((cell: Cell, value: any, tools: any) => void)
 }
 
-export declare interface NuwaComponent {
+export declare interface NuwaWidget {
     id: string
 
     name: string
@@ -100,7 +100,7 @@ export declare interface NuwaComponent {
 
 export declare interface NuwaCollection {
     name: string
-    components: NuwaComponent[]
+    widgets: NuwaWidget[]
 }
 
 export declare interface NuwaImage {

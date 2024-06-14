@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -34,7 +34,7 @@ class MiscWebComponent {
     }
 }
 
-export const MiscWeb: NuwaComponent = {
+export const MiscWeb: NuwaWidget = {
     name: '网页', id: ':iframe:',
     icon: WebSvgBase64, //icon: "assets/widgets/web.svg",
     type: "angular",

@@ -1,8 +1,8 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {DefaultEvents, RadiusProperties, StrokeProperties} from "../properties";
 import {RectSvgBase64} from "./rect_svg";
 
-export const BaseRect: NuwaComponent = {
+export const BaseRect: NuwaWidget = {
     name: '矩形', id: 'rect',
     icon: RectSvgBase64, //icon: "assets/widgets/rect.svg",
     type: "shape", internal: true,

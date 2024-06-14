@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NuwaWidgets} from "../../widgets/widgets";
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({
@@ -13,14 +13,13 @@ export class WidgetsComponent {
 
     @Input() canvas!: CanvasComponent;
 
-    onDragStart($event: DragEvent, component: NuwaComponent) {
-        //node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
-        this.canvas?.drawNode($event, component, {
-            "data/name": component.name + (this.canvas.graph.getCellCount() + 1)
+    onDragStart($event: DragEvent, widget: NuwaWidget) {
+        this.canvas?.drawNode($event, widget, {
+            "data/name": widget.name + (this.canvas.graph.getCellCount() + 1)
         })
     }
 
-    onClick(c: NuwaComponent) {
+    onClick(c: NuwaWidget) {
         this.canvas?.drawEdge(c)
     }
 }

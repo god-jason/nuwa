@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, HostBinding, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DefaultEvents, ngTextProperties} from "../properties";
@@ -31,7 +31,7 @@ class ControlTextComponent {
     @Input() @HostBinding("style.text-align") textAlign = "left";
 }
 
-export const ControlText: NuwaComponent = {
+export const ControlText: NuwaWidget = {
     name: '文本框', id: ':text:',
     icon: TextSvgBase64,
     type: "angular",

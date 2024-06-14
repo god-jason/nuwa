@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
@@ -200,7 +200,7 @@ class EchartsBarComponent implements AfterViewInit {
     }
 }
 
-export const EchartsBar: NuwaComponent = {
+export const EchartsBar: NuwaWidget = {
     name: '柱状图', id: ':echarts-bar:',
     icon: EchartsBarSvgBase64, //icon: "assets/widgets/echarts-bar.svg",
     type: "angular",

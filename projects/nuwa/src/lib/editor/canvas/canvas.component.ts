@@ -8,11 +8,11 @@ import {History} from "@antv/x6-plugin-history";
 import {Selection} from "@antv/x6-plugin-selection";
 import {Export} from "@antv/x6-plugin-export";
 import {Dnd} from "@antv/x6-plugin-dnd";
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {register} from '@antv/x6-angular-shape'
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NuwaPage} from "../../project";
-import {ComponentService} from "../../component.service";
+import {WidgetService} from "../../widget.service";
 
 
 @Component({
@@ -25,14 +25,14 @@ export class CanvasComponent {
     public dnd: Dnd;
 
     public currentCell?: Cell;
-    public currentComponent?: NuwaComponent;
+    public currentComponent?: NuwaWidget;
 
-    private drawingEdgeComponent?: NuwaComponent
+    private drawingEdgeComponent?: NuwaWidget
     private drawingEdge?: Edge
 
     constructor(
         private ns: NzNotificationService,
-        private cs: ComponentService,
+        private ws: WidgetService,
         private injector: Injector,
         element: ElementRef,
     ) {
@@ -149,7 +149,7 @@ export class CanvasComponent {
 
         this.graph.on('cell:selected', ({cell}) => {
             this.currentCell = cell
-            this.currentComponent = this.cs.Get(cell.shape)
+            this.currentComponent = this.ws.Get(cell.shape)
         })
 
         this.graph.on('cell:unselected', ({cell}) => {
@@ -171,7 +171,7 @@ export class CanvasComponent {
 
     render(page: NuwaPage) {
         page.content?.cells?.forEach((cell: any) => {
-            const cmp = this.cs.Get(cell.shape)
+            const cmp = this.ws.Get(cell.shape)
             if (!cmp) {
                 cell.shape = "rect" //应该改为未知对象
                 return
@@ -190,49 +190,49 @@ export class CanvasComponent {
         this.graph.drawBackground(this.page.background)
     }
 
-    drawEdge(component: NuwaComponent) {
+    drawEdge(ws: NuwaWidget) {
         this.drawingEdgeComponent = undefined
 
         //检查是否已经注册
-        if (!this.checkRegister(component)) {
+        if (!this.checkRegister(ws)) {
             //TODO 报错
             return;
         }
 
-        if (component.type == "line") {
-            this.drawingEdgeComponent = component;
+        if (ws.type == "line") {
+            this.drawingEdgeComponent = ws;
             return
         }
     }
 
-    drawNode($event: DragEvent, component: NuwaComponent, inputs: any = {}) {
+    drawNode($event: DragEvent, ws: NuwaWidget, inputs: any = {}) {
         let node!: Node
 
         //检查是否已经注册
-        if (!this.checkRegister(component)) {
-            //this.ns.error("错误", "未注册"+component.name)
+        if (!this.checkRegister(ws)) {
+            //this.ns.error("错误", "未注册"+ws.name)
             return;
         }
 
-        if (component.type == "line") {
+        if (ws.type == "line") {
             this.ns.error("错误", "线条不能拖放")
             return
         }
 
         //参数
         let props: any = {}
-        component.properties?.forEach(f => {
+        ws.properties?.forEach(f => {
             if (f.default !== undefined)
                 props[f.key] = f.default
         })
 
         //绑定的数据
-        //component.bindings?.forEach(b => props[b.name] = b.default)
+        //ws.bindings?.forEach(b => props[b.name] = b.default)
 
         //创建节点
         node = this.graph.createNode({
-            shape: component.id,
-            ...component.metadata,
+            shape: ws.id,
+            ...ws.metadata,
             //data: props,
         })
 
@@ -249,57 +249,57 @@ export class CanvasComponent {
         })
 
         //设置名称
-        //node.setPropByPath("data/name", component.name + (this.graph.getCellCount() + 1))
+        //node.setPropByPath("data/name", ws.name + (this.graph.getCellCount() + 1))
 
         this.dnd.start(node, $event);
     }
 
 
-    checkRegister(component: NuwaComponent): boolean {
-        if (component.registered || component.internal)
+    checkRegister(widget: NuwaWidget): boolean {
+        if (widget.registered || widget.internal)
             return true
-        component.registered = true
+        widget.registered = true
 
-        switch (component.type) {
+        switch (widget.type) {
             case "line":
                 //注册线
-                if (component.extends) {
-                    Graph.registerEdge(component.id, component.extends, true)
+                if (widget.extends) {
+                    Graph.registerEdge(widget.id, widget.extends, true)
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少extends")
                 break
             case "shape":
                 //注册衍生组件
-                if (component.extends) {
-                    Graph.registerNode(component.id, component.extends, true)
+                if (widget.extends) {
+                    Graph.registerNode(widget.id, widget.extends, true)
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少extends")
                 break;
             case "html":
                 // @ts-ignore
                 Shape.HTML.register({
-                    shape: component.id,
-                    width: component.metadata?.width || 100,
-                    height: component.metadata?.height || 100,
+                    shape: widget.id,
+                    width: widget.metadata?.width || 100,
+                    height: widget.metadata?.height || 100,
                     // @ts-ignore
-                    html: component.html,
+                    html: widget.html,
                 })
                 break;
             case "angular":
-                if (component.content) {
+                if (widget.content) {
                     register({
-                        shape: component.id,
-                        width: component.metadata?.width || 100,
-                        height: component.metadata?.height || 100,
-                        content: component.content,
+                        shape: widget.id,
+                        width: widget.metadata?.width || 100,
+                        height: widget.metadata?.height || 100,
+                        content: widget.content,
                         injector: this.injector,
                     })
-                    component.registered = true
+                    widget.registered = true
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少content")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少content")
                 break;
         }
         return false

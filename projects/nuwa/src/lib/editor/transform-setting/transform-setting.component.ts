@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Cell} from "@antv/x6";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-//import {ComponentService} from "../../component.service";
 import {CanvasComponent} from "../canvas/canvas.component";
 
 @Component({

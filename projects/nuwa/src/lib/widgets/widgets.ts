@@ -28,13 +28,13 @@ import {MiscImage} from "./misc/image";
 export const NuwaWidgets: NuwaCollection[] = [
     {
         name: "基础图形",
-        components: [
+        widgets: [
             BaseRect, BaseCircle, BaseEllipse
         ]
     },
     {
         name: "交互控件",
-        components: [
+        widgets: [
             ControlText,
             ControlButton, ControlNumber, ControlInput,
             ControlSwitch, ControlProgress, ControlSelect,
@@ -43,14 +43,14 @@ export const NuwaWidgets: NuwaCollection[] = [
     },
     {
         name: "图表组件",
-        components: [
+        widgets: [
             //Echarts,
             EchartsBar, EchartsLine, EchartsPie, EchartsGauge
         ]
     },
     {
         name: "其他组件",
-        components: [
+        widgets: [
             MiscImage,
             MiscImageSwitch,
             MiscTime,

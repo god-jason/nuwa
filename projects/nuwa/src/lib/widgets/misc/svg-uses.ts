@@ -1,10 +1,10 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {ImagesSvgBase64} from "./images_svg";
 import {DefaultEvents} from "../properties";
 import {Cell, ObjectExt} from "@antv/x6";
 import {isUndefined} from "lodash-es";
 
-export const SvgUses: NuwaComponent = {
+export const SvgUses: NuwaWidget = {
     name: 'Svg图集',
     id: ':svg-uses:',
     icon: ImagesSvgBase64,

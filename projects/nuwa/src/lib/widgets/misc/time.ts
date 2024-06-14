@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {TimeSvgBase64} from "./time_svg";
@@ -47,7 +47,7 @@ class MiscTimeComponent implements OnInit, OnDestroy{
     }
 }
 
-export const MiscTime: NuwaComponent = {
+export const MiscTime: NuwaWidget = {
     name: '时间', id: ':time:',
     icon: TimeSvgBase64, //icon: "assets/widgets/time.svg",
     type: "angular",

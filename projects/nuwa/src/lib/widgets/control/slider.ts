@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {NzSliderComponent} from "ng-zorro-antd/slider";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -40,7 +40,7 @@ class ControlSliderComponent {
     }
 }
 
-export const ControlSlider: NuwaComponent = {
+export const ControlSlider: NuwaWidget = {
     name: '滑块', id: ':slider:',
     icon: SliderSvgBase64, //icon: "assets/widgets/slider.svg",
     type: "angular",

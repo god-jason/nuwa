@@ -1,8 +1,8 @@
 import {DefaultEvents, StrokeProperties} from "../properties";
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {EllipseSvgBase64} from "./ellipse_svg";
 
-export const BaseEllipse: NuwaComponent = {
+export const BaseEllipse: NuwaWidget = {
     name: '椭圆', id: 'ellipse',
     icon: EllipseSvgBase64, //icon: "assets/widgets/ellipse.svg",
     type: "shape", internal: true,

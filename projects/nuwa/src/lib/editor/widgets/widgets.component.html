@@ -1,6 +1,6 @@
 <nz-collapse>
     <nz-collapse-panel *ngFor="let w of widgets; let f = first" [nzActive]="true" [nzHeader]="w.name">
-        <div (dragstart)="onDragStart($event, c)" *ngFor="let c of w.components" class="component" draggable="true">
+        <div (dragstart)="onDragStart($event, c)" *ngFor="let c of w.widgets" class="component" draggable="true">
             <div class="icon">
                 <img [src]="c.icon" alt="c.name" loading="lazy"/>
             </div>

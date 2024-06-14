@@ -3,8 +3,8 @@ import {Cell, ObjectExt} from "@antv/x6";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 //import {ComponentService} from "../../component.service";
-import {NuwaComponent} from "../../nuwa";
-import {ComponentService} from "../../component.service";
+import {NuwaWidget} from "../../nuwa";
+import {WidgetService} from "../../widget.service";
 
 @Component({
     selector: 'nuwa-properties-setting',
@@ -21,10 +21,10 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
 
     name = ''
 
-    component?: NuwaComponent
+    widget?: NuwaWidget
     cell?: Cell
 
-    constructor(private cs: ComponentService) {
+    constructor(private ws: WidgetService) {
     }
 
     ngOnInit() {
@@ -61,11 +61,11 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
         //console.log("onCellSelected", event.cell);
         let id = event.cell.shape
 
-        this.component = this.cs.Get(id)
+        this.widget = this.ws.Get(id)
 
         //表单
         // @ts-ignore
-        this.fields = this.component.properties || []
+        this.fields = this.widget.properties || []
 
         //数据
         let data: any = {}

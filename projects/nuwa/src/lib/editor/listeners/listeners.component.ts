@@ -3,8 +3,8 @@ import {CanvasComponent} from "../canvas/canvas.component";
 import {Cell} from "@antv/x6";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ListenerSettingComponent} from "../listener-setting/listener-setting.component";
-import {NuwaComponent, NuwaListener} from "../../nuwa";
-import {ComponentService} from "../../component.service";
+import {NuwaWidget, NuwaListener} from "../../nuwa";
+import {WidgetService} from "../../widget.service";
 import {NuwaProject} from "../../project";
 
 @Component({
@@ -17,7 +17,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
     @Input() project!: NuwaProject
     @Input() canvas!: CanvasComponent;
 
-    component!: NuwaComponent
+    widget!: NuwaWidget
 
     cell!: Cell //Cell;
 
@@ -32,7 +32,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
         //"event": "发送事件",
     }
 
-    constructor(private ms: NzModalService, private cs: ComponentService) {
+    constructor(private ms: NzModalService, private ws: WidgetService) {
     }
 
     getActionName(key: any) {
@@ -42,17 +42,17 @@ export class ListenersComponent implements OnInit, OnDestroy {
     getEventName(key: any) {
         if (key == "click")
             return "点击"
-        if (this.component.events)
-            for (let i = 0; i < this.component.events.length; i++) {
-                if (this.component.events[i].name == key)
-                    return this.component.events[i].label
+        if (this.widget.events)
+            for (let i = 0; i < this.widget.events.length; i++) {
+                if (this.widget.events[i].name == key)
+                    return this.widget.events[i].label
             }
         return '[' + key + ']'
     }
 
     onCellSelected(event: { cell: Cell }) {
         this.cell = event.cell
-        this.component = this.cs.Get(this.cell.shape)
+        this.widget = this.ws.Get(this.cell.shape)
     }
 
     ngOnInit() {
@@ -80,7 +80,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
             nzData: {
                 canvas: this.canvas,
                 project: this.project,
-                component: this.component
+                widget: this.widget
             },
             nzOnOk: ref => {
                 this.cell.data.listeners.push(ref.editor.value)
@@ -97,7 +97,7 @@ export class ListenersComponent implements OnInit, OnDestroy {
             nzData: {
                 canvas: this.canvas,
                 project: this.project,
-                component: this.component,
+                widget: this.widget,
                 listener: listener,
             },
             nzOnOk: ref => {

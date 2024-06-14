@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {NzProgressComponent} from "ng-zorro-antd/progress";
 import {Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
@@ -39,7 +39,7 @@ class ControlProgressComponent {
 }
 
 
-export const ControlProgress: NuwaComponent = {
+export const ControlProgress: NuwaWidget = {
     name: '进度条', id: ':progress:',
     icon: ProgressSvgBase64, //icon: "assets/widgets/progress.svg",
     type: "angular",

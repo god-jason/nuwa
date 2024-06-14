@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
-import {NuwaCollection, NuwaComponent} from "./nuwa";
+import {NuwaCollection, NuwaWidget} from "./nuwa";
 import {NuwaWidgets} from "./widgets/widgets";
 import {BaseLine} from "./widgets/base/line";
 import {MiscFlow} from "./widgets/misc/flow";
@@ -15,35 +15,35 @@ import {SvgUses} from "./widgets/misc/svg-uses";
 @Injectable({
     providedIn: 'root'
 })
-export class ComponentService {
-    public components: { [id: string]: NuwaComponent } = {}
+export class WidgetService {
+    public widgets: { [id: string]: NuwaWidget } = {}
 
     constructor(private ns: NzNotificationService) {
         this.PutCollections(NuwaWidgets)
-        this.PutComponent(BaseLine)
-        this.PutComponent(MiscFlow)
-        this.PutComponent(ImageBorder)
-        this.PutComponent(MiscImages)
-        this.PutComponent(SvgUse)
-        this.PutComponent(SvgUses)
-        this.PutComponent(SvgUseSwitch)
+        this.Put(BaseLine)
+        this.Put(MiscFlow)
+        this.Put(ImageBorder)
+        this.Put(MiscImages)
+        this.Put(SvgUse)
+        this.Put(SvgUses)
+        this.Put(SvgUseSwitch)
         //this.PutComponent(BaseGroup)
         //TODO 改为自动注册，在Check中
     }
 
-    public PutComponent(component: NuwaComponent) {
-        this.components[component.id] = component
+    public Put(widget: NuwaWidget) {
+        this.widgets[widget.id] = widget
 
         //编译监听事件
-        if (component.listeners) {
-            for (let k in component.listeners) {
-                if (!component.listeners.hasOwnProperty(k)) return
-                const func = component.listeners[k]
+        if (widget.listeners) {
+            for (let k in widget.listeners) {
+                if (!widget.listeners.hasOwnProperty(k)) return
+                const func = widget.listeners[k]
                 if (typeof func === "string") {
                     //编译
                     try {
                         // @ts-ignore
-                        component.listeners[k] = new Function('cell', 'event', func)
+                        widget.listeners[k] = new Function('cell', 'event', func)
                     } catch (e: any) {
                         this.ns.error("编译错误", e.message)
                     }
@@ -52,11 +52,11 @@ export class ComponentService {
         }
 
         //HTML组件
-        if (typeof component.html === "string") {
+        if (typeof widget.html === "string") {
             //编译
             try {
                 // @ts-ignore
-                component.html = new Function('cell', func)
+                widget.html = new Function('cell', func)
             } catch (e: any) {
                 this.ns.error("编译错误", e.message)
             }
@@ -64,15 +64,15 @@ export class ComponentService {
 
 
         //数据绑定钩子
-        if (component.hooks) {
-            for (let k in component.hooks) {
-                if (!component.hooks.hasOwnProperty(k)) return
-                const func = component.hooks[k]
+        if (widget.hooks) {
+            for (let k in widget.hooks) {
+                if (!widget.hooks.hasOwnProperty(k)) return
+                const func = widget.hooks[k]
                 if (typeof func === "string") {
                     //编译
                     try {
                         // @ts-ignore
-                        component.hooks[k] = new Function('value', 'cell', func)
+                        widget.hooks[k] = new Function('value', 'cell', func)
                     } catch (e: any) {
                         this.ns.error("编译错误", e.message)
                     }
@@ -86,11 +86,11 @@ export class ComponentService {
     }
 
     public PutCollection(collection: NuwaCollection) {
-        collection.components = collection.components || []
-        collection.components.forEach(c => this.PutComponent(c))
+        collection.widgets = collection.widgets || []
+        collection.widgets.forEach(c => this.Put(c))
     }
 
-    public Get(id: string): NuwaComponent {
-        return this.components[id]
+    public Get(id: string): NuwaWidget {
+        return this.widgets[id]
     }
 }

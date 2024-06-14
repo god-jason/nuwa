@@ -2,9 +2,9 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Inject
 import {Cell, Graph, ObjectExt, Shape} from "@antv/x6";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NuwaPage, NuwaProject} from "../../project";
-import {ComponentService} from "../../component.service";
+import {WidgetService} from "../../widget.service";
 import {defaultsDeep, isFunction, isObject, isString} from "lodash-es";
-import {NuwaComponent, NuwaEventData, NuwaListener} from "../../nuwa";
+import {NuwaWidget, NuwaEventData, NuwaListener} from "../../nuwa";
 import {register} from "@antv/x6-angular-shape";
 
 @Component({
@@ -63,7 +63,7 @@ export class RenderComponent implements AfterViewInit {
 
     constructor(
         private ns: NzNotificationService,
-        private cs: ComponentService,
+        private ws: WidgetService,
         private injector: Injector,
         private element: ElementRef
     ) {
@@ -87,7 +87,7 @@ export class RenderComponent implements AfterViewInit {
             this.handleEvent(cell, 'click', undefined)
 
             try {
-                let cmp = this.cs.Get(cell.shape)
+                let cmp = this.ws.Get(cell.shape)
                 // @ts-ignore
                 cmp?.listeners?.click?.call(this, cell, e, this.tools)
             } catch (e: any) {
@@ -98,7 +98,7 @@ export class RenderComponent implements AfterViewInit {
         this.graph.on('cell:mouseenter', ({cell, e}) => {
 
             try {
-                let cmp = this.cs.Get(cell.shape)
+                let cmp = this.ws.Get(cell.shape)
                 // @ts-ignore
                 cmp?.listeners?.mouseenter?.call(this, cell, e, this.tools)
             } catch (e: any) {
@@ -108,7 +108,7 @@ export class RenderComponent implements AfterViewInit {
 
         this.graph.on('cell:mouseleave', ({cell, e}) => {
             try {
-                let cmp = this.cs.Get(cell.shape)
+                let cmp = this.ws.Get(cell.shape)
                 // @ts-ignore
                 cmp?.listeners?.mouseleave?.call(this, cell, e, this.tools)
             } catch (e: any) {
@@ -309,7 +309,7 @@ export class RenderComponent implements AfterViewInit {
                     if (bind != key) return
 
                     //执行钩子
-                    let cmp = this.cs.Get(cell.shape)
+                    let cmp = this.ws.Get(cell.shape)
                     if (!cmp) return
                     let hook = cmp?.hooks?.[k]
                     if (!hook) return
@@ -363,7 +363,7 @@ export class RenderComponent implements AfterViewInit {
 
         //预处理，注册组件
         page.content?.cells?.forEach((cell: any) => {
-            const cmp = this.cs.Get(cell.shape)
+            const cmp = this.ws.Get(cell.shape)
             if (!cmp) {
                 cell.shape = "rect" //应该改为未知对象
                 return
@@ -383,7 +383,7 @@ export class RenderComponent implements AfterViewInit {
 
         //监听事件
         this.graph.getCells().forEach(cell => {
-            const cmp = this.cs.Get(cell.shape)
+            const cmp = this.ws.Get(cell.shape)
             if (!cmp) return
 
             //Angular组件，监听事件
@@ -467,51 +467,51 @@ export class RenderComponent implements AfterViewInit {
 
     }
 
-    checkRegister(component: NuwaComponent): boolean {
-        if (component.registered || component.internal)
+    checkRegister(widget: NuwaWidget): boolean {
+        if (widget.registered || widget.internal)
             return true
-        component.registered = true
+        widget.registered = true
 
-        switch (component.type) {
+        switch (widget.type) {
             case "line":
                 //注册线
-                if (component.extends) {
-                    Graph.registerEdge(component.id, component.extends, true)
+                if (widget.extends) {
+                    Graph.registerEdge(widget.id, widget.extends, true)
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少extends")
                 break
             case "shape":
                 //注册衍生组件
-                if (component.extends) {
-                    Graph.registerNode(component.id, component.extends, true)
+                if (widget.extends) {
+                    Graph.registerNode(widget.id, widget.extends, true)
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少extends")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少extends")
                 break;
             case "html":
                 // @ts-ignore
                 Shape.HTML.register({
-                    shape: component.id,
-                    width: component.metadata?.width || 100,
-                    height: component.metadata?.height || 100,
+                    shape: widget.id,
+                    width: widget.metadata?.width || 100,
+                    height: widget.metadata?.height || 100,
                     // @ts-ignore
-                    html: component.html,
+                    html: widget.html,
                 })
                 break;
             case "angular":
-                if (component.content) {
+                if (widget.content) {
                     register({
-                        shape: component.id,
-                        width: component.metadata?.width || 100,
-                        height: component.metadata?.height || 100,
-                        content: component.content,
+                        shape: widget.id,
+                        width: widget.metadata?.width || 100,
+                        height: widget.metadata?.height || 100,
+                        content: widget.content,
                         injector: this.injector,
                     })
-                    component.registered = true
+                    widget.registered = true
                     return true
                 }
-                this.ns.error("编译错误", component.id + " " + component.name + "缺少content")
+                this.ns.error("编译错误", widget.id + " " + widget.name + "缺少content")
                 break;
         }
         return false

@@ -1,11 +1,11 @@
-import {NuwaComponent} from "../../nuwa";
+import {NuwaWidget} from "../../nuwa";
 import {DefaultEvents} from "../properties";
 import {Cell, ObjectExt} from "@antv/x6";
 import {ImageSwitchOffSvgBase64} from "./image-switch-off_svg";
 import {ImageSwitchOnSvgBase64} from "./image-switch-on_svg";
 import {isUndefined} from "lodash-es";
 
-export const SvgUseSwitch: NuwaComponent = {
+export const SvgUseSwitch: NuwaWidget = {
     name: 'Svg开关图', id: ':svg-use-switch:',
     icon: ImageSwitchOffSvgBase64,
     type: "shape",

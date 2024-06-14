@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 
@@ -45,7 +45,7 @@ class ImageBorderComponent {
 
 }
 
-export const ImageBorder: NuwaComponent = {
+export const ImageBorder: NuwaWidget = {
     name: '图片边框', id: ':image-border:',
     icon: "assets/widgets/rect.svg",
     type: "angular",

@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit} from "@angular/core";
 import {load} from '@amap/amap-jsapi-loader';
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {AmapSvgBase64} from "./amap_svg";
 
 @Component({
@@ -106,7 +106,7 @@ class MiscAMapComponent implements OnInit {
 }
 
 
-export const MiscAMap: NuwaComponent = {
+export const MiscAMap: NuwaWidget = {
     name: '高德地图', id: ':amap:',
     icon: AmapSvgBase64, //icon: "assets/widgets/amap.svg",
     type: "angular",

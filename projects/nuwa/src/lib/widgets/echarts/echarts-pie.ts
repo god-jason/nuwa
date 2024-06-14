@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {NgxEchartsModule} from "ngx-echarts";
@@ -154,7 +154,7 @@ class EchartsPieComponent implements AfterViewInit {
     }
 }
 
-export const EchartsPie: NuwaComponent = {
+export const EchartsPie: NuwaWidget = {
     name: '饼图', id: ':echarts-pie:',
     icon: EchartsPieSvgBase64, //icon: "assets/widgets/echarts-pie.svg",
     type: "angular",

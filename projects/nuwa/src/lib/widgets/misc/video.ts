@@ -1,4 +1,4 @@
-import {NuwaComponent, NuwaEventData} from "../../nuwa";
+import {NuwaWidget, NuwaEventData} from "../../nuwa";
 import {Component, EventEmitter, Input} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -39,7 +39,7 @@ class MiscVideoComponent {
     }
 }
 
-export const MiscVideo: NuwaComponent = {
+export const MiscVideo: NuwaWidget = {
     name: '视频', id: ':video:',
     icon: VideoSvgBase64, //icon: "assets/widgets/video.svg",
     type: "angular",
