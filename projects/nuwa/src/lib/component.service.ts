@@ -7,7 +7,7 @@ import {MiscFlow} from "./widgets/misc/flow";
 
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ImageBorder} from "./widgets/misc/image-border";
-import {MiscImages} from "./widgets/misc/miscImages";
+import {MiscImages} from "./widgets/misc/images";
 import {SvgUse} from "./widgets/misc/svg-use";
 import {SvgUseSwitch} from "./widgets/misc/svg-use-switch";
 import {SvgUses} from "./widgets/misc/svg-uses";
@@ -28,6 +28,7 @@ export class ComponentService {
         this.PutComponent(SvgUses)
         this.PutComponent(SvgUseSwitch)
         //this.PutComponent(BaseGroup)
+        //TODO 改为自动注册，在Check中
     }
 
     public PutComponent(component: NuwaComponent) {

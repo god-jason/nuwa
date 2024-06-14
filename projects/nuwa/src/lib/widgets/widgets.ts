@@ -21,7 +21,7 @@ import {MiscVideo} from "./misc/video";
 import {MiscTime} from "./misc/time";
 import {ControlText} from "./control/text";
 import {ControlTable} from "./control/table";
-import {MiscImageSwitch} from "./misc/misc-image-switch";
+import {MiscImageSwitch} from "./misc/image-switch";
 import {MiscForeach} from "./misc/foreach";
 import {MiscImage} from "./misc/image";
 

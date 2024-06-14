@@ -9,7 +9,6 @@ export const MiscImages: NuwaComponent = {
     icon: ImagesSvgBase64,
     type: "shape",
     extends: {
-        //inherit: 'image',
         markup: [
             {
                 tagName: 'image',
@@ -37,7 +36,8 @@ export const MiscImages: NuwaComponent = {
         ...DefaultEvents,
     ],
     metadata: {
-        width: 100, height: 100,
+        width: 200,
+        height: 200,
         data: {
             value: false,
         },

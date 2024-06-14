@@ -1,6 +1,8 @@
 import {NuwaComponent} from "../../nuwa";
 import {ImagesSvgBase64} from "./images_svg";
 import {DefaultEvents} from "../properties";
+import {Cell, ObjectExt} from "@antv/x6";
+import {isUndefined} from "lodash-es";
 
 export const SvgUses: NuwaComponent = {
     name: 'Svg图集',
@@ -21,7 +23,17 @@ export const SvgUses: NuwaComponent = {
                 stroke: 'black',
                 refWidth: '100%',
                 refHeight: '100%',
+            },
+        },
+        propHooks:(metadata:Cell.Metadata)=>{
+            let index = metadata.data?.value
+            if (!isUndefined(index)) {
+                let images = metadata.data.urls as string[]
+                let img = images[index]
+                //更新图片
+                if (img) ObjectExt.setByPath(metadata, "attrs/image/xlink:href", img)
             }
+            return metadata
         }
     },
     events: [
@@ -32,9 +44,15 @@ export const SvgUses: NuwaComponent = {
         height: 200,
         data: {
             value: false,
+        },
+        attrs: {
+            image: {
+                "xlink:href": ImagesSvgBase64
+            }
         }
     },
     properties: [
+        {label: "顺序", key: "data/value", type: "number"},
         {label: "图片集", key: "data/urls", type: "files"},
         {label: "颜色", key: "attrs/image/stroke", type: "color"},
     ],
@@ -45,11 +63,7 @@ export const SvgUses: NuwaComponent = {
     ],
     hooks: {
         value(cell, value: number) {
-            //设置值
-            //cell.setPropByPath("data/value", value)
-            //更新图片
-            let images = cell.getPropByPath("data/urls") as string[]
-
+            let images = cell.data.urls as string[]
             //更新图片
             cell.setPropByPath("attrs/image/xlink:href", images[value])
         }

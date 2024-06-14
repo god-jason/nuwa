@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
 import {NuwaImage, NuwaImageGallery} from "../../nuwa";
-import {MiscImageSwitch} from "../../widgets/misc/misc-image-switch";
-import {MiscImages} from "../../widgets/misc/miscImages";
+import {MiscImageSwitch} from "../../widgets/misc/image-switch";
+import {MiscImages} from "../../widgets/misc/images";
 import {SvgUse} from "../../widgets/misc/svg-use";
 import {SvgUseSwitch} from "../../widgets/misc/svg-use-switch";
 import {SvgUses} from "../../widgets/misc/svg-uses";

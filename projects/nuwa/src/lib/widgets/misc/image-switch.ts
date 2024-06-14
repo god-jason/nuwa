@@ -7,10 +7,9 @@ import {isUndefined} from "lodash-es";
 
 export const MiscImageSwitch: NuwaComponent = {
     name: '开关图', id: ':image-switch:',
-    icon: ImageSwitchOffSvgBase64, //icon: "assets/widgets/image.svg",
+    icon: ImageSwitchOffSvgBase64,
     type: "shape",
     extends: {
-        //inherit: 'image',
         markup: [
             {
                 tagName: 'image',
