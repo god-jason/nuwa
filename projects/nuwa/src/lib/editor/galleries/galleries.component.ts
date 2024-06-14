@@ -1,12 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {CanvasComponent} from "../canvas/canvas.component";
-import {BaseImage} from "../../widgets/base/image";
 import {NuwaImage, NuwaImageGallery} from "../../nuwa";
-import {ImageSwitch} from "../../widgets/misc/image-switch";
-import {Images} from "../../widgets/misc/images";
+import {MiscImageSwitch} from "../../widgets/misc/misc-image-switch";
+import {MiscImages} from "../../widgets/misc/miscImages";
 import {SvgUse} from "../../widgets/misc/svg-use";
 import {SvgUseSwitch} from "../../widgets/misc/svg-use-switch";
 import {SvgUses} from "../../widgets/misc/svg-uses";
+import {MiscImage} from "../../widgets/misc/image";
 
 @Component({
     selector: 'nuwa-galleries',
@@ -58,7 +58,7 @@ export class GalleriesComponent {
             if (img.urls && img.urls.length > 0) {
                 if (img.switch) {
                     //图开关
-                    this.canvas?.drawNode($event, ImageSwitch, {
+                    this.canvas?.drawNode($event, MiscImageSwitch, {
                         "data/off": img.urls[0],
                         "data/on": img.urls[1],
                         "attrs/image/xlink:href": img.urls[0],
@@ -66,14 +66,14 @@ export class GalleriesComponent {
                     })
                 } else {
                     //图集
-                    this.canvas?.drawNode($event, Images, {
+                    this.canvas?.drawNode($event, MiscImages, {
                         "data/urls": img.urls,
                         "attrs/image/xlink:href": img.urls[0],
                         "data/name": (img.name || '图集') + (this.canvas.graph.getCellCount() + 1)
                     })
                 }
             } else if (img.url) {
-                this.canvas?.drawNode($event, BaseImage, {
+                this.canvas?.drawNode($event, MiscImage, {
                     "attrs/image/xlink:href": img.url,
                     "data/name": (img.name || '图片') + (this.canvas.graph.getCellCount() + 1)
                 })

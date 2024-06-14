@@ -5,7 +5,7 @@ import {ImageSwitchOffSvgBase64} from "./image-switch-off_svg";
 import {ImageSwitchOnSvgBase64} from "./image-switch-on_svg";
 import {isUndefined} from "lodash-es";
 
-export const ImageSwitch: NuwaComponent = {
+export const MiscImageSwitch: NuwaComponent = {
     name: '开关图', id: ':image-switch:',
     icon: ImageSwitchOffSvgBase64, //icon: "assets/widgets/image.svg",
     type: "shape",
@@ -37,7 +37,6 @@ export const ImageSwitch: NuwaComponent = {
     ],
     metadata: {
         width: 100, height: 100,
-        imageUrl: ImageSwitchOffSvgBase64,//"assets/widgets/image.svg",
         data: {
             on: ImageSwitchOnSvgBase64,
             off: ImageSwitchOffSvgBase64,
@@ -51,7 +50,7 @@ export const ImageSwitch: NuwaComponent = {
     },
     properties: [
         {label: "开关响应", key: "data/switch", type: "switch", default: false},
-        {label: "开关", key: "data/value", type: "switch", default: false}, //propHook被image占用，需要删除Inhert，添加markup
+        {label: "开关", key: "data/value", type: "switch", default: false},
         {label: "通", key: "data/on", type: "file"},
         {label: "断", key: "data/off", type: "file"},
     ],
@@ -87,18 +86,4 @@ export const ImageSwitch: NuwaComponent = {
         }
     },
 }
-
-export function createImageSwitch(on: string, off: string): NuwaComponent {
-    return {
-        name:'开关', id: ':image-switch:',
-        icon: off,
-        type: "shape",
-        extends: {inherit: 'image'},
-        metadata: {
-            width:100, height:100, imageUrl: off,
-            data: {on, off, value: false}
-        },
-    }
-}
-
 

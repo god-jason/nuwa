@@ -1,10 +1,8 @@
 import {NuwaCollection} from "../nuwa";
 import {ControlButton} from "./control/button";
-import {BaseText} from "./base/text";
 import {BaseRect} from "./base/rect";
 import {BaseCircle} from "./base/circle";
 import {BaseEllipse} from "./base/ellipse";
-import {BaseImage} from "./base/image";
 import {ControlNumber} from "./control/number";
 import {EchartsBar} from "./echarts/echarts-bar";
 import {EchartsGauge} from "./echarts/echarts-gauge";
@@ -23,14 +21,15 @@ import {MiscVideo} from "./misc/video";
 import {MiscTime} from "./misc/time";
 import {ControlText} from "./control/text";
 import {ControlTable} from "./control/table";
-import {ImageSwitch} from "./misc/image-switch";
+import {MiscImageSwitch} from "./misc/misc-image-switch";
 import {MiscForeach} from "./misc/foreach";
+import {MiscImage} from "./misc/image";
 
 export const NuwaWidgets: NuwaCollection[] = [
     {
-        name: "基础组件",
+        name: "基础图形",
         components: [
-            BaseRect, BaseCircle, BaseEllipse, BaseImage,
+            BaseRect, BaseCircle, BaseEllipse
         ]
     },
     {
@@ -52,8 +51,8 @@ export const NuwaWidgets: NuwaCollection[] = [
     {
         name: "其他组件",
         components: [
-            //MiscFlow,
-            ImageSwitch,
+            MiscImage,
+            MiscImageSwitch,
             MiscTime,
             MiscVideo,
             MiscWeather,

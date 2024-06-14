@@ -7,7 +7,7 @@ import {MiscFlow} from "./widgets/misc/flow";
 
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ImageBorder} from "./widgets/misc/image-border";
-import {Images} from "./widgets/misc/images";
+import {MiscImages} from "./widgets/misc/miscImages";
 import {SvgUse} from "./widgets/misc/svg-use";
 import {SvgUseSwitch} from "./widgets/misc/svg-use-switch";
 import {SvgUses} from "./widgets/misc/svg-uses";
@@ -23,7 +23,7 @@ export class ComponentService {
         this.PutComponent(BaseLine)
         this.PutComponent(MiscFlow)
         this.PutComponent(ImageBorder)
-        this.PutComponent(Images)
+        this.PutComponent(MiscImages)
         this.PutComponent(SvgUse)
         this.PutComponent(SvgUses)
         this.PutComponent(SvgUseSwitch)

@@ -1,6 +1,6 @@
 import {NuwaComponent} from "../../nuwa";
 import {DefaultEvents} from "../properties";
-import {ImageSvgBase64} from "../base/image_svg";
+import {ImageSvgBase64} from "./image_svg";
 
 export const SvgUse: NuwaComponent = {
     name: 'Svg图片',
