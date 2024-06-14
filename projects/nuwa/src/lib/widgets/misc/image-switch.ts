@@ -1,14 +1,36 @@
 import {NuwaComponent} from "../../nuwa";
 import {DefaultEvents} from "../properties";
-import {Cell} from "@antv/x6";
+import {Cell, ObjectExt} from "@antv/x6";
 import {ImageSwitchOffSvgBase64} from "./image-switch-off_svg";
 import {ImageSwitchOnSvgBase64} from "./image-switch-on_svg";
+import {isUndefined} from "lodash-es";
 
 export const ImageSwitch: NuwaComponent = {
     name: '开关图', id: ':image-switch:',
     icon: ImageSwitchOffSvgBase64, //icon: "assets/widgets/image.svg",
     type: "shape",
-    extends: {inherit: 'image'},
+    extends: {
+        //inherit: 'image',
+        markup: [
+            {
+                tagName: 'image',
+                selector: 'image',
+            }
+        ],
+        attrs: {
+            image: {
+                refWidth: '100%',
+                refHeight: '100%',
+            },
+        },
+        propHooks:(metadata:Cell.Metadata)=>{
+            if (!isUndefined(metadata.data?.value)) {
+                let img = metadata.data?.value ? metadata.data.on : metadata.data.off
+                ObjectExt.setByPath(metadata, "attrs/image/xlink:href", img)
+            }
+            return metadata
+        }
+    },
     events: [
         ...DefaultEvents,
         {name: "change", label: "变化"},
@@ -20,25 +42,31 @@ export const ImageSwitch: NuwaComponent = {
             on: ImageSwitchOnSvgBase64,
             off: ImageSwitchOffSvgBase64,
             value: false,
+        },
+        attrs: {
+            image: {
+                "xlink:href": ImageSwitchOffSvgBase64
+            }
         }
     },
     properties: [
         {label: "开关响应", key: "data/switch", type: "switch", default: false},
+        {label: "开关", key: "data/value", type: "switch", default: false}, //propHook被image占用，需要删除Inhert，添加markup
         {label: "通", key: "data/on", type: "file"},
         {label: "断", key: "data/off", type: "file"},
     ],
     listeners: {
         click(cell: Cell, event: Event) {
             //开关响应
-            if (!cell.getPropByPath("data/switch"))
+            if (!cell.data.switch)
                 return
 
             //翻转
-            let value = !cell.getPropByPath("data/value")
+            let value = !cell.data.value
             //设置值
-            cell.setPropByPath("data/value", value)
+            cell.data.value = !value
             //更新图片
-            let img = cell.getPropByPath(value ? "data/on" : "data/off")
+            let img = value ? cell.data.on : cell.data.off
             cell.setPropByPath("attrs/image/xlink:href", img)
 
             //回传
@@ -52,9 +80,9 @@ export const ImageSwitch: NuwaComponent = {
     hooks: {
         value(cell, value) {
             //设置值
-            cell.setPropByPath("data/value", value)
+            cell.data.value = value
             //更新图片
-            let img = cell.getPropByPath(value ? "data/on" : "data/off")
+            let img = value ? cell.data.on : cell.data.off
             cell.setPropByPath("attrs/image/xlink:href", img)
         }
     },

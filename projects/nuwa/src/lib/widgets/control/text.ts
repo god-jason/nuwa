@@ -25,13 +25,9 @@ class ControlTextComponent {
     @Input() set fontSize(fontSize: number) {
         this._fontSize = fontSize + 'px';
     }
-
     @Input() @HostBinding("style.font-family") fontFamily = "SimHei";
-
     @Input() @HostBinding("style.font-weight") fontWeight = "normal";
-
     @Input() @HostBinding("style.font-style") fontStyle = "normal";
-
     @Input() @HostBinding("style.text-align") textAlign = "left";
 }
 

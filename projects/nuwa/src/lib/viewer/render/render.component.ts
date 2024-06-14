@@ -387,7 +387,7 @@ export class RenderComponent implements AfterViewInit {
             if (!cmp) return
 
             //Angular组件，监听事件
-            if (cmp.content) {
+            if (cmp.type=='angular' && cmp.content) {
                 let listener = new EventEmitter<NuwaEventData>()
                 listener.subscribe(event => {
                     this.handleEvent(cell, event.event, event.data)

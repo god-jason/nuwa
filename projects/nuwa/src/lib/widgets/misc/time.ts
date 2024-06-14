@@ -1,7 +1,8 @@
 import {NuwaComponent, NuwaEventData} from "../../nuwa";
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {TimeSvgBase64} from "./time_svg";
+import {ngTextProperties} from "../properties";
 
 @Component({
     selector: '$nuwa-misc-time',
@@ -16,16 +17,25 @@ class MiscTimeComponent implements OnInit, OnDestroy{
     @Input() listener = new EventEmitter<NuwaEventData>();
 
     now = Date.now();
+    timer: number = 0 //定时器
 
     @Input() format = 'yyyy-MM-dd HH:mm:ss';
 
-    internal: number = 0
+    @HostBinding("style.font-size") _fontSize = '16px';
+    @Input() set fontSize(fontSize: number) {
+        this._fontSize = fontSize + 'px';
+    }
+    @Input() @HostBinding("style.font-family") fontFamily = "SimHei";
+    @Input() @HostBinding("style.font-weight") fontWeight = "normal";
+    @Input() @HostBinding("style.font-style") fontStyle = "normal";
+    @Input() @HostBinding("style.text-align") textAlign = "left";
+
 
     constructor(private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
-        this.internal = setInterval(() => {
+        this.timer = setInterval(() => {
             //console.log("tick")
             this.now = Date.now();
             this.changeDetectorRef.detectChanges()
@@ -33,7 +43,7 @@ class MiscTimeComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(): void {
-        clearInterval(this.internal);
+        clearInterval(this.timer);
     }
 }
 
@@ -55,7 +65,8 @@ export const MiscTime: NuwaComponent = {
                 {value:"yyyy年M月d日", label: "yyyy年M月d日"},
                 {value:"yyyy年M月d日 EEEE", label: "yyyy年M月d日 星期几"},
                 {value:"H时m分s秒", label: "H时m分s秒"},
-        ]},
+        ], default: 'yyyy-MM-dd HH:mm:ss'},
+        ...ngTextProperties
     ],
     bindings: [],
     hooks: {},

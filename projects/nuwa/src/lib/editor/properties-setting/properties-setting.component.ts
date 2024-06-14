@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Cell} from "@antv/x6";
+import {Cell, ObjectExt} from "@antv/x6";
 import {SmartEditorComponent, SmartField} from "@god-jason/smart";
 import {CanvasComponent} from "../canvas/canvas.component";
 //import {ComponentService} from "../../component.service";
@@ -82,10 +82,17 @@ export class PropertiesSettingComponent implements OnDestroy, OnInit {
 
     onChange() {
         let value = this.editor.value
-        console.log("properties onChange", value)
+        // console.log("properties onChange", value)
+        // Object.keys(value).forEach(key => {
+        //     this.cell?.setPropByPath(key, value[key])
+        // })
+
+        //逐一设置，不能触发 propHooks
+        let obj: any = {}
         Object.keys(value).forEach(key => {
-            this.cell?.setPropByPath(key, value[key])
+            ObjectExt.setByPath(obj, key, value[key])
         })
+        if (this.cell) this.cell.setProp(obj)
     }
 
     onNameChange() {
