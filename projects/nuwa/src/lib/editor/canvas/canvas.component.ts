@@ -14,6 +14,11 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NuwaPage} from "../../project";
 import {WidgetService} from "../../widget.service";
 
+//线段编辑器改为红色，使用有问题
+// Graph.registerEdgeTool('nuwa-segments', {inherit: 'segments', attrs: {fill: 'red',},})
+// Graph.registerEdgeTool('nuwa-vertices', {inherit: 'vertices', attrs: {fill: 'red',},})
+// Graph.registerEdgeTool('nuwa-target-arrowhead', {inherit: 'target-arrowhead', attrs: {fill: 'red',},})
+// Graph.registerEdgeTool('nuwa-source-arrowhead', {inherit: 'source-arrowhead', attrs: {fill: 'red'},})
 
 @Component({
     selector: 'nuwa-canvas',
@@ -91,7 +96,7 @@ export class CanvasComponent {
         this.graph.bindKey('ctrl+c', () => this.graph.copy(this.graph.getSelectedCells(), {deep: true}))
         this.graph.bindKey('ctrl+v', () => {
             let cs = this.graph.paste()
-            cs.forEach(cell=>cell.data.name += '_copy')
+            cs.forEach(cell => cell.data.name += '_copy')
             this.graph.resetSelection(cs)
         })
         this.graph.bindKey('backspace', () => this.graph.getSelectedCells().forEach(cell => cell.remove()))
