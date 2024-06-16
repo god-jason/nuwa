@@ -49,6 +49,20 @@ export function LineProperties(id: string, prefix: string = ""): SmartField[] {
                 {value: "80 80", label: "虚线7"},
             ]
         },
+        {
+            label: prefix + "边框终点", key: `attrs/${id}/strokeLinecap`, type: "select", default: 'round', options: [
+                {value: "butt", label: "无"},
+                {value: "round", label: "圆角"},
+                {value: "square", label: "方角"},
+            ]
+        },
+        {
+            label: prefix + "边框转角", key: `attrs/${id}/strokeLinejoin`, type: "select", default: 'round', options: [
+                {value: "miter", label: "尖角"},
+                {value: "round", label: "圆角"},
+                {value: "bevel", label: "斜接"},
+            ]
+        },
     ]
 }
 

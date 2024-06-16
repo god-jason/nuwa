@@ -122,6 +122,8 @@ export class CanvasComponent {
                 //设置名称
                 this.drawingEdge.setPropByPath("data/name", this.drawingEdgeComponent.name + (this.graph.getCellCount() + 1))
                 this.drawingEdgeComponent = undefined;
+
+                this.graph.select(this.drawingEdge)
             } else {
                 this.drawingEdge = undefined
             }

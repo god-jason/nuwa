@@ -6,12 +6,8 @@ export const MiscFlow: NuwaWidget = {
     name: '流动线条', id: ':flow:',
     icon: FlowSvgBase64, //icon: "assets/widgets/flow.svg",
     type: "line",
-    extends: {inherit: "edge"},
-    metadata: {
-        markup: [
-            {tagName: 'path', selector: 'wrap'},
-            {tagName: 'path', selector: 'line'},
-        ],
+    extends: {
+        inherit: "edge",
         attrs: {
             wrap: {
                 fill: 'none',
@@ -32,6 +28,8 @@ export const MiscFlow: NuwaWidget = {
             },
         },
         tools: {items: ['edge-editor']},
+    },
+    metadata: {
     },
     properties: [
         ...LineProperties('wrap', "底"),
