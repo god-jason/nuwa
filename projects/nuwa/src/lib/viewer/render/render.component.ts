@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Injector, Input, Output} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Injector,
+    Input,
+    OnDestroy,
+    Output
+} from '@angular/core';
 import {Cell, Graph, ObjectExt, Shape} from "@antv/x6";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NuwaPage, NuwaProject} from "../../project";
@@ -14,7 +24,7 @@ import {register} from "@antv/x6-angular-shape";
     templateUrl: './render.component.html',
     styleUrl: './render.component.scss'
 })
-export class RenderComponent implements AfterViewInit {
+export class RenderComponent implements AfterViewInit, OnDestroy {
 
     //项目
     _project!: NuwaProject
@@ -358,8 +368,34 @@ export class RenderComponent implements AfterViewInit {
         this.setVariables(values)
     }
 
+    private intervals: number[] = []
+
+    public clear() {
+        this.graph.clearCells()
+        this.graph.clearBackground()
+
+        //清空脚本定时器
+        this.intervals.forEach(interval => {clearInterval(interval)})
+
+        //执行离开的脚本
+        this.page.scripts.forEach(s=>{
+            if (s.type == "leave" && isFunction(s.script)) {
+                let func = s.script as Function
+                try {
+                    func(this.graph, this.variables, this.$set, this.tools)
+                } catch (e: any) {
+                    this.ns.error("脚本执行错误", s.script + ' ' + e.message)
+                }
+            }
+        })
+
+        //变量也清空，避免影响
+        this.variables = {}
+    }
+
     //渲染
     public render(page: NuwaPage) {
+        this.clear()
 
         //预处理，注册组件
         page.content?.cells?.forEach((cell: any) => {
@@ -380,6 +416,28 @@ export class RenderComponent implements AfterViewInit {
             this.graph.centerContent()
             this.graph.zoomToFit({padding: this.padding})
         }
+
+        //编译脚本
+        page.scripts.forEach(s=>{
+            if (isString(s.script) && s.script.length > 0) {
+                try {
+                    let func =  new Function('$graph', '$variables', '$set', '$tools', s.script)
+                    s.script = func
+
+                    if (s.type == "enter") {
+                        if (s.delay) setTimeout(()=>func(this.graph, this.variables, this.$set, this.tools), s.delay)
+                        else func(this.graph, this.variables, this.$set, this.tools)
+                    } else if (s.type == "interval") {
+                        let id = setInterval(()=>func(this.graph, this.variables, this.$set, this.tools), (s.interval as number) * 1000)
+                        this.intervals.push(id)
+                    } else if (s.type == "crontab") {
+                        //暂不支持
+                    }
+                } catch (e: any) {
+                    this.ns.error("脚本编译错误", s.script + ' ' + e.message)
+                }
+            }
+        })
 
         //监听事件
         this.graph.getCells().forEach(cell => {
@@ -464,7 +522,7 @@ export class RenderComponent implements AfterViewInit {
     }
 
     ngOnDestroy(): void {
-
+        this.clear()
     }
 
     checkRegister(widget: NuwaWidget): boolean {

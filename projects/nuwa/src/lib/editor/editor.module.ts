@@ -77,6 +77,7 @@ import {VariablesComponent} from "./variables/variables.component";
 import {BindingsComponent} from "./bindings/bindings.component";
 import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {ScriptSettingComponent} from "./script-setting/script-setting.component";
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import {NzDrawerModule} from "ng-zorro-antd/drawer";
         PropertiesSettingComponent,
         CellSettingComponent,
         ScriptsComponent,
+        ScriptSettingComponent,
         SideBarComponent,
         SideBarItemDirective,
         SourcesComponent,

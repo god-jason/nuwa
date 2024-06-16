@@ -31,6 +31,7 @@ export declare interface NuwaListener {
     event: string
     action: "page" | "link" | "set" | "show" | "hide" | "animate" | "script"// string //page link set
     delay: number
+
     animation?: string //动画
 
     //元素，show hide animate
@@ -48,7 +49,7 @@ export declare interface NuwaListener {
     parameters?: NuwaParameter[]
 
     //脚本
-    script?: string | ((cell: Cell, value: any, tools: any) => void)
+    script?: string | Function
 }
 
 export declare interface NuwaWidget {

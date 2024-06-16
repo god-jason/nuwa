@@ -39,7 +39,7 @@ export class ListenerSettingComponent implements AfterViewInit {
         ], hidden: true
     }
 
-    script: SmartField = {key: "script", label: "品牌商", type: "template", hidden: true}
+    script: SmartField = {key: "script", label: "脚本", type: "template", hidden: true}
 
     action: SmartField = {
         key: "action", label: "执行动作", type: "select", default: "set", options: [

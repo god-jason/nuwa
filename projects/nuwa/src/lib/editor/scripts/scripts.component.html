@@ -1,1 +1,23 @@
-<p>scripts works!</p>
+<nz-table [nzData]="page.scripts">
+    <thead>
+    <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>脚本</th>
+        <th>-</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of page.scripts; let i=index">
+        <td>{{ e.name }}</td>
+        <td>{{ getTypeName(e.type) }}</td>
+        <td>{{ e.script }}</td>
+        <td>
+            <i (click)="edit(i)" nz-icon nzType="edit" title="编辑"></i>
+            <i (click)="delete(i)" nz-icon nzType="delete" title="删除"></i>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
+
+<button (click)="add()" nz-button nzType="primary">添加脚本</button>

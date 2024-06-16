@@ -15,8 +15,17 @@ export declare interface NuwaProject {
 
 export declare interface NuwaBackground {
     color: string
-    image: string
-    size: string | "contain" | "cover" | "100% 100%"
+    image?: string
+    size?: string | "contain" | "cover" | "100% 100%"
+}
+
+export declare interface NuwaScript {
+    name: string
+    type: "enter" | "leave" | "interval" | "crontab" //
+    delay?: number //延迟
+    interval?: number
+    crontab?: number
+    script: string | Function
 }
 
 export declare interface NuwaPage {
@@ -25,7 +34,8 @@ export declare interface NuwaPage {
     width: number
     height: number
     background?: NuwaBackground
-    variables?: NuwaVariable[];
+    variables: NuwaVariable[];
+    scripts: NuwaScript[];
 }
 
 export function pageTemplate(name: string = "新建页面"): NuwaPage {
@@ -34,7 +44,8 @@ export function pageTemplate(name: string = "新建页面"): NuwaPage {
         content: {},
         width: window.screen.width, //自动获取屏幕尺寸
         height: window.screen.height,
-        variables: []
+        variables: [],
+        scripts: [],
     }
 }
 
