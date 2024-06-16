@@ -33,6 +33,7 @@
         "@antv/x6-plugin-transform": "^2.1.8",
         "@ctrl/ngx-codemirror": "^6.1.0",
         "@god-jason/smart": "^1.0.5",
+        "animate.css": "^4.1.1",
         "camelcase": "^7.0.1",
         "codemirror": "^5.65.16",
         "dayjs": "^1.11.10",

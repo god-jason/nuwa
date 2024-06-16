@@ -417,7 +417,7 @@ export class RenderComponent implements AfterViewInit, OnDestroy {
             this.graph.zoomToFit({padding: this.padding})
         }
 
-        //编译脚本
+        //编译并执行脚本
         page.scripts.forEach(s=>{
             if (isString(s.script) && s.script.length > 0) {
                 try {

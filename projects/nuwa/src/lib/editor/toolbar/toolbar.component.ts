@@ -49,7 +49,7 @@ export class ToolbarComponent {
         this.canvas.page.content = this.canvas.graph.toJSON()
 
         const urlObject = window.URL || window.webkitURL || window;
-        const export_blob = new Blob([JSON.stringify(this.project)]);
+        const export_blob = new Blob([JSON.stringify(this.project, null, 2)]);
         const save_link = document.createElement("a");
         save_link.href = urlObject.createObjectURL(export_blob);
         save_link.download = Date.now() + '.json';
